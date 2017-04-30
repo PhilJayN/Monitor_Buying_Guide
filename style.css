@@ -20,3 +20,7 @@ th, td {
 tr:nth-child(even){
   background-color: rgb(224, 224, 224);
 }
+
+ul {
+  list-style-type: none;
+}
