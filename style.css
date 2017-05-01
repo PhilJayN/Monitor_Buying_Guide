@@ -1,11 +1,15 @@
 h1 {
-  color: red;
+  color: rgb(16, 109, 119);
 }
 
 .hidden {
   display: none;
 }
 
+
+.container {
+  border: 1px solid red;
+}
 
 table {
   border-collapse: collapse;
@@ -23,4 +27,9 @@ tr:nth-child(even){
 
 ul {
   list-style-type: none;
+}
+
+
+.teddy {
+  border: 1px solid red;
 }
