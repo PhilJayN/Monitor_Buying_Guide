@@ -28,8 +28,3 @@ tr:nth-child(even){
 ul {
   list-style-type: none;
 }
-
-
-.teddy {
-  border: 1px solid red;
-}
