@@ -2,14 +2,13 @@ h1 {
   color: rgb(16, 109, 119);
 }
 
-.hidden {
+/*.hidden {
   display: none;
-}
+}*/
 
-
-.container {
+/*.container {
   border: 1px solid red;
-}
+}*/
 
 .col-lg-6 {
   border: 1px solid blue;
@@ -39,9 +38,4 @@ tr:nth-child(even){
 
 ul {
   list-style-type: none;
-}
-
-
-main {
-  border: 11px solid black;
 }
