@@ -40,3 +40,8 @@ tr:nth-child(even){
 ul {
   list-style-type: none;
 }
+
+
+main {
+  border: 11px solid black;
+}
