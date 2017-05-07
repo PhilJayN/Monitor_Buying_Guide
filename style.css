@@ -22,8 +22,11 @@ h1 {
   border: 7px solid green;
 }
 
-.wishlist-criteria {
-
+.wishlist-criteria-position {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 15%;
 }
 
 .contents-section {
@@ -51,3 +54,8 @@ tr:nth-child(even){
 ul {
   list-style-type: none;
 }
+
+
+/*.container {
+max-width: 50%;
+}*/
