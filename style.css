@@ -59,6 +59,22 @@ ul {
   list-style-type: none;
 }
 
+
+.primary-content-ul {
+  background-color: #f3fafd;
+  border-radius: 2px;
+  border: 1px solid #ecf8ff;
+  list-style-type: disc;
+  /*Allows the bullets to be a particular color:*/
+  color:#7CA7BF;
+  /*border: 1px solid red;*/
+}
+
+  .primary-content-ul span {
+    /*After changing bullet color, change th txt*/
+    color: black;
+  }
+
 /*BUTTON STYLES-----------------------------------------*/
 /*.btn {
 background-color: white;
