@@ -59,6 +59,11 @@ ul {
   list-style-type: none;
 }
 
+.primary-content-ul-toc {
+  background-color: #f3fafd;
+  border-radius: 2px;
+  border: 1px solid #ecf8ff;
+}
 
 .primary-content-ul {
   background-color: #f3fafd;
