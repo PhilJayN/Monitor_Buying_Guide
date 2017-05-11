@@ -17,13 +17,13 @@ h2 {
   border: 1px solid red;
 }*/
 
-.col-lg-6 {
+/*.col-lg-6 {
   border: 1px solid blue;
-}
+}*/
 
-.row {
+/*.row {
   border: 7px solid green;
-}
+}*/
 
 .wishlist-criteria-position {
   position: absolute;
@@ -103,4 +103,35 @@ max-width: 50%;
   background-color: #F2FCF3;
   border-color: rgb(38, 121, 131);
 
+}
+
+
+.fa {
+  display: block;
+  margin-bottom: 1em;
+  /*border: 1px solid red; */
+}
+
+.fa-heart {
+  color: red;
+}
+
+.fa-birthday-cake {
+  color: pink;
+}
+
+.fa-exclamation-mark {
+  color: orange;
+}
+
+.fa-sticky-note-o {
+  color: goldenrod;
+}
+
+.fa-eye {
+  color: blue;
+}
+
+.fa-bomb {
+  color: black;
 }
