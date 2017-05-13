@@ -43,6 +43,8 @@ h2 {
 
 table {
   border-collapse: collapse;
+  border: 1px solid blue;
+  margin-bottom: 2em;
 }
 
 th, td {
@@ -51,10 +53,20 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(even){
-  /*background-color: rgb(224, 224, 224);*/
-  background-color: #F2FCF4;
+tr {
+    background-color: #F2FCF4;
+  }
+
+th {
+      background-color: #89b692;
+    }
+
+
 }
+/*tr:nth-child(even){
+  /*background-color: rgb(224, 224, 224);*/
+  /*background-color: #F2FCF4;*/
+}*/
 
 ul {
   list-style-type: none;
