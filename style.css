@@ -114,6 +114,10 @@ max-width: 50%;
   color: rgb(94, 94, 94);
 }
 
+.btn-warning {
+  color: #fff
+}
+
 
 .btn-default:hover {
   /*txt color only change to draw attention to btn*/
@@ -138,16 +142,16 @@ max-width: 50%;
   color: pink;
 }
 
-.fa-exclamation-mark {
-  color: orange;
+.fa-exclamation-triangle {
+  color: #FF8F00;
 }
 
 .fa-sticky-note-o {
-  color: goldenrod;
+  color: #ffd740;
 }
 
 .fa-eye {
-  color: blue;
+  color: #2196F3;
 }
 
 .fa-bomb {
