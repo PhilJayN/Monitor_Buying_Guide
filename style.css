@@ -47,6 +47,11 @@ h2 {
   padding: 1em;
 }
 
+.definitions {
+  background-color: rgb(208, 208, 208);
+  padding: 1em;
+}
+
 table {
   border-collapse: collapse;
   border: 1px solid blue;
@@ -100,14 +105,6 @@ ul {
   }
 
 /*BUTTON STYLES-----------------------------------------*/
-/*.btn {
-background-color: white;
-border: 1px solid rgb(38, 121, 131);
-}*/
-
-/*.container {
-max-width: 50%;
-}*/
 
 .btn-default {
   /*color is lighter gray to prevent distraction*/
@@ -115,7 +112,7 @@ max-width: 50%;
 }
 
 .btn-warning {
-  color: #fff
+  color: #fff;
 }
 
 
