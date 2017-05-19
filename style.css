@@ -9,21 +9,6 @@ h1 {
 h2 {
   color: rgb(38, 121, 131);
 }
-/*.hidden {
-  display: none;
-}*/
-
-/*.container {
-  border: 1px solid red;
-}*/
-
-/*.col-lg-6 {
-  border: 1px solid blue;
-}*/
-
-/*.row {
-  border: 7px solid green;
-}*/
 
 .wishlist-criteria-position {
   position: absolute;
@@ -72,13 +57,6 @@ th {
       background-color: #89b692;
     }
 
-
-}
-/*tr:nth-child(even){
-  /*background-color: rgb(224, 224, 224);*/
-  /*background-color: #F2FCF4;*/
-}*/
-
 ul {
   list-style-type: none;
 }
@@ -115,13 +93,11 @@ ul {
   color: #fff;
 }
 
-
 .btn-default:hover {
   /*txt color only change to draw attention to btn*/
   color: rgb(33, 33, 33);
   background-color: #F2FCF3;
   border-color: rgb(38, 121, 131);
-
 }
 
 
@@ -154,3 +130,25 @@ ul {
 .fa-bomb {
   color: black;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*tr:nth-child(even) {
+  background-color: rgb(224, 224, 224);
+  background-color: #F2FCF4;
+}*/
