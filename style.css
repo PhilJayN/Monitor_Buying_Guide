@@ -32,6 +32,12 @@ h2 {
   padding: 1em;
 }
 
+.side-warning {
+  color: gray;
+  background-color: #FFECB3;
+  padding: 1em;
+}
+
 .definitions {
   background-color: rgb(208, 208, 208);
   padding: 1em;
@@ -120,7 +126,8 @@ ul {
 }
 
 .fa-sticky-note-o {
-  color: #ffd740;
+  /*color: #ffd740;*/
+  color: #FBC02D;
 }
 
 .fa-eye {
