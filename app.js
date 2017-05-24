@@ -25,4 +25,8 @@ console.log ('started auto func');
 // GLOBAL APP CONTROLLER
 var controller = (function() {
 
+  document.querySelector('.add__btn').addEventListener('click', function() {
+    console.log ('you clikeddd!');
+  })
+
 })();
