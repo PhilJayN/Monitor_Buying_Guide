@@ -9,8 +9,6 @@
 // $(document).ready(main);
 
 
-console.log ('hi this is new');
-
 var shoppingListController = (function() {
 
 
@@ -20,8 +18,6 @@ var shoppingListController = (function() {
 var UIController = (function() {
   return {
     getInput: function() {
-
-
       // var value = document.querySelector('.add__description').value;
       // return value;
       // var textValue = document.getElementById('teddy').textContent;
@@ -32,14 +28,16 @@ var UIController = (function() {
 
             // var btnText = document.querySelector('.add__btn').textContent;
             // var value = document.querySelector('.custom__value').value;
-            return {
-              btnText: document.querySelector('.add__btn').textContent,
-              value: document.querySelector('.custom__value').value
-            };
+      var DOMstrings = {
 
+      };
+
+      return {
+        btnText: document.querySelector('.assorted__btn').textContent,
+        customValue: document.querySelector('.custom__value').value
+      };
     }
   }
-
 })();
 
 
@@ -50,7 +48,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // after btn is clicked:
     // 1. get input field input data
     UICtrl.getInput();
-    console.log ('just called UICtrl.getInput, btn Text is:',     UICtrl.getInput());
+    console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
 
     // 2. Add data to to cntroller
 
@@ -58,7 +56,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     console.log ('It works. ctrlAddItem being run...');
   }
 
+  document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
   document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+
 
   // console.log ('you clicked add__btn. Here is the value:', UICtrl.getInput());
   console.log ('test value', UICtrl.getInput());
