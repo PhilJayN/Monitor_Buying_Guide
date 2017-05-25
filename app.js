@@ -20,8 +20,19 @@ var shoppingListController = (function() {
 var UIController = (function() {
   return {
     getInput: function() {
-            var value = document.querySelector('.add__description').value;
-            return value;
+
+
+      // var value = document.querySelector('.add__description').value;
+      // return value;
+      // var textValue = document.getElementById('teddy').textContent;
+      // return textValue;
+
+      // var textValue = document.getElementById('teddy').textContent;
+      // return textValue;
+
+            var btnText = document.querySelector('.add__btn').textContent;
+            return btnText;
+
     }
   }
 
@@ -35,7 +46,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // after btn is clicked:
     // 1. get input field input data
     UICtrl.getInput();
-    console.log ('just called UICtrl.getInput, value is:',     UICtrl.getInput());
+    console.log ('just called UICtrl.getInput, btn Text is:',     UICtrl.getInput());
 
     // 2. Add data to to cntroller
 
