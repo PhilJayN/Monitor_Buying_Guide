@@ -30,8 +30,12 @@ var UIController = (function() {
       // var textValue = document.getElementById('teddy').textContent;
       // return textValue;
 
-            var btnText = document.querySelector('.add__btn').textContent;
-            return btnText;
+            // var btnText = document.querySelector('.add__btn').textContent;
+            // var value = document.querySelector('.custom__value').value;
+            return {
+              btnText: document.querySelector('.add__btn').textContent,
+              value: document.querySelector('.custom__value').value
+            };
 
     }
   }
