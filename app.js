@@ -11,7 +11,6 @@
 
 var shoppingListController = (function() {
 
-
 })();
 
 
@@ -44,6 +43,18 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER
 var controller = (function(shoppingListCtrl, UICtrl) {
 
+  var setupEventListeners = function() {
+    document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+
+    document.addEventListener('keypress', function(event){
+      if (event.keyCode === 13 || event.which === 13) {
+        console.log ('enter key was pressed');
+        ctrlAddItem();
+      }
+    });
+  };
+
   var ctrlAddItem = function() {
     // after btn is clicked:
     // 1. get input field input data
@@ -56,8 +67,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     console.log ('It works. ctrlAddItem being run...');
   }
 
-  document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
-  document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
 
 
   // console.log ('you clicked add__btn. Here is the value:', UICtrl.getInput());
@@ -72,12 +81,14 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   //   console.log ('you clikeddd! custum btn');
   // });
 
-  document.addEventListener('keypress', function(event){
-    if (event.keyCode === 13 || event.which === 13) {
-      console.log ('enter key was pressed');
-      ctrlAddItem();
+  return {
+    init: function() {
+      setupEventListeners();
     }
-  });
+  }
 
 
 })(shoppingListController, UIController);
+
+
+controller.init();
