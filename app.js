@@ -55,7 +55,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     });
   };
 
-  var ctrlAddItem = function() {
+  var ctrlAddItem = function(event) {
     // after btn is clicked:
     // 1. get input field input data
     UICtrl.getInput();
@@ -65,6 +65,10 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
     // 3. Add data to UI
     console.log ('It works. ctrlAddItem being run...');
+
+    // add event listener to parent. if the specific target element is of a certain type, or id, or name,
+    // then run a code
+
   }
 
 
@@ -92,3 +96,16 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 
 controller.init();
+
+
+//attach event listener to parent:
+
+var jumbo = document.querySelector('.jumbotron');
+jumbo.addEventListener('click', function(event) {
+  // console.log ('clicked a parent');
+  console.log ('target is:', event.target);
+  if (event.target.className === 'add__btn' ) {
+    console.log ('you found the add btn!');
+  }
+  // var target = event.target;
+});
