@@ -6,9 +6,10 @@
 // $(document).ready(main);
 
 var shoppingListController = (function() {
-
+//calculation and data structure goes here.
 })();
 
+// code for displaying or updating UI here:
 var UIController = (function() {
   return {
     getInput: function() {
@@ -24,12 +25,14 @@ var UIController = (function() {
   }
 })();
 
-// GLOBAL APP CONTROLLER
+// GLOBAL APP CONTROLLER: main job is to call other methods
 var controller = (function(shoppingListCtrl, UICtrl) {
 
   var setupEventListeners = function() {
     document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
     document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector('.container').addEventListener('click', ctrlAddItem);
+
 
     document.addEventListener('keypress', function(event){
       if (event.keyCode === 13 || event.which === 13) {
@@ -37,6 +40,20 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         ctrlAddItem();
       }
     });
+
+    //attach event listener to parent:
+    var jumbo = document.querySelector('.jumbotron');
+    jumbo.addEventListener('click', function(event) {
+      // console.log ('clicked a parent');
+      // console.log ('event:', event);
+      // console.log ('target is:', event.target);
+      var elementClicked = event.target;
+      console.log ('elementClicked class:', typeof elementClicked);
+      if (elementClicked.className === 'teddy') {
+        console.log ('you found the add btn!');
+      }
+    });
+
   };
 
   var ctrlAddItem = function(event) {
@@ -60,18 +77,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 controller.init();
 
-//attach event listener to parent:
-var jumbo = document.querySelector('.jumbotron');
-jumbo.addEventListener('click', function(event) {
-  // console.log ('clicked a parent');
-  // console.log ('event:', event);
-  // console.log ('target is:', event.target);
-  var elementClicked = event.target;
-  console.log ('elementClicked class:', typeof elementClicked);
-  if (elementClicked.className === 'teddy') {
-    console.log ('you found the add btn!');
-  }
-});
 
 
 
@@ -89,5 +94,19 @@ jumbo.addEventListener('click', function(event) {
 //     console.log('list item delete btn clicked');
 //     todoList.delTodo(parseInt(elementClicked.parentNode.id));
 //     view.displayTodo();
+//   }
+// });
+
+
+//attach event listener to parent:
+// var jumbo = document.querySelector('.jumbotron');
+// jumbo.addEventListener('click', function(event) {
+//   // console.log ('clicked a parent');
+//   // console.log ('event:', event);
+//   // console.log ('target is:', event.target);
+//   var elementClicked = event.target;
+//   console.log ('elementClicked class:', typeof elementClicked);
+//   if (elementClicked.className === 'teddy') {
+//     console.log ('you found the add btn!');
 //   }
 // });
