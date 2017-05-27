@@ -2,31 +2,16 @@
 //   "use strict";
 //   //code
 // console.log("hi there! testing asdf jskdlaf");
-//
-//
 // };
-//
 // $(document).ready(main);
-
 
 var shoppingListController = (function() {
 
 })();
 
-
 var UIController = (function() {
   return {
     getInput: function() {
-      // var value = document.querySelector('.add__description').value;
-      // return value;
-      // var textValue = document.getElementById('teddy').textContent;
-      // return textValue;
-
-      // var textValue = document.getElementById('teddy').textContent;
-      // return textValue;
-
-            // var btnText = document.querySelector('.add__btn').textContent;
-            // var value = document.querySelector('.custom__value').value;
       var DOMstrings = {
 
       };
@@ -38,7 +23,6 @@ var UIController = (function() {
     }
   }
 })();
-
 
 // GLOBAL APP CONTROLLER
 var controller = (function(shoppingListCtrl, UICtrl) {
@@ -60,47 +44,23 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // 1. get input field input data
     UICtrl.getInput();
     // console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
-
     // 2. Add data to to cntroller
-
     // 3. Add data to UI
-    // console.log ('It works. ctrlAddItem being run...');
     console.log ('btn text content asdf:', UICtrl.getInput().btnText );
-
     // add event listener to parent. if the specific target element is of a certain type, or id, or name,
     // then run a code
-
   }
-
-
-
-  // console.log ('you clicked add__btn. Here is the value:', UICtrl.getInput());
-  // console.log ('test value', UICtrl.getInput());
-
-  // document.querySelectorAll('.test_click').addEventListener('click', function() {
-  //   console.log ('you clicked test_click. Here is the value:');
-  // });
-
-
-  // document.querySelector('.add__custom__btn').addEventListener('click', function() {
-  //   console.log ('you clikeddd! custum btn');
-  // });
 
   return {
     init: function() {
       setupEventListeners();
     }
   }
-
-
 })(shoppingListController, UIController);
-
 
 controller.init();
 
-
 //attach event listener to parent:
-
 var jumbo = document.querySelector('.jumbotron');
 jumbo.addEventListener('click', function(event) {
   // console.log ('clicked a parent');
@@ -111,13 +71,6 @@ jumbo.addEventListener('click', function(event) {
   if (elementClicked.className === 'teddy') {
     console.log ('you found the add btn!');
   }
-
-
-
-  // if (event.target.className === 'teddy') {
-  //   console.log ('you found the add btn!');
-  // }
-  // var target = event.target;
 });
 
 
