@@ -7,6 +7,9 @@
 
 var shoppingListController = (function() {
 //calculation and data structure goes here.
+  var data = {
+    tempData: ''
+  };
 })();
 
 // code for displaying or updating UI here:
@@ -18,13 +21,17 @@ var UIController = (function() {
       };
 
       return {
-        btnText: document.querySelector('.assorted__btn').textContent,
+        // btnText: document.querySelector('.assorted__btn').textContent,
         customValue: document.querySelector('.custom__value').value
       };
     },
 
     displayItem: function() {
-      // document.write();
+      //get data from data structure, then display to UI;
+      document.querySelector('.tempText').textContent = 'teddy';
+      // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
+
+
 
     }
   }
@@ -46,6 +53,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         console.log ('that is an add btn!');
         inputValue = UICtrl.getInput().customValue;
         console.log('inputValue', inputValue);
+        UICtrl.displayItem();
       }
       else {
         console.log ('not add button!');
@@ -85,18 +93,22 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   };
 
   var ctrlAddItem = function(event) {
+    var input;
     // after btn is clicked:
     // 1. get input field input data
-    UICtrl.getInput();
+    input = UICtrl.getInput();
+    // shoppingListCtrl.data.tempData = input;
     // console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
     // 2. Add data to to cntroller
-    // 3. Add data to UI
-    console.log ('btn text content asdf:', UICtrl.getInput().btnText );
+    // 3. Add data to UI by calling display method
+    UICtrl.displayItem();
+
+
+    // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
     console.log ('custom value from input:', UICtrl.getInput().customValue);
     // add event listener to parent. if the specific target element is of a certain type, or id, or name,
     // then run a code
 
-    UICtrl.displayItem();
   }
 
   return {
