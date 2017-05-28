@@ -21,6 +21,11 @@ var UIController = (function() {
         btnText: document.querySelector('.assorted__btn').textContent,
         customValue: document.querySelector('.custom__value').value
       };
+    },
+
+    displayItem: function() {
+      // document.write();
+
     }
   }
 })();
@@ -31,7 +36,28 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   var setupEventListeners = function() {
     document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
     document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
-    document.querySelector('.container').addEventListener('click', ctrlAddItem);
+    // document.querySelector('.container').addEventListener('click', ctrlAddItem);
+
+    document.querySelector('.container').addEventListener('click', function(event){
+      var elementClicked = event.target;
+      var customValue;
+      var inputValue;
+      if (elementClicked.className === 'add__btn') {
+        console.log ('that is an add btn!');
+        inputValue = UICtrl.getInput().customValue;
+        console.log('inputValue', inputValue);
+      }
+      else {
+        console.log ('not add button!');
+        // customValue = elementClicked;
+        console.log ('elementClicked:', elementClicked);
+        console.log ('elementClicked content:', elementClicked.textContent);
+
+        console.log('customValue', customValue);
+
+      }
+
+    });
 
 
     document.addEventListener('keypress', function(event){
@@ -42,17 +68,19 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     });
 
     //attach event listener to parent:
-    var jumbo = document.querySelector('.jumbotron');
-    jumbo.addEventListener('click', function(event) {
-      // console.log ('clicked a parent');
-      // console.log ('event:', event);
-      // console.log ('target is:', event.target);
-      var elementClicked = event.target;
-      console.log ('elementClicked class:', typeof elementClicked);
-      if (elementClicked.className === 'teddy') {
-        console.log ('you found the add btn!');
-      }
-    });
+    // var jumbo = document.querySelector('.jumbotron');
+    // jumbo.addEventListener('click', function(event) {
+    //   // console.log ('clicked a parent');
+    //   // console.log ('event:', event);
+    //   // console.log ('target is:', event.target);
+    //   var elementClicked = event.target;
+    //   console.log ('elementClicked class:', typeof elementClicked);
+    //   if (elementClicked.className === 'teddy') {
+    //     console.log ('you found the add btn!');
+    //   }
+    // });
+
+
 
   };
 
@@ -64,8 +92,11 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // 2. Add data to to cntroller
     // 3. Add data to UI
     console.log ('btn text content asdf:', UICtrl.getInput().btnText );
+    console.log ('custom value from input:', UICtrl.getInput().customValue);
     // add event listener to parent. if the specific target element is of a certain type, or id, or name,
     // then run a code
+
+    UICtrl.displayItem();
   }
 
   return {
@@ -79,6 +110,18 @@ controller.init();
 
 
 
+//attach event listener to parent:
+// var jumbo = document.querySelector('.jumbotron');
+// jumbo.addEventListener('click', function(event) {
+//   // console.log ('clicked a parent');
+//   // console.log ('event:', event);
+//   // console.log ('target is:', event.target);
+//   var elementClicked = event.target;
+//   console.log ('elementClicked class:', typeof elementClicked);
+//   if (elementClicked.className === 'teddy') {
+//     console.log ('you found the add btn!');
+//   }
+// });
 
 
 //
@@ -94,19 +137,5 @@ controller.init();
 //     console.log('list item delete btn clicked');
 //     todoList.delTodo(parseInt(elementClicked.parentNode.id));
 //     view.displayTodo();
-//   }
-// });
-
-
-//attach event listener to parent:
-// var jumbo = document.querySelector('.jumbotron');
-// jumbo.addEventListener('click', function(event) {
-//   // console.log ('clicked a parent');
-//   // console.log ('event:', event);
-//   // console.log ('target is:', event.target);
-//   var elementClicked = event.target;
-//   console.log ('elementClicked class:', typeof elementClicked);
-//   if (elementClicked.className === 'teddy') {
-//     console.log ('you found the add btn!');
 //   }
 // });
