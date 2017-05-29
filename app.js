@@ -7,9 +7,15 @@
 
 var shoppingListController = (function() {
 //calculation and data structure goes here.
-  var data = {
-    tempData: ''
-  };
+  // var data = {
+  //   tempData: ''
+  // };
+  // localStorage.setItem('brunch', 'eggs');
+  // //   var localStorage = {
+  // //'brunch': 'eggs'
+  // //   };
+  // localStorage.getItem('brunch');
+
 })();
 
 // code for displaying or updating UI here:
@@ -72,9 +78,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         // customValue = elementClicked;
         console.log ('elementClicked:', elementClicked);
         console.log ('elementClicked content:', elementClicked.textContent);
-
         console.log('customValue', customValue);
-
       }
 
     });
@@ -99,9 +103,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //     console.log ('you found the add btn!');
     //   }
     // });
-
-
-
   };
 
   var ctrlAddItem = function(event) {
@@ -110,9 +111,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // 1. get input field input data
     input = UICtrl.getInput();
     // shoppingListCtrl.data.tempData = input;
-    // console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
-    // 2. Add data to to cntroller
+    console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
+    // 2. Add data to local storage
+    localStorage.setItem('myTestKey', UICtrl.getInput().customValue);
+
     // 3. Add data to UI by calling display method
+
     UICtrl.displayItem();
 
 
