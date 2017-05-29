@@ -16,18 +16,23 @@ var shoppingListController = (function() {
 var UIController = (function() {
 
   var DOMstrings = {
-    tempText: '.tempText'
+    tempText: '.tempText',
+    assortedBtn: '.assorted__btn',
+    addBtn: '.add__btn',
+    container: '.container',
+    customValue: '.custom__value'
+
   };
 
   return {
     getInput: function() {
-      var DOMstrings = {
-
-      };
+      // var DOMstrings = {
+      //
+      // };
 
       return {
         // btnText: document.querySelector('.assorted__btn').textContent,
-        customValue: document.querySelector('.custom__value').value
+        customValue: document.querySelector(DOMstrings.customValue).value
       };
     },
 
@@ -35,9 +40,9 @@ var UIController = (function() {
       //get data from data structure, then display to UI;
       document.querySelector(DOMstrings.tempText).textContent = 'teddsdfsdafy';
       // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
-
-
-
+    },
+    getDOMstrings: function() {
+      return DOMstrings;
     }
   }
 })();
@@ -45,12 +50,14 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER: main job is to call other methods
 var controller = (function(shoppingListCtrl, UICtrl) {
 
+
   var setupEventListeners = function() {
-    document.querySelector('.assorted__btn').addEventListener('click', ctrlAddItem);
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    var DOM = UICtrl.getDOMstrings();
+    document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
     // document.querySelector('.container').addEventListener('click', ctrlAddItem);
 
-    document.querySelector('.container').addEventListener('click', function(event){
+    document.querySelector(DOM.container).addEventListener('click', function(event){
       var elementClicked = event.target;
       var customValue;
       var inputValue;
