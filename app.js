@@ -14,6 +14,11 @@ var shoppingListController = (function() {
 
 // code for displaying or updating UI here:
 var UIController = (function() {
+
+  var DOMstrings = {
+    tempText: '.tempText'
+  };
+
   return {
     getInput: function() {
       var DOMstrings = {
@@ -28,7 +33,7 @@ var UIController = (function() {
 
     displayItem: function() {
       //get data from data structure, then display to UI;
-      document.querySelector('.tempText').textContent = 'teddy';
+      document.querySelector(DOMstrings.tempText).textContent = 'teddsdfsdafy';
       // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
 
 
