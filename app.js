@@ -107,13 +107,17 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
     var input;
+    var parentKey;
     // after btn is clicked:
     // 1. get input field input data
     input = UICtrl.getInput();
     // shoppingListCtrl.data.tempData = input;
     console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
     // 2. Add data to local storage
+    // localStorage.setItem('myTestKey', UICtrl.getInput().customValue);
+    // console.log ('event TESTINGASJFKLSJ', event.target.parentNode);
     localStorage.setItem('myTestKey', UICtrl.getInput().customValue);
+
 
     // 3. Add data to UI by calling display method
 
@@ -135,7 +139,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 })(shoppingListController, UIController);
 
 controller.init();
-
 
 
 //attach event listener to parent:
