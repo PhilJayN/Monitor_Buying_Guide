@@ -5,6 +5,8 @@
 // };
 // $(document).ready(main);
 
+localStorage.setItem('brunch', 'mouse');
+
 var shoppingListController = (function() {
 //calculation and data structure goes here.
   // var data = {
@@ -96,10 +98,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     input = UICtrl.getInput();
     // shoppingListCtrl.data.tempData = input;
     console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
-    // 2. Add data to local storage
-    // localStorage.setItem('myTestKey', UICtrl.getInput().customValue);
-    // console.log ('event TESTINGASJFKLSJ', event.target.parentNode);
-    localStorage.setItem('myTestKey', UICtrl.getInput().customValue);
 
 
     // 3. Add data to UI by calling display method
@@ -113,14 +111,28 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log ('that is an add btn!');
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
+
+      // 2. Add data to local storage
+
+      // console.log ('event TESTINGASJFKLSJ', event.target.parentNode);
+      parentKey = event.target.parentNode;
+      // console.log ('parentKeyFirstChild', parentKey);
+      console.log ('parentKey', parentKey);
+      console.log ('parentKeyFirstChild', parentKey.childNodes[0]);
+      console.log ('nodesTEST', parentKey.firstChild);
+
+
+      localStorage.setItem(parentKey, UICtrl.getInput().customValue);
+
       UICtrl.displayItem();
     }
     else {
       console.log ('not add button!');
-      // customValue = elementClicked;
       console.log ('elementClicked:', elementClicked);
       console.log ('elementClicked content:', elementClicked.textContent);
       console.log('customValue', customValue);
+      localStorage.setItem('teddy', 'bear');
+
     }
 
 
