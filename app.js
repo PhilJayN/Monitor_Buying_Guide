@@ -107,6 +107,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var elementClicked = event.target;
     var customValue;
     var inputValue;
+    var headerText;
     if (elementClicked.className === 'add__btn') {
       console.log ('that is an add btn!');
       inputValue = UICtrl.getInput().customValue;
@@ -115,11 +116,10 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       // 2. Add data to local storage
 
       // console.log ('event TESTINGASJFKLSJ', event.target.parentNode);
-      parentKey = event.target.parentNode;
       // console.log ('parentKeyFirstChild', parentKey);
       console.log ('parentKey', parentKey);
       console.log ('parentKeyFirstChild', parentKey.childNodes[0]);
-      console.log ('nodesTEST', parentKey.firstChild);
+      console.log ('nodesTEST', parentKey.firstElementChild.textContent);
 
 
       localStorage.setItem(parentKey, UICtrl.getInput().customValue);
@@ -130,10 +130,15 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log ('not add button!');
       console.log ('elementClicked:', elementClicked);
       console.log ('elementClicked content:', elementClicked.textContent);
-      console.log('customValue', customValue);
-      localStorage.setItem('teddy', 'bear');
+      // console.log('customValue', customValue);
+      parentKey = event.target.parentNode;
+      headerText = parentKey.firstElementChild.textContent;
+      localStorage.setItem(headerText, elementClicked.textContent);
+      console.log ('headerText', headerText);
 
     }
+
+
 
 
 
