@@ -61,25 +61,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var DOM = UICtrl.getDOMstrings();
     document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
-    // document.querySelector('.container').addEventListener('click', ctrlAddItem);
-
     document.querySelector(DOM.container).addEventListener('click', function(event){
-      var elementClicked = event.target;
-      var customValue;
-      var inputValue;
-      if (elementClicked.className === 'add__btn') {
-        console.log ('that is an add btn!');
-        inputValue = UICtrl.getInput().customValue;
-        console.log('inputValue', inputValue);
-        UICtrl.displayItem();
-      }
-      else {
-        console.log ('not add button!');
-        // customValue = elementClicked;
-        console.log ('elementClicked:', elementClicked);
-        console.log ('elementClicked content:', elementClicked.textContent);
-        console.log('customValue', customValue);
-      }
+
 
     });
 
@@ -120,8 +103,26 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 
     // 3. Add data to UI by calling display method
-
     UICtrl.displayItem();
+
+
+    var elementClicked = event.target;
+    var customValue;
+    var inputValue;
+    if (elementClicked.className === 'add__btn') {
+      console.log ('that is an add btn!');
+      inputValue = UICtrl.getInput().customValue;
+      console.log('inputValue', inputValue);
+      UICtrl.displayItem();
+    }
+    else {
+      console.log ('not add button!');
+      // customValue = elementClicked;
+      console.log ('elementClicked:', elementClicked);
+      console.log ('elementClicked content:', elementClicked.textContent);
+      console.log('customValue', customValue);
+    }
+
 
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
