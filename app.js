@@ -91,39 +91,27 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   };
 
   var ctrlAddItem = function(event) {
-    var input;
-    var parentKey;
-    // after btn is clicked:
+    var input, parentKey;
     // 1. get input field input data
     input = UICtrl.getInput();
-    // shoppingListCtrl.data.tempData = input;
     console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
-
 
     // 3. Add data to UI by calling display method
     UICtrl.displayItem();
 
-
     var elementClicked = event.target;
-    var customValue;
-    var inputValue;
-    var headerText;
+    var customValue, inputValue, headerText;
     if (elementClicked.className === 'add__btn') {
       console.log ('that is an add btn!');
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
 
       // 2. Add data to local storage
-
-      // console.log ('event TESTINGASJFKLSJ', event.target.parentNode);
-      // console.log ('parentKeyFirstChild', parentKey);
       console.log ('parentKey', parentKey);
-      console.log ('parentKeyFirstChild', parentKey.childNodes[0]);
+      // console.log ('parentKeyFirstChild', parentKey.childNodes[0]);
       console.log ('nodesTEST', parentKey.firstElementChild.textContent);
 
-
       localStorage.setItem(parentKey, UICtrl.getInput().customValue);
-
       UICtrl.displayItem();
     }
     else {
@@ -137,10 +125,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log ('headerText', headerText);
 
     }
-
-
-
-
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
     console.log ('custom value from input:', UICtrl.getInput().customValue);
