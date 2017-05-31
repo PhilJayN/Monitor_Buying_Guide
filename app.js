@@ -29,15 +29,10 @@ var UIController = (function() {
     addBtn: '.add__btn',
     container: '.container',
     customValue: '.custom__value'
-
   };
 
   return {
     getInput: function() {
-      // var DOMstrings = {
-      //
-      // };
-
       return {
         // btnText: document.querySelector('.assorted__btn').textContent,
         customValue: document.querySelector(DOMstrings.customValue).value
@@ -58,16 +53,11 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER: main job is to call other methods
 var controller = (function(shoppingListCtrl, UICtrl) {
 
-
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
-    document.querySelector(DOM.container).addEventListener('click', function(event){
-
-
-    });
-
+    document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
 
     document.addEventListener('keypress', function(event){
       if (event.keyCode === 13 || event.which === 13) {
@@ -76,54 +66,45 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       }
     });
 
-    //attach event listener to parent:
-    // var jumbo = document.querySelector('.jumbotron');
-    // jumbo.addEventListener('click', function(event) {
-    //   // console.log ('clicked a parent');
-    //   // console.log ('event:', event);
-    //   // console.log ('target is:', event.target);
-    //   var elementClicked = event.target;
-    //   console.log ('elementClicked class:', typeof elementClicked);
-    //   if (elementClicked.className === 'teddy') {
-    //     console.log ('you found the add btn!');
-    //   }
-    // });
   };
 
   var ctrlAddItem = function(event) {
+    console.log ('a click event caused ctrlAddItem to be called!');
     var input, parentKey;
+    parentKey = event.target.parentNode;
+    headerText = parentKey.firstElementChild.textContent;
+
     // 1. get input field input data
-    input = UICtrl.getInput();
-    console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
+    // input = UICtrl.getInput();
+    // console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
 
     // 3. Add data to UI by calling display method
-    UICtrl.displayItem();
+    // UICtrl.displayItem();
 
     var elementClicked = event.target;
     var customValue, inputValue, headerText;
     if (elementClicked.className === 'add__btn') {
       console.log ('that is an add btn!');
+
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
 
       // 2. Add data to local storage
       console.log ('parentKey', parentKey);
       // console.log ('parentKeyFirstChild', parentKey.childNodes[0]);
-      console.log ('nodesTEST', parentKey.firstElementChild.textContent);
+      // console.log ('nodesTEST', parentKey.firstElementChild.textContent);
+      localStorage.setItem(headerText, inputValue);
+      // localStorage.setItem(parentKey, UICtrl.getInput().customValue);
 
-      localStorage.setItem(parentKey, UICtrl.getInput().customValue);
-      UICtrl.displayItem();
+      // UICtrl.displayItem();
     }
     else {
       console.log ('not add button!');
       console.log ('elementClicked:', elementClicked);
       console.log ('elementClicked content:', elementClicked.textContent);
       // console.log('customValue', customValue);
-      parentKey = event.target.parentNode;
-      headerText = parentKey.firstElementChild.textContent;
       localStorage.setItem(headerText, elementClicked.textContent);
       console.log ('headerText', headerText);
-
     }
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
@@ -132,7 +113,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // then run a code
 
   }
-
   return {
     init: function() {
       setupEventListeners();
