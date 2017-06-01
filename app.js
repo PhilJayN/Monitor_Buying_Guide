@@ -88,12 +88,10 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
     if (elementClicked.className === 'add__btn') {
       console.log ('that is an add btn!');
-
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
-
       // 2. Add data to local storage
-      localStorage.setItem(headerText, inputValue);
+      localStorage.setItem(headerText + ' section custom message', inputValue);
       // localStorage.setItem(containerParent, UICtrl.getInput().customValue);
       // UICtrl.displayItem();
     }
