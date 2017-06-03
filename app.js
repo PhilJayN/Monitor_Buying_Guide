@@ -5,7 +5,7 @@
 // };
 // $(document).ready(main);
 
-localStorage.setItem('brunch', 'mouse');
+localStorage.setItem('mykey', 'my val');
 
 var shoppingListController = (function() {
 //calculation and data structure goes here.
@@ -70,7 +70,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
     console.log ('a click event caused ctrlAddItem to be called!');
-    console.log ('fudgie cake');
 
     var input, containerParent;
     var elementClicked = event.target;
@@ -88,6 +87,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
     if (elementClicked.className === 'add__btn') {
       console.log ('that is an add btn!');
+      // 1. Get input field value
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
       // 2. Add data to local storage
@@ -99,7 +99,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log ('not add button!');
       console.log ('elementClicked:', elementClicked);
       console.log ('elementClicked content:', elementClicked.textContent);
-      // console.log('customValue', customValue);
+      //automatically set localStorage key/val pair:
       localStorage.setItem(headerText, elementClicked.textContent);
       console.log ('headerText', headerText);
     }
