@@ -44,6 +44,10 @@ var UIController = (function() {
       document.querySelector(DOMstrings.tempText).textContent = 'teddsdfsdafy';
       // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
     },
+    clearFields: function() {
+      document.querySelector(DOMstrings.customValue).value = '';
+    },
+
     getDOMstrings: function() {
       return DOMstrings;
     }
@@ -93,7 +97,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       // 2. Add data to local storage
       localStorage.setItem(headerText + ' section custom message', inputValue);
       // localStorage.setItem(containerParent, UICtrl.getInput().customValue);
-      // UICtrl.displayItem();
+      UICtrl.clearFields();
     }
     else {
       console.log ('not add button!');
