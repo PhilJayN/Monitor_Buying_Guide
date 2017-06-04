@@ -91,8 +91,16 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log('elementClicked has class of add__btn!!!', elementClicked.className);
       // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
      //get the value of the input field closest to the add__btn clicked.
-      inputValue = UICtrl.getInput().customValue;
-      console.log('got the inputValue', inputValue);
+     inputValue = elementClicked.previousElementSibling.value;
+     console.log('inputValue', inputValue);
+     // console.log('previous sib VALUE', previous.value);
+
+      // inputValue = UICtrl.getInput().customValue;
+      // console.log('got the inputValue', inputValue);
+      // console.log(' you clicked', elementClicked.nextSibling);
+
+      // var previous = elementClicked.previousSibling;
+      // console.log('previous sib',      elementClicked.previousSibling.value);
       // 2. Add data to local storage. Set the key/val
       localStorage.setItem(headerText + ' custom', inputValue);
       UICtrl.clearFields();
