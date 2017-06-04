@@ -4,7 +4,6 @@
 // console.log("hi there! testing asdf jskdlaf");
 // };
 // $(document).ready(main);
-
 localStorage.setItem('mykey', 'my val');
 
 var shoppingListController = (function() {
@@ -59,8 +58,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
-    document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
-    document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
+    // document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
+    // document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
 
     document.addEventListener('keypress', function(event){
@@ -87,12 +86,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // UICtrl.displayItem();
 
     if (elementClicked.className === 'add__btn') {
-      console.log ('that is an add btn!');
+      console.log ('that is an adddddddd btn!');
       // 1. Get input field value
       inputValue = UICtrl.getInput().customValue;
-      console.log('inputValue', inputValue);
-      // 2. Add data to local storage
-      localStorage.setItem(headerText + ' user custom msg', inputValue);
+      console.log('got the inputValue', inputValue);
+      // 2. Add data to local storage. Set the key/val
+      localStorage.setItem(headerText + ' custom', inputValue);
       UICtrl.clearFields();
     }
     else {
