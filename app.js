@@ -4,7 +4,7 @@
 // console.log("hi there! testing asdf jskdlaf");
 // };
 // $(document).ready(main);
-localStorage.setItem('mykey', 'my val');
+// localStorage.setItem('mykey', 'my val');
 
 var shoppingListController = (function() {
 //calculation and data structure goes here.
@@ -85,9 +85,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // 3. Add data to UI by calling display method
     // UICtrl.displayItem();
 
-    if (elementClicked.className === 'add__btn') {
+    // if (elementClicked.className === 'add__btn') {
+    if (elementClicked.classList.contains('add__btn')) {
       console.log ('that is an adddddddd btn!');
-      // 1. Get input field value
+      console.log('elementClicked has class of add__btn!!!', elementClicked.className);
+      // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
+     //get the value of the input field closest to the add__btn clicked.
       inputValue = UICtrl.getInput().customValue;
       console.log('got the inputValue', inputValue);
       // 2. Add data to local storage. Set the key/val
