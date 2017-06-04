@@ -73,18 +73,15 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   };
 
   var ctrlAddItem = function(event) {
-    console.log ('a click event caused ctrlAddItem to be called!');
+    // console.log ('a click event caused ctrlAddItem to be called!');
 
-    var input, containerParent;
+    var containerParent;
     var elementClicked = event.target;
-    var customValue, inputValue, headerText;
+    console.log('ctrlAddItem elementClicked', elementClicked);
+    var inputValue, headerText;
     containerParent = event.target.parentNode;
     headerText = containerParent.firstElementChild.textContent;
-    console.log ('containerParent', containerParent);
-
-    // 1. get input field input data
-    // input = UICtrl.getInput();
-    // console.log ('just called UICtrl.getInput:',     UICtrl.getInput().customValue);
+    // console.log ('containerParent', containerParent);
 
     // 3. Add data to UI by calling display method
     // UICtrl.displayItem();
@@ -95,21 +92,19 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       inputValue = UICtrl.getInput().customValue;
       console.log('inputValue', inputValue);
       // 2. Add data to local storage
-      localStorage.setItem(headerText + ' section custom message', inputValue);
-      // localStorage.setItem(containerParent, UICtrl.getInput().customValue);
+      localStorage.setItem(headerText + ' user custom msg', inputValue);
       UICtrl.clearFields();
     }
     else {
-      console.log ('not add button!');
-      console.log ('elementClicked:', elementClicked);
-      console.log ('elementClicked content:', elementClicked.textContent);
+      // console.log ('not add button!');
+      // console.log ('elementClicked:', elementClicked);
+      // console.log ('elementClicked content:', elementClicked.textContent);
       //automatically set localStorage key/val pair:
       localStorage.setItem(headerText, elementClicked.textContent);
-      console.log ('headerText', headerText);
+      // console.log ('headerText', headerText);
     }
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
-    console.log ('custom value from input:', UICtrl.getInput().customValue);
     // add event listener to parent. if the specific target element is of a certain type, or id, or name,
     // then run a code
 
