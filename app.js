@@ -73,10 +73,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
     // console.log ('a click event caused ctrlAddItem to be called!');
-
     var containerParent;
-    var elementClicked = event.target;
-    console.log('ctrlAddItem elementClicked', elementClicked);
+    var elClicked = event.target;
+    console.log('ctrlAddItem elClicked', elClicked);
     var inputValue, headerText;
     containerParent = event.target.parentNode;
     headerText = containerParent.firstElementChild.textContent;
@@ -85,33 +84,26 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // 3. Add data to UI by calling display method
     // UICtrl.displayItem();
 
-    // if (elementClicked.className === 'add__btn') {
-    if (elementClicked.classList.contains('add__btn')) {
+    if (elClicked.classList.contains('add__btn')) {
       console.log ('that is an adddddddd btn!');
-      console.log('elementClicked has class of add__btn!!!', elementClicked.className);
+      console.log('elClicked has class of add__btn!!!', elClicked.className);
       // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
      //get the value of the input field closest to the add__btn clicked.
-     inputValue = elementClicked.previousElementSibling.value;
+     inputValue = elClicked.previousElementSibling.value;
      console.log('inputValue', inputValue);
      // console.log('previous sib VALUE', previous.value);
 
       // inputValue = UICtrl.getInput().customValue;
-      // console.log('got the inputValue', inputValue);
-      // console.log(' you clicked', elementClicked.nextSibling);
-
-      // var previous = elementClicked.previousSibling;
-      // console.log('previous sib',      elementClicked.previousSibling.value);
       // 2. Add data to local storage. Set the key/val
+      console.log ('headerText', headerText);
       localStorage.setItem(headerText + ' custom', inputValue);
       UICtrl.clearFields();
     }
     else {
       // console.log ('not add button!');
-      // console.log ('elementClicked:', elementClicked);
-      // console.log ('elementClicked content:', elementClicked.textContent);
+      // console.log ('elClicked content:', elClicked.textContent);
       //automatically set localStorage key/val pair:
-      localStorage.setItem(headerText, elementClicked.textContent);
-      // console.log ('headerText', headerText);
+      localStorage.setItem(headerText, elClicked.textContent);
     }
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
