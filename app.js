@@ -77,26 +77,21 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var elClicked = event.target;
     console.log('ctrlAddItem elClicked', elClicked);
     var inputValue, headerText;
-    containerParent = event.target.parentNode;
-    headerText = containerParent.firstElementChild.textContent;
-    // console.log ('containerParent', containerParent);
-
-    // 3. Add data to UI by calling display method
-    // UICtrl.displayItem();
+    //traverse to clicked el's parent, and get text of section's header
+    containerParent = elClicked.parentNode;
 
     if (elClicked.classList.contains('add__btn')) {
       console.log ('that is an adddddddd btn!');
       console.log('elClicked has class of add__btn!!!', elClicked.className);
+      headerText = containerParent.parentNode.firstElementChild.textContent;
+      console.log('header text', headerText);
       // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
      //get the value of the input field closest to the add__btn clicked.
      inputValue = elClicked.previousElementSibling.value;
      console.log('inputValue', inputValue);
-     // console.log('previous sib VALUE', previous.value);
-
       // inputValue = UICtrl.getInput().customValue;
-      // 2. Add data to local storage. Set the key/val
-      console.log ('headerText', headerText);
-      localStorage.setItem(headerText + ' custom', inputValue);
+      // 2. Add data to local storage, and set key/val
+      localStorage.setItem(headerText, inputValue);
       UICtrl.clearFields();
     }
     else {
