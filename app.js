@@ -79,11 +79,11 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var inputValue, headerText;
     //traverse to clicked el's parent, and get text of section's header
     containerParent = elClicked.parentNode;
+    headerText = containerParent.parentNode.firstElementChild.textContent;
 
     if (elClicked.classList.contains('add__btn')) {
       console.log ('that is an adddddddd btn!');
       console.log('elClicked has class of add__btn!!!', elClicked.className);
-      headerText = containerParent.parentNode.firstElementChild.textContent;
       console.log('header text', headerText);
       // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
      //get the value of the input field closest to the add__btn clicked.

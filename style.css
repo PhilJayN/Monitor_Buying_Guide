@@ -89,6 +89,9 @@ ul {
   }
 
 /*BUTTON STYLES-----------------------------------------*/
+.button-group {
+  margin-bottom: .5em;
+}
 
 .btn-default {
   /*color is lighter gray to prevent distraction*/
