@@ -280,9 +280,16 @@ need or don't like. </p>
   <button type="button" class="btn btn-danger"> <i class="fa fa-book" aria-hidden="true"> Productivity and Work</i></button>
   <button type="button" class="btn btn-success"><i class="fa fa-desktop" aria-hidden="true"> Everything</i></button>
 
-  <button type="button" class="btn btn-default">one</button>
-  <button type="button" class="btn btn-default">Two</button>
-  <button type="button" class="btn btn-default">Three</button>
+  <!-- if you change the HTML structure the input/add below, then also change parentNode in JS file too-->
+  <div class="button-group">
+    <button type="button" class="btn btn-default">Gaming</button>
+    <button type="button" class="btn btn-default">Productivity and Work</button>
+    <button type="button" class="btn btn-default">Everything</button>
+  </div>
+  <div class="input-group">
+    <input type="text" placeholder="Add your short, custom message to the wishlist..." class="custom__value form-control">
+    <button class="input-group-addon add__btn" type="button"><i class="fa fa-search"></i>Add</button>
+  </div>
 
 
   </section>

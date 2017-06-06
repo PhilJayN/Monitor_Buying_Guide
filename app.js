@@ -6,7 +6,7 @@
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
 
-var shoppingListController = (function() {
+var dataController = (function() {
 //calculation and data structure goes here.
   // var data = {
   //   tempData: ''
@@ -53,7 +53,8 @@ var UIController = (function() {
   }
 })();
 
-// GLOBAL APP CONTROLLER: main job is to call other methods
+// GLOBAL APP CONTROLLER: main job is to call other methods. Those methods
+//then call other methods.
 var controller = (function(shoppingListCtrl, UICtrl) {
 
   var setupEventListeners = function() {
@@ -111,7 +112,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       setupEventListeners();
     }
   }
-})(shoppingListController, UIController);
+})(dataController, UIController);
 
 controller.init();
 
