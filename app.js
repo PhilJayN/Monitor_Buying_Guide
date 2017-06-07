@@ -46,11 +46,18 @@ var UIController = (function() {
     },
     addListItem: function() {
       //el = element
+      console.log('addListItem running!');
       var html, newHtml, el;
-      newHtml = '<li>hi there</li>';
+      var demo = localStorage.getItem('Intended Audience');
+      console.log('demo!', typeof demo);
+      newHtml = '<li>' + demo + '</li>';
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
       // document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+    },
+    displayWishlist: function() {
+      var items = localStorage.getItem('Intended Audience');
+      document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
     },
     clearFields: function() {
       document.querySelector(DOMstrings.customValue).value = '';
@@ -103,7 +110,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       // 2. Add data to local storage, and set key/val
       localStorage.setItem(headerText, inputValue);
       UICtrl.clearFields();
-      UICtrl.addListItem();      
+      UICtrl.addListItem();
     }
     else {
       // console.log ('not add button!');
@@ -119,6 +126,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   }
   return {
     init: function() {
+      UICtrl.displayWishlist();
       setupEventListeners();
     }
   }
