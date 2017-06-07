@@ -27,7 +27,8 @@ var UIController = (function() {
     assortedBtn: '.assorted__btn',
     addBtn: '.add__btn',
     container: '.container',
-    customValue: '.custom__value'
+    customValue: '.custom__value',
+    wishlistItems: '.wishlist-items'
   };
 
   return {
@@ -39,9 +40,17 @@ var UIController = (function() {
     },
 
     displayItem: function() {
-      //get data from data structure, then display to UI;
-      document.querySelector(DOMstrings.tempText).textContent = 'teddsdfsdafy';
+      //get data from data structure, then display to UI
+      document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
       // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
+    },
+    addListItem: function() {
+      //el = element
+      var html, newHtml, el;
+      newHtml = '<li>hi there</li>';
+      // Insert newly created HTML to DOM
+      document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
+      // document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
     },
     clearFields: function() {
       document.querySelector(DOMstrings.customValue).value = '';
@@ -94,6 +103,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       // 2. Add data to local storage, and set key/val
       localStorage.setItem(headerText, inputValue);
       UICtrl.clearFields();
+      UICtrl.addListItem();      
     }
     else {
       // console.log ('not add button!');
