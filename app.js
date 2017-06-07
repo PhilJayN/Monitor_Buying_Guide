@@ -12,12 +12,14 @@ var dataController = (function() {
   // var data = {
   //   tempData: ''
   // };
-  // localStorage.setItem('brunch', 'eggs');
+  localStorage.setItem('brunch', 'eggs');
+  localStorage.food = "eggs";
+  localStorage.firstname = "Ken";
+  localStorage.lastname = "Or";
   // //   var localStorage = {
   // //'brunch': 'eggs'
   // //   };
   // localStorage.getItem('brunch');
-
 })();
 
 // code for displaying or updating UI here:
@@ -60,8 +62,6 @@ var UIController = (function() {
       var target;
       target = document.querySelector(DOMstrings.wishlistItems);
       for (var i = 0; i < localStorage.length; i++) {
-    // do something with localStorage.getItem(localStorage.key(i));
-        // localStorage.getItem(localStorage.key(i));
         console.log(localStorage.getItem(localStorage.key(i)));
         target.insertAdjacentHTML('beforeend', localStorage.getItem(localStorage.key(i)));
     // document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
