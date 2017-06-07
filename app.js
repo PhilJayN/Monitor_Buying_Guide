@@ -6,6 +6,7 @@
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
 
+// console.log('localStorage', localStorage.getItem(key(0)));
 var dataController = (function() {
 //calculation and data structure goes here.
   // var data = {
@@ -56,8 +57,17 @@ var UIController = (function() {
       // document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
     },
     displayWishlist: function() {
+      var target;
+      target = document.querySelector(DOMstrings.wishlistItems);
+      for (var i = 0; i < localStorage.length; i++) {
+    // do something with localStorage.getItem(localStorage.key(i));
+        // localStorage.getItem(localStorage.key(i));
+        console.log(localStorage.getItem(localStorage.key(i)));
+        target.insertAdjacentHTML('beforeend', localStorage.getItem(localStorage.key(i)));
+    // document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
+      }
+
       var items = localStorage.getItem('Intended Audience');
-      document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
     },
     clearFields: function() {
       document.querySelector(DOMstrings.customValue).value = '';
