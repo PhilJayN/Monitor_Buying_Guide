@@ -12,10 +12,15 @@ var dataController = (function() {
   // var data = {
   //   tempData: ''
   // };
-  localStorage.setItem('brunch', 'eggs');
-  localStorage.food = "eggs";
-  localStorage.firstname = "Ken";
-  localStorage.lastname = "Or";
+  // localStorage.setItem('brunch', 'eggs');
+  localStorage.first = "1";
+  localStorage.second = "2";
+  localStorage.third = "3";
+
+  // localStorage.first = "eggs";
+  // localStorage.second = "Ken";
+  // localStorage.third = "Or";
+
   // //   var localStorage = {
   // //'brunch': 'eggs'
   // //   };
