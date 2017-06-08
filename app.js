@@ -5,7 +5,7 @@
 // };
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
-
+console.log('hey ther');
 // console.log('localStorage', localStorage.getItem(key(0)));
 var dataController = (function() {
 //calculation and data structure goes here.

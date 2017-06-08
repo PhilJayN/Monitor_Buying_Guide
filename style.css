@@ -10,15 +10,20 @@ h2 {
   color: rgb(38, 121, 131);
 }
 
+.wishlist-criteria {
+  border: 1px solid red;
+}
+
 .wishlist-criteria-position {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   left: 0px;
   top: 0px;
-  width: 10%;
+  width: 30%;
 }
 
 #wishlist-items {
-  border: 1px solid red; 
+  border: 1px solid red;
 }
 
 .contents-section {
