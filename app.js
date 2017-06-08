@@ -46,7 +46,6 @@ var UIController = (function() {
         customValue: document.querySelector(DOMstrings.customValue).value
       };
     },
-
     displayItem: function() {
       //get data from data structure, then display to UI
       document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
@@ -77,9 +76,35 @@ var UIController = (function() {
     clearFields: function() {
       document.querySelector(DOMstrings.customValue).value = '';
     },
-
     getDOMstrings: function() {
       return DOMstrings;
+    },
+    getHeaderTxt: function() {
+      // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
+      console.log('event', event);
+      console.log('event target', event.target);
+      var containerParent, headerTxt;
+      var el = event.target;
+      // //traverse to clicked el's parent, and get text of section's header
+      containerParent = el.parentNode;
+      headerTxt = containerParent.parentNode.firstElementChild.textContent;
+      console.log('header', headerTxt);
+
+      // if (el.classList.contains('add__btn')) {
+      //   console.log ('that is an adddddddd btn!');
+      //   console.log('el has class of add__btn!!!', el.className);
+      //   console.log('header text', headerTxt);
+      //   // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
+      //  //get the value of the input field closest to the add__btn clicked.
+      //  inputValue = el.previousElementSibling.value;
+      //  console.log('inputValue', inputValue);
+      //   // inputValue = UICtrl.getInput().customValue;
+      //   // 2. Add data to local storage, and set key/val
+      //   localStorage.setItem(headerTxt, inputValue);
+      //   UICtrl.clearFields();
+      //   UICtrl.addListItem();
+      // }
+
     }
   }
 })();
@@ -94,12 +119,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
 
-    document.addEventListener('keypress', function(event){
-      if (event.keyCode === 13 || event.which === 13) {
-        console.log ('keypress event', event);
-        ctrlAddItem(event);
-      }
-    });
+    // document.addEventListener('keypress', function(event){
+    //   if (event.keyCode === 13 || event.which === 13) {
+    //     console.log ('keypress event', event);
+    //     ctrlAddItem();
+    //   }
+    // });
 
   };
 
@@ -113,36 +138,17 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 
   var ctrlAddItem = function(event) {
-    // console.log ('a click event caused ctrlAddItem to be called!');
-    console.log('event', event);
-    var containerParent;
-    var elClicked = event.target;
-    console.log('ctrlAddItem elClicked', elClicked);
-    var inputValue, headerText;
-    //traverse to clicked el's parent, and get text of section's header
-    containerParent = elClicked.parentNode;
-    headerText = containerParent.parentNode.firstElementChild.textContent;
 
-    if (elClicked.classList.contains('add__btn')) {
-      console.log ('that is an adddddddd btn!');
-      console.log('elClicked has class of add__btn!!!', elClicked.className);
-      console.log('header text', headerText);
-      // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
-     //get the value of the input field closest to the add__btn clicked.
-     inputValue = elClicked.previousElementSibling.value;
-     console.log('inputValue', inputValue);
-      // inputValue = UICtrl.getInput().customValue;
-      // 2. Add data to local storage, and set key/val
-      localStorage.setItem(headerText, inputValue);
-      UICtrl.clearFields();
-      UICtrl.addListItem();
-    }
-    else {
-      // console.log ('not add button!');
-      // console.log ('elClicked content:', elClicked.textContent);
-      //automatically set localStorage key/val pair:
-      localStorage.setItem(headerText, elClicked.textContent);
-    }
+    UICtrl.getHeaderTxt();
+    // console.log ('a click event caused ctrlAddItem to be called!');
+
+
+    // else {
+    //   // console.log ('not add button!');
+    //   // console.log ('el content:', el.textContent);
+    //   //automatically set localStorage key/val pair:
+    //   localStorage.setItem(headerText, el.textContent);
+    // }
 
     // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
     // add event listener to parent. if the specific target element is of a certain type, or id, or name,
