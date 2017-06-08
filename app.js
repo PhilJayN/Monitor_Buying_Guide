@@ -52,7 +52,6 @@ var UIController = (function() {
        //get the value of the input field closest to the add__btn clicked.
        inputValue = el.previousElementSibling.value;
        console.log('inputValue', inputValue);
-        // inputValue = UICtrl.getInput().customValue;
         // 2. Add data to local storage, and set key/val
         // localStorage.setItem(headerTxt, inputValue);
         // UICtrl.clearFields();
@@ -110,6 +109,9 @@ var UIController = (function() {
       containerParent = el.parentNode;
       headerTxt = containerParent.parentNode.firstElementChild.textContent;
       console.log('header', headerTxt);
+      return {
+        headerTxt: headerTxt
+      }
 
       // if (el.classList.contains('add__btn')) {
       //   console.log ('that is an adddddddd btn!');
@@ -160,9 +162,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
 
-    UICtrl.getHeaderTxt();
     console.log('get input return val', UICtrl.getInput().customValue);
-    UICtrl.getInput();
+
+    localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, UICtrl.getInput().customValue);
 
     //   // inputValue = UICtrl.getInput().customValue;
 
