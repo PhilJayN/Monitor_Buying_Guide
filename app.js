@@ -41,9 +41,26 @@ var UIController = (function() {
 
   return {
     getInput: function() {
+      //only get input if the btn clicked is add__btn
+      var el, inputValue;
+      el = event.target;
+      // console.log('el (event.target)', el);
+      if (el.classList.contains('add__btn')) {
+        console.log ('that is an adddddddd btn!');
+        console.log('el has class of add__btn!!!', el.className);
+        // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
+       //get the value of the input field closest to the add__btn clicked.
+       inputValue = el.previousElementSibling.value;
+       console.log('inputValue', inputValue);
+        // inputValue = UICtrl.getInput().customValue;
+        // 2. Add data to local storage, and set key/val
+        // localStorage.setItem(headerTxt, inputValue);
+        // UICtrl.clearFields();
+        // UICtrl.addListItem();
+      }
       return {
         // btnText: document.querySelector('.assorted__btn').textContent,
-        customValue: document.querySelector(DOMstrings.customValue).value
+        customValue: inputValue
       };
     },
     displayItem: function() {
@@ -79,6 +96,10 @@ var UIController = (function() {
     getDOMstrings: function() {
       return DOMstrings;
     },
+    // getEl: function() {
+    //   console.log('el', event);
+    // },
+
     getHeaderTxt: function() {
       // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
       console.log('event', event);
@@ -140,6 +161,11 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   var ctrlAddItem = function(event) {
 
     UICtrl.getHeaderTxt();
+    console.log('get input return val', UICtrl.getInput().customValue);
+    UICtrl.getInput();
+
+    //   // inputValue = UICtrl.getInput().customValue;
+
     // console.log ('a click event caused ctrlAddItem to be called!');
 
 
