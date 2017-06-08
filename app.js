@@ -68,7 +68,7 @@ var UIController = (function() {
       target = document.querySelector(DOMstrings.wishlistItems);
       for (var i = 0; i < localStorage.length; i++) {
         console.log(localStorage.getItem(localStorage.key(i)));
-        target.insertAdjacentHTML('beforeend', localStorage.getItem(localStorage.key(i)));
+        target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
     // document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
       }
 
@@ -96,15 +96,25 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
     document.addEventListener('keypress', function(event){
       if (event.keyCode === 13 || event.which === 13) {
-        console.log ('enter key was pressed');
-        ctrlAddItem();
+        console.log ('keypress event', event);
+        ctrlAddItem(event);
       }
     });
 
   };
 
+  // document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+  //
+  // document.addEventListener('keypress', function(event) {
+  //     if (event.keyCode === 13 || event.which === 13) {
+  //         ctrlAddItem();
+  //     }
+  // });
+
+
   var ctrlAddItem = function(event) {
     // console.log ('a click event caused ctrlAddItem to be called!');
+    console.log('event', event);
     var containerParent;
     var elClicked = event.target;
     console.log('ctrlAddItem elClicked', elClicked);
