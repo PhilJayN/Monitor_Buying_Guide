@@ -13,9 +13,9 @@ var dataController = (function() {
   //   tempData: ''
   // };
   // localStorage.setItem('brunch', 'eggs');
-  localStorage.first = "1";
-  localStorage.second = "2";
-  localStorage.third = "3";
+  // localStorage.first = "1";
+  // localStorage.second = "2";
+  // localStorage.third = "3";
 
   // localStorage.first = "eggs";
   // localStorage.second = "Ken";
@@ -41,7 +41,7 @@ var UIController = (function() {
 
   return {
     getInput: function() {
-      //only get input if the btn clicked is add__btn
+      //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       var el, inputValue;
       el = event.target;
       // console.log('el (event.target)', el);
@@ -51,7 +51,7 @@ var UIController = (function() {
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
        //get the value of the input field closest to the add__btn clicked.
        inputValue = el.previousElementSibling.value;
-       console.log('inputValue', inputValue);
+       console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
         // 2. Add data to local storage, and set key/val
         // localStorage.setItem(headerTxt, inputValue);
         // UICtrl.clearFields();
@@ -161,10 +161,14 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 
   var ctrlAddItem = function(event) {
-
-    console.log('get input return val', UICtrl.getInput().customValue);
-
-    localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, UICtrl.getInput().customValue);
+    // console.log('get input return val', UICtrl.getInput().customValue);
+    // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
+    var input;
+    input = UICtrl.getInput().customValue;
+    if (input.length > 0) {
+      console.log('found len is > 0!!');
+      localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
+    }
 
     //   // inputValue = UICtrl.getInput().customValue;
 
