@@ -159,33 +159,22 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   //     }
   // });
 
-
   var ctrlAddItem = function(event) {
-    // console.log('get input return val', UICtrl.getInput().customValue);
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
     var input;
     input = UICtrl.getInput().customValue;
-    if (input.length > 0) {
+    //make sure that input actually exists, otherwise undefined error when clicking on input field,
+    //due to click handler being assigned container parent
+    if (input && input.length > 0) {
       console.log('found len is > 0!!');
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
     }
-
-    //   // inputValue = UICtrl.getInput().customValue;
-
-    // console.log ('a click event caused ctrlAddItem to be called!');
-
-
     // else {
     //   // console.log ('not add button!');
     //   // console.log ('el content:', el.textContent);
     //   //automatically set localStorage key/val pair:
     //   localStorage.setItem(headerText, el.textContent);
     // }
-
-    // console.log ('btn text content asdf:', UICtrl.getInput().btnText );
-    // add event listener to parent. if the specific target element is of a certain type, or id, or name,
-    // then run a code
-
   }
   return {
     init: function() {
