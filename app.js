@@ -80,7 +80,7 @@ var UIController = (function() {
     updateWishlist: function() {
       var target;
       target = document.querySelector(DOMstrings.wishlistItems);
-      //hacky way is to clear all target element's content first, then refresh the wishlist
+      //hacky way is to clear all target element's content first before running for loop,
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
