@@ -5,7 +5,6 @@
 // };
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
-console.log('hey ther');
 // console.log('localStorage', localStorage.getItem(key(0)));
 var dataController = (function() {
 //calculation and data structure goes here.
@@ -78,9 +77,12 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
       // document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
     },
-    displayWishlist: function() {
+    updateWishlist: function() {
       var target;
       target = document.querySelector(DOMstrings.wishlistItems);
+      //hacky way is to clear all target element's content first, then refresh the wishlist
+      //or else the UI gets duplicate list items.
+      target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
         console.log(localStorage.getItem(localStorage.key(i)));
         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
@@ -168,6 +170,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     if (input && input.length > 0) {
       console.log('found len is > 0!!');
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
+      UICtrl.updateWishlist();
+      UICtrl.clearFields();
     }
     // else {
     //   // console.log ('not add button!');
@@ -178,7 +182,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   }
   return {
     init: function() {
-      UICtrl.displayWishlist();
+      UICtrl.updateWishlist();
       setupEventListeners();
     }
   }
