@@ -20,14 +20,10 @@
 
 var dataController = (function() {
 //calculation and data structure goes here.
-  // var data = {
-  //   tempData: ''
-  // };
   // localStorage.setItem('brunch', 'eggs');
   // localStorage.first = "1";
   // localStorage.second = "2";
   // localStorage.third = "3";
-
   // localStorage.first = "eggs";
   // localStorage.second = "Ken";
   // localStorage.third = "Or";
@@ -50,11 +46,9 @@ var UIController = (function() {
     wishlistItems: '.wishlist-items'
   };
 
-
   // <div class="alert alert-success msg" role="alert">
   //   Added to wishlist!
   // </div>
-
   return {
     createDiv: function() {
       var div;
@@ -77,11 +71,9 @@ var UIController = (function() {
       }
     },
     getInput: function() {
-      //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
-      // var el, inputValue;
-      // el = event.target;
       var inputValue;
       // console.log('el (event.target)', el);
+      //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       console.log('teddydy el', this.getEl().el);
       if (this.getEl().el.classList.contains('add__btn')) {
         console.log ('that is an adddddddd btn!');
@@ -90,13 +82,8 @@ var UIController = (function() {
        //get the value of the input field closest to the add__btn clicked.
        inputValue = this.getEl().el.previousElementSibling.value;
        console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
-        // 2. Add data to local storage, and set key/val
-        // localStorage.setItem(headerTxt, inputValue);
-        // UICtrl.clearFields();
-        // UICtrl.addListItem();
       }
       return {
-        // btnText: document.querySelector('.assorted__btn').textContent,
         customValue: inputValue
       };
     },
@@ -114,7 +101,6 @@ var UIController = (function() {
       newHtml = '<li>' + demo + '</li>';
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
-      // document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
       var target;
@@ -125,7 +111,6 @@ var UIController = (function() {
       for (var i = 0; i < localStorage.length; i++) {
         // console.log(localStorage.getItem(localStorage.key(i)));
         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
-    // document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
       }
 
       var items = localStorage.getItem('Intended Audience');
@@ -136,10 +121,6 @@ var UIController = (function() {
     getDOMstrings: function() {
       return DOMstrings;
     },
-    // getEl: function() {
-    //   console.log('el', event);
-    // },
-
     getHeaderTxt: function() {
       // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
       console.log('event', event);
@@ -153,22 +134,6 @@ var UIController = (function() {
       return {
         headerTxt: headerTxt
       }
-
-      // if (el.classList.contains('add__btn')) {
-      //   console.log ('that is an adddddddd btn!');
-      //   console.log('el has class of add__btn!!!', el.className);
-      //   console.log('header text', headerTxt);
-      //   // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
-      //  //get the value of the input field closest to the add__btn clicked.
-      //  inputValue = el.previousElementSibling.value;
-      //  console.log('inputValue', inputValue);
-      //   // inputValue = UICtrl.getInput().customValue;
-      //   // 2. Add data to local storage, and set key/val
-      //   localStorage.setItem(headerTxt, inputValue);
-      //   UICtrl.clearFields();
-      //   UICtrl.addListItem();
-      // }
-
     }
   }
 })();
@@ -212,6 +177,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
       console.log('found len is > 0!!');
+      // 2. Add data to local storage, and set key/val
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
       console.log('el!', el);
       //only create and append element if it doesn't exist yet
