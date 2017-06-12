@@ -61,6 +61,7 @@ var UIController = (function() {
       div = document.createElement('div');
       div.className = 'alert alert-success msg';
       div.role = 'alert';
+      div.id = 'success-msg';
       // div.createAttribute('role');
       div.innerText = 'Added to wishlist! sdafjk';
       // console.log('element created', div);
@@ -203,7 +204,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
-    var input, el, parent;
+    var input, el, parent, newEl, msgEl;
     el = UICtrl.getEl().el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput().customValue;
@@ -213,7 +214,16 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log('found len is > 0!!');
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
       console.log('el!', el);
-      parent.appendChild(UICtrl.createDiv());
+      //only create and append element if it doesn't exist yet
+      msgEl = document.getElementById('success-msg');
+      // if (!msgEl) {
+      //   console.log('msgEl exists!', msgEl);
+      //   parent.appendChild(UICtrl.createDiv());
+      // }
+
+      if (parent.contains(msgEl) === false) {
+        parent.appendChild(UICtrl.createDiv());
+      }
       UICtrl.updateWishlist();
       UICtrl.clearFields();
     }
