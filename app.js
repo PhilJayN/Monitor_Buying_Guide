@@ -6,6 +6,18 @@
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
 // console.log('localStorage', localStorage.getItem(key(0)));
+
+
+// function start() {
+// }
+// start();
+// console.log('start');
+// function stop() {
+//   console.log('stop');
+// }
+// setTimeout(stop, 3000);
+// alert('hi!');
+
 var dataController = (function() {
 //calculation and data structure goes here.
   // var data = {
@@ -39,17 +51,28 @@ var UIController = (function() {
   };
 
   return {
+    getEl: function() {
+      //el = element
+      var el;
+      el = event.target;
+      console.log(el);
+      return {
+        el: el
+      }
+    },
     getInput: function() {
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
-      var el, inputValue;
-      el = event.target;
+      // var el, inputValue;
+      // el = event.target;
+      var inputValue;
       // console.log('el (event.target)', el);
-      if (el.classList.contains('add__btn')) {
+      console.log('teddydy el', this.getEl().el);
+      if (this.getEl().el.classList.contains('add__btn')) {
         console.log ('that is an adddddddd btn!');
-        console.log('el has class of add__btn!!!', el.className);
+        console.log('el has class of add__btn!!!', this.getEl().el.className);
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
        //get the value of the input field closest to the add__btn clicked.
-       inputValue = el.previousElementSibling.value;
+       inputValue = this.getEl().el.previousElementSibling.value;
        console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
         // 2. Add data to local storage, and set key/val
         // localStorage.setItem(headerTxt, inputValue);
@@ -84,7 +107,7 @@ var UIController = (function() {
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
-        console.log(localStorage.getItem(localStorage.key(i)));
+        // console.log(localStorage.getItem(localStorage.key(i)));
         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
     // document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', items);
       }
@@ -106,9 +129,9 @@ var UIController = (function() {
       console.log('event', event);
       console.log('event target', event.target);
       var containerParent, headerTxt;
-      var el = event.target;
+      // var el = event.target;
       // //traverse to clicked el's parent, and get text of section's header
-      containerParent = el.parentNode;
+      containerParent = this.getEl().el.parentNode;
       headerTxt = containerParent.parentNode.firstElementChild.textContent;
       console.log('header', headerTxt);
       return {
@@ -142,7 +165,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var DOM = UICtrl.getDOMstrings();
     // document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
     // document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
+    // document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
+    // console.log('elemnt', UICtrl.getEl);
 
     // document.addEventListener('keypress', function(event){
     //   if (event.keyCode === 13 || event.which === 13) {
