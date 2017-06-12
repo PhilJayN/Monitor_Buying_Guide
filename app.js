@@ -50,7 +50,22 @@ var UIController = (function() {
     wishlistItems: '.wishlist-items'
   };
 
+
+  // <div class="alert alert-success msg" role="alert">
+  //   Added to wishlist!
+  // </div>
+
   return {
+    createDiv: function() {
+      var div;
+      div = document.createElement('div');
+      div.className = 'alert alert-success msg';
+      div.role = 'alert';
+      // div.createAttribute('role');
+      div.innerText = 'Added to wishlist! sdafjk';
+      // console.log('element created', div);
+      return div;
+    },
     getEl: function() {
       //el = element
       var el;
@@ -188,13 +203,17 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlAddItem = function(event) {
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
-    var input;
+    var input, el, parent;
+    el = UICtrl.getEl().el;
+    parent = el.parentNode.parentNode;
     input = UICtrl.getInput().customValue;
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
       console.log('found len is > 0!!');
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
+      console.log('el!', el);
+      parent.appendChild(UICtrl.createDiv());
       UICtrl.updateWishlist();
       UICtrl.clearFields();
     }
