@@ -119,8 +119,33 @@ ul {
 }
 
 .input-group {
-  width: 50%;
+  width: 60%;
+  margin-bottom: .4em;
 }
+
+/* span {
+  border: 1px solid red;
+  display: inline;
+  display: inline-block;
+  display: block;
+  width: 100px;;
+} */
+
+.msg {
+  /* display: flex; */
+  width: 60%;
+}
+
+input {
+  display: inline;
+  border: 1px solid green;
+}
+
+button {
+  display: inline;
+  border: 1px solid blue;
+}
+
 
 .fa {
   display: block;
@@ -159,17 +184,6 @@ ul {
 section {
   /* border: 1px solid blue; */
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
