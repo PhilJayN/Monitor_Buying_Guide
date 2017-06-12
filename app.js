@@ -1,12 +1,11 @@
 // var main = function () {
 //   "use strict";
 //   //code
-// console.log("hi there! testing asdf jskdlaf");
 // };
+
 // $(document).ready(main);
 // localStorage.setItem('mykey', 'my val');
 // console.log('localStorage', localStorage.getItem(key(0)));
-
 
 // function start() {
 // }
@@ -58,7 +57,6 @@ var UIController = (function() {
       div.id = 'success-msg';
       // div.createAttribute('role');
       div.innerText = 'Added to wishlist! sdafjk';
-      // console.log('element created', div);
       return div;
     },
     getEl: function() {
@@ -90,7 +88,6 @@ var UIController = (function() {
     displayItem: function() {
       //get data from data structure, then display to UI
       document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
-      // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
     },
     addListItem: function() {
       //el = element
@@ -112,7 +109,6 @@ var UIController = (function() {
         // console.log(localStorage.getItem(localStorage.key(i)));
         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
       }
-
       var items = localStorage.getItem('Intended Audience');
     },
     clearFields: function() {
@@ -122,7 +118,6 @@ var UIController = (function() {
       return DOMstrings;
     },
     getHeaderTxt: function() {
-      // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
       console.log('event', event);
       console.log('event target', event.target);
       var containerParent, headerTxt;
@@ -141,15 +136,9 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER: main job is to call other methods. Those methods
 //then call other methods.
 var controller = (function(shoppingListCtrl, UICtrl) {
-
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
-    // document.querySelector(DOM.assortedBtn).addEventListener('click', ctrlAddItem);
-    // document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
-    // document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-    // console.log('elemnt', UICtrl.getEl);
-
     // document.addEventListener('keypress', function(event){
     //   if (event.keyCode === 13 || event.which === 13) {
     //     console.log ('keypress event', event);
@@ -158,14 +147,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     // });
 
   };
-
-  // document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
-  //
-  // document.addEventListener('keypress', function(event) {
-  //     if (event.keyCode === 13 || event.which === 13) {
-  //         ctrlAddItem();
-  //     }
-  // });
 
   var ctrlAddItem = function(event) {
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
@@ -193,12 +174,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       UICtrl.updateWishlist();
       UICtrl.clearFields();
     }
-    // else {
-    //   // console.log ('not add button!');
-    //   // console.log ('el content:', el.textContent);
-    //   //automatically set localStorage key/val pair:
-    //   localStorage.setItem(headerText, el.textContent);
-    // }
   }
   return {
     init: function() {
