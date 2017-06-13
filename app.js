@@ -7,6 +7,7 @@
 // localStorage.setItem('mykey', 'my val');
 // console.log('localStorage', localStorage.getItem(key(0)));
 
+console.log('hiii');
 // function start() {
 // }
 // start();
@@ -63,7 +64,7 @@ var UIController = (function() {
       //el = element
       var el;
       el = event.target;
-      console.log(el);
+      console.log('getEl running, el', el);
       return {
         el: el
       }
@@ -72,14 +73,13 @@ var UIController = (function() {
       var inputValue;
       // console.log('el (event.target)', el);
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
-      console.log('teddydy el', this.getEl().el);
       if (this.getEl().el.classList.contains('add__btn')) {
-        console.log ('that is an adddddddd btn!');
-        console.log('el has class of add__btn!!!', this.getEl().el.className);
+        // console.log ('that is an adddddddd btn!');
+        // console.log('el has class of add__btn!!!', this.getEl().el.className);
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
        //get the value of the input field closest to the add__btn clicked.
        inputValue = this.getEl().el.previousElementSibling.value;
-       console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
+       // console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
       }
       return {
         customValue: inputValue
@@ -91,10 +91,10 @@ var UIController = (function() {
     },
     addListItem: function() {
       //el = element
-      console.log('addListItem running!');
+      // console.log('addListItem running!');
       var html, newHtml, el;
       var demo = localStorage.getItem('Intended Audience');
-      console.log('demo!', typeof demo);
+      // console.log('demo!', typeof demo);
       newHtml = '<li>' + demo + '</li>';
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
@@ -118,14 +118,14 @@ var UIController = (function() {
       return DOMstrings;
     },
     getHeaderTxt: function() {
-      console.log('event', event);
-      console.log('event target', event.target);
+      // console.log('event', event);
+      // console.log('event target', event.target);
       var containerParent, headerTxt;
       // var el = event.target;
       // //traverse to clicked el's parent, and get text of section's header
       containerParent = this.getEl().el.parentNode;
       headerTxt = containerParent.parentNode.firstElementChild.textContent;
-      console.log('header', headerTxt);
+      // console.log('header', headerTxt);
       return {
         headerTxt: headerTxt
       }
@@ -145,32 +145,37 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //     ctrlAddItem();
     //   }
     // });
-
   };
 
+//note that the event object is given to us by the browser. we can call it whatever name we want
   var ctrlAddItem = function(event) {
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
     var input, el, parent, newEl, msgEl;
+    // calling the getEl method here also gives the getEl method access to the event object
+    //the el(element) is the one that just got clicked by user
     el = UICtrl.getEl().el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput().customValue;
+    console.log('parent has success-msg el expected: false!', parent.contains(msgEl));
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
-      console.log('found len is > 0!!');
       // 2. Add data to local storage, and set key/val
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
-      console.log('el!', el);
-      //only create and append element if it doesn't exist yet
+      // console.log('el!', el);
       msgEl = document.getElementById('success-msg');
+      console.log('msgEl', msgEl);
       // if (!msgEl) {
       //   console.log('msgEl exists!', msgEl);
       //   parent.appendChild(UICtrl.createDiv());
       // }
-
-      if (parent.contains(msgEl) === false) {
+      //only create and append element if it doesn't exist yet
+      if (msgEl === null) {
         parent.appendChild(UICtrl.createDiv());
       }
+      // if (parent.contains(msgEl) === false) {
+      //   console.log('parent', parent);
+      // }
       UICtrl.updateWishlist();
       UICtrl.clearFields();
     }
