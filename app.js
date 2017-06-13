@@ -111,8 +111,11 @@ var UIController = (function() {
       }
       var items = localStorage.getItem('Intended Audience');
     },
+    //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
     clearFields: function() {
-      document.querySelector(DOMstrings.customValue).value = '';
+      var el;
+      el = this.getEl().el;
+      el.previousElementSibling.value = '';
     },
     getDOMstrings: function() {
       return DOMstrings;
@@ -160,24 +163,17 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
-      // 2. Add data to local storage, and set key/val
+      //Add data to local storage, and set key/val
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
-      // console.log('el!', el);
       msgEl = document.getElementById('success-msg');
       console.log('msgEl', msgEl);
-      // if (!msgEl) {
-      //   console.log('msgEl exists!', msgEl);
-      //   parent.appendChild(UICtrl.createDiv());
-      // }
       //only create and append element if it doesn't exist yet
       if (msgEl === null) {
         parent.appendChild(UICtrl.createDiv());
       }
-      // if (parent.contains(msgEl) === false) {
-      //   console.log('parent', parent);
-      // }
-      UICtrl.updateWishlist();
+      // el.previousElementSibling.value = '';
       UICtrl.clearFields();
+      UICtrl.updateWishlist();
     }
   }
   return {
