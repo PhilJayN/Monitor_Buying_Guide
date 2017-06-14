@@ -87,10 +87,6 @@ var UIController = (function() {
         customValue: inputValue
       };
     },
-    displayItem: function() {
-      //get data from data structure, then display to UI
-      document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
-    },
     addListItem: function() {
       //el = element
       // console.log('addListItem running!');
@@ -101,6 +97,19 @@ var UIController = (function() {
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
+    displayWishlist: function() {
+      //get data form local, then display to UI
+      // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
+      var target;
+      target = document.querySelector(DOMstrings.wishlistItems);
+      //hacky way is to clear all target element's content first before running for loop,
+      //or else the UI gets duplicate list items.
+      target.innerHTML = "";
+      for (var i = 0; i < localStorage.length; i++) {
+        target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
+      }
+      var items = localStorage.getItem('Intended Audience');
+    },
     updateWishlist: function() {
       var target;
       target = document.querySelector(DOMstrings.wishlistItems);
@@ -108,8 +117,8 @@ var UIController = (function() {
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
-        // console.log(localStorage.getItem(localStorage.key(i)));
-        target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
+         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.key(i) + ': '
+         + localStorage.getItem(localStorage.key(i)) + '</li>');
       }
       var items = localStorage.getItem('Intended Audience');
     },
@@ -187,7 +196,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   }
   return {
     init: function() {
-      UICtrl.updateWishlist();
+      UICtrl.displayWishlist();
       setupEventListeners();
     }
   }
