@@ -43,7 +43,9 @@ var UIController = (function() {
     addBtn: '.add__btn',
     container: '.container',
     customValue: '.custom__value',
-    wishlistItems: '.wishlist-items'
+    wishlistItems: '.wishlist-items',
+    //msg will use getElementById, so don't use a period before name
+    msg: 'success-msg',
   };
 
   // <div class="alert alert-success msg" role="alert">
@@ -57,7 +59,7 @@ var UIController = (function() {
       div.role = 'alert';
       div.id = 'success-msg';
       // div.createAttribute('role');
-      div.innerText = 'Added to wishlist! sdafjk';
+      div.innerText = 'Added!';
       return div;
     },
     getEl: function() {
@@ -117,6 +119,11 @@ var UIController = (function() {
       el = this.getEl().el;
       el.previousElementSibling.value = '';
     },
+    clearMsg: function() {
+      var msg;
+      msg = document.getElementById(DOMstrings.msg);
+      msg.parentNode.removeChild(msg);
+    },
     getDOMstrings: function() {
       return DOMstrings;
     },
@@ -174,6 +181,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       // el.previousElementSibling.value = '';
       UICtrl.clearFields();
       UICtrl.updateWishlist();
+      setTimeout(UICtrl.clearMsg, 1000);
+      // UICtrl.clearMsg();
     }
   }
   return {
