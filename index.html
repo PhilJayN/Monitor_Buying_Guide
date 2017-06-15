@@ -113,7 +113,7 @@
     There's a button to hide it below should you find it obtrusive. </p>
     <p>
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#wishlist-hide" aria-expanded="false" aria-controls="wishlist-hide">
-        Hide and Show Wishlist
+        Toggle Wishlist
       </button>
     </p>
     <p class="side-note"><i class="fa fa-sticky-note-o" aria-hidden="true"><span> Side note</span></i>
@@ -122,18 +122,25 @@
      </p>
 </section>
 
-<section class="collapse contents-section wishlist-box" id="wishlist-hide">
-  <div class="card card-block row marketing wishlist-criteria">
+<section class="collapse show contents-section wishlist-box" id="wishlist-hide">
+  <div class="row marketing wishlist-criteria">
     <div class="col-lg-6">
-      <h4>Wishlist</h4>
+      <h4>Disclaimer</h4>
+      <p class="side-warning"> <i class="fa fa-exclamation-triangle" aria-hidden="true"><span></span></i>
+        The wishlist you create is stored on your browser's local storage, not on a server.
+        You will not be able to access your wishlist on another computer.
+      </p>
     </div>
     <div class="col-lg-6 wishlist-criteria">
       <h4>Criteria</h4>
       <ul class="wishlist-items">
       </ul>
-      <p class="tempText"></p>
     </div>
   </div>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#wishlist-hide" aria-expanded="false" aria-controls="wishlist-hide">
+      Toggle Wishlist
+    </button>
 </section>
 
 <section class="contents-section legend introduction">
@@ -283,7 +290,6 @@ need or don't like. </p>
     primary use to be productivity and you never, or rarely ever play video games, then
     the main section discussing monitors for gaming will not be discusssed.
   </p>
-
 
   <button type="button" class="btn btn-warning"><i class="fa fa-gamepad" aria-hidden="true"> Gaming</i></button>
   <button type="button" class="btn btn-danger"> <i class="fa fa-book" aria-hidden="true"> Productivity and Work</i></button>
