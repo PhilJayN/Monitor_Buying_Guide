@@ -84,7 +84,7 @@ var UIController = (function() {
        inputValue = el.previousElementSibling.value;
        // console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
      }
-     else if (el.classList.contains('click__btn')) {
+     else if (el.classList.contains('button-group__btn')) {
        console.log('click__btn!!');
        inputValue = el.textContent;
        console.log('inputValue', inputValue);
