@@ -135,7 +135,10 @@ var UIController = (function() {
     clearMsg: function() {
       var msg;
       msg = document.getElementById(DOMstrings.msg);
-      msg.parentNode.removeChild(msg);
+      //only remove element if it actually exist, or you'll get parentNode does not exist error
+      if(msg !== null) {
+        msg.parentNode.removeChild(msg);
+      }
     },
     getDOMstrings: function() {
       return DOMstrings;
@@ -192,7 +195,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         parent.appendChild(UICtrl.createDiv());
       }
       // el.previousElementSibling.value = '';
-      UICtrl.clearFields();
+      if (el.classList.contains('add__btn')) {
+        UICtrl.clearFields();
+      }
       UICtrl.updateWishlist();
       setTimeout(UICtrl.clearMsg, 1000);
       // UICtrl.clearMsg();
