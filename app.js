@@ -72,17 +72,23 @@ var UIController = (function() {
       }
     },
     getInput: function() {
-      var inputValue;
+      var el, inputValue;
+      el = this.getEl().el;
       // console.log('el (event.target)', el);
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
-      if (this.getEl().el.classList.contains('add__btn')) {
+      if (el.classList.contains('add__btn')) {
         // console.log ('that is an adddddddd btn!');
-        // console.log('el has class of add__btn!!!', this.getEl().el.className);
+        // console.log('el has class of add__btn!!!', el.className);
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
        //get the value of the input field closest to the add__btn clicked.
-       inputValue = this.getEl().el.previousElementSibling.value;
+       inputValue = el.previousElementSibling.value;
        // console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
-      }
+     }
+     else if (el.classList.contains('click__btn')) {
+       console.log('click__btn!!');
+       inputValue = el.textContent;
+       console.log('inputValue', inputValue);
+     }
       return {
         customValue: inputValue
       };
