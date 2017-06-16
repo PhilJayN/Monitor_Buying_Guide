@@ -43,6 +43,7 @@ var UIController = (function() {
     addBtn: '.add__btn',
     container: '.container',
     customValue: '.custom__value',
+    wishListbox: '.wishlist-box',
     wishlistItems: '.wishlist-items',
     //msg will use getElementById, so don't use a period before name
     msg: 'success-msg',
@@ -152,6 +153,7 @@ var UIController = (function() {
 var controller = (function(shoppingListCtrl, UICtrl) {
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
+    document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.addEventListener('keypress', function(){
       if (event.keyCode === 13 || event.which === 13) {
@@ -189,6 +191,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       setTimeout(UICtrl.clearMsg, 1000);
     }
   }
+
+  var ctrlDelItem = function() {
+    console.log('ctrlDelItem run');
+
+  }
+
   return {
     init: function() {
       UICtrl.updateWishlist();
