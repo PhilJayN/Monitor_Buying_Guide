@@ -48,9 +48,6 @@ var UIController = (function() {
     msg: 'success-msg',
   };
 
-  // <div class="alert alert-success msg" role="alert">
-  //   Added to wishlist!
-  // </div>
   return {
     createDiv: function() {
       var div;
@@ -74,15 +71,11 @@ var UIController = (function() {
     getInput: function() {
       var el, inputValue;
       el = this.getEl().el;
-      // console.log('el (event.target)', el);
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       if (el.classList.contains('add__btn')) {
-        // console.log ('that is an adddddddd btn!');
-        // console.log('el has class of add__btn!!!', el.className);
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
        //get the value of the input field closest to the add__btn clicked.
        inputValue = el.previousElementSibling.value;
-       // console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
      }
      else if (el.classList.contains('form-control')) {
        inputValue = el.value;
@@ -96,10 +89,8 @@ var UIController = (function() {
     },
     addListItem: function() {
       //el = element
-      // console.log('addListItem running!');
       var html, newHtml, el;
       var demo = localStorage.getItem('Intended Audience');
-      // console.log('demo!', typeof demo);
       newHtml = '<li>' + demo + '</li>';
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
@@ -145,14 +136,10 @@ var UIController = (function() {
       return DOMstrings;
     },
     getHeaderTxt: function() {
-      // console.log('event', event);
-      // console.log('event target', event.target);
       var containerParent, headerTxt;
-      // var el = event.target;
       // //traverse to clicked el's parent, and get text of section's header
       containerParent = this.getEl().el.parentNode;
       headerTxt = containerParent.parentNode.firstElementChild.textContent;
-      // console.log('header', headerTxt);
       return {
         headerTxt: headerTxt
       }
