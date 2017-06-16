@@ -84,10 +84,11 @@ var UIController = (function() {
        inputValue = el.previousElementSibling.value;
        // console.log('inputValue', inputValue, 'TYPE', typeof inputValue);
      }
+     else if (el.classList.contains('form-control')) {
+       inputValue = el.value;
+     }
      else if (el.classList.contains('button-group__btn')) {
-       console.log('click__btn!!');
        inputValue = el.textContent;
-       console.log('inputValue', inputValue);
      }
       return {
         customValue: inputValue
@@ -165,12 +166,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-    // document.addEventListener('keypress', function(event){
-    //   if (event.keyCode === 13 || event.which === 13) {
-    //     console.log ('keypress event', event);
-    //     ctrlAddItem();
-    //   }
-    // });
+    document.addEventListener('keypress', function(){
+      if (event.keyCode === 13 || event.which === 13) {
+        console.log (event);
+        ctrlAddItem();
+      }
+    });
   };
 
 //note that the event object is given to us by the browser. we can call it whatever name we want
@@ -182,10 +183,10 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     el = UICtrl.getEl().el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput().customValue;
-    console.log('parent has success-msg el expected: false!', parent.contains(msgEl));
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
+      console.log('if statement running');
       //Add data to local storage, and set key/val
       localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
       msgEl = document.getElementById('success-msg');
@@ -194,13 +195,11 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       if (msgEl === null) {
         parent.appendChild(UICtrl.createDiv());
       }
-      // el.previousElementSibling.value = '';
       if (el.classList.contains('add__btn')) {
         UICtrl.clearFields();
       }
       UICtrl.updateWishlist();
       setTimeout(UICtrl.clearMsg, 1000);
-      // UICtrl.clearMsg();
     }
   }
   return {
