@@ -110,14 +110,16 @@ var UIController = (function() {
     //   }
     // },
     updateWishlist: function() {
-      var target;
+      var target, id;
       target = document.querySelector(DOMstrings.wishlistItems);
       //hacky way is to clear all target element's content first before running for loop,
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
-         target.insertAdjacentHTML('beforeend', '<li><span class="del__btn">X</span>' + localStorage.key(i) + ': '
-         + localStorage.getItem(localStorage.key(i)) + '</li>');
+        id = localStorage.key(i);
+        // + id allows us to use that id later as key to use localStorage.removeItem(id)
+        target.insertAdjacentHTML('beforeend', '<li><span class="del__btn" id="' + id + '">X</span>' + localStorage.key(i) + ': '
+        + localStorage.getItem(localStorage.key(i)) + '</li>');
       }
     },
     //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
@@ -194,12 +196,18 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   }
 
   var ctrlDelItem = function() {
+    var el, id;
     console.log('ctrlDelItem run');
     el = UICtrl.getEl().el;
     if (el.classList.contains('del__btn')) {
       console.log('del btn! newdd!');
-      
-      // UICtrl.removeItem();
+      // localStorage.removeItem();
+      console.log(el);
+      //get id from element html id attribute
+      id = el.getAttribute('id');
+      console.log('asjdfkl id', id);
+      localStorage.removeItem(id);
+      UICtrl.updateWishlist();
     }
 
   }
