@@ -168,6 +168,11 @@ button {
   color: #2196F3;
 }
 
+.fa-trash {
+  color: red;
+  margin-right: .3em;
+}
+
 .fa-bomb {
   color: black;
 }
