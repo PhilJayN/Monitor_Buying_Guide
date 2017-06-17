@@ -41,6 +41,7 @@ var UIController = (function() {
     tempText: '.tempText',
     assortedBtn: '.assorted__btn',
     addBtn: '.add__btn',
+    delBtn: '.del__btn',
     container: '.container',
     customValue: '.custom__value',
     wishListbox: '.wishlist-box',
@@ -115,7 +116,7 @@ var UIController = (function() {
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       for (var i = 0; i < localStorage.length; i++) {
-         target.insertAdjacentHTML('beforeend', '<li>' + localStorage.key(i) + ': '
+         target.insertAdjacentHTML('beforeend', '<li><span class="del__btn">X</span>' + localStorage.key(i) + ': '
          + localStorage.getItem(localStorage.key(i)) + '</li>');
       }
     },
@@ -194,6 +195,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
   var ctrlDelItem = function() {
     console.log('ctrlDelItem run');
+    el = UICtrl.getEl().el;
+    if (el.classList.contains('del__btn')) {
+      console.log('del btn! newdd!');
+      
+      // UICtrl.removeItem();
+    }
 
   }
 
