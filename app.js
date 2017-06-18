@@ -161,7 +161,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     var DOM = UICtrl.getDOMstrings();
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-    document.addEventListener('keypress', function(){
+    document.addEventListener('keypress', function(event){
+      event = event || window.event;
+      console.log('final event', event);
       if (event.keyCode === 13 || event.which === 13) {
         console.log (event);
         ctrlAddItem();
