@@ -7,7 +7,7 @@
 // localStorage.setItem('mykey', 'my val');
 // console.log('localStorage', localStorage.getItem(key(0)));
 
-console.log('hiii');
+console.log('hiii j;ksladfsjlfdk;a');
 // function start() {
 // }
 // start();
@@ -61,11 +61,16 @@ var UIController = (function() {
       div.innerText = 'Added!';
       return div;
     },
-    getEl: function() {
-      //el = element
+    getEl: function(event) {
+      //el = element. Also in Chrome, internet explorer, you use 'event'. In FireFox,
+      //use 'window.event'
       var el;
+      //must have or Firefox says event not defined
+      event = event || window.event;
+      console.log('eventdsfa', event, 'the target:', event.target);
       el = event.target;
-      console.log('getEl running, el', el);
+      console.log('The TARGET', el);
+      // console.log('getEl run, eltarget', el);
       return {
         el: el
       }
@@ -159,6 +164,8 @@ var UIController = (function() {
 var controller = (function(shoppingListCtrl, UICtrl) {
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
+    //The callback function of addEventListener will have access to the event object
+    //
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.addEventListener('keypress', function(event){
@@ -173,11 +180,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 
 //note that the event object is given to us by the browser. we can call it whatever name we want
   var ctrlAddItem = function(event) {
+    console.log('ctrlAddItem running', 'eventobj', event);
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
-    var input, el, parent, newEl, msgEl;
+    var input, el, parent, msgEl;
     // calling the getEl method here also gives the getEl method access to the event object
     //the el(element) is the one that just got clicked by user
-    el = UICtrl.getEl().el;
+    el = UICtrl.getEl(event).el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput().customValue;
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
