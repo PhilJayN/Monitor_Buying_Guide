@@ -204,34 +204,3 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 })(dataController, UIController);
 
 controller.init();
-
-
-//attach event listener to parent:
-// var jumbo = document.querySelector('.jumbotron');
-// jumbo.addEventListener('click', function(event) {
-//   // console.log ('clicked a parent');
-//   // console.log ('event:', event);
-//   // console.log ('target is:', event.target);
-//   var elementClicked = event.target;
-//   console.log ('elementClicked class:', typeof elementClicked);
-//   if (elementClicked.className === 'teddy') {
-//     console.log ('you found the add btn!');
-//   }
-// });
-
-
-//
-// //listen for the element we want to be clicked (delBtn)
-// var todoUl = document.querySelector("ul");
-// todoUl.addEventListener("click", function(event) {
-//   console.log('event', event.target.parentNode.id);
-//   var elementClicked = event.target;
-//   //get parent of delBtn to use its id as a position for delTodo method,
-//   //then feed that as an argument inside the position parameter of delTodo method
-// // debugger;
-//   if (elementClicked.className === "delBtn") {
-//     console.log('list item delete btn clicked');
-//     todoList.delTodo(parseInt(elementClicked.parentNode.id));
-//     view.displayTodo();
-//   }
-// });
