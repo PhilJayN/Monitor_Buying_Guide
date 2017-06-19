@@ -63,41 +63,28 @@ var UIController = (function() {
       el = this.getEl(event).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       if (el.classList.contains('add__btn')) {
-        // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
-       //get the value of the input field closest to the add__btn clicked.
+      //Get input field value. Traverse the DOM in a way that clicking an add__btn
+      //gets the value of the input field closest to the add__btn clicked.
        inputValue = el.previousElementSibling.value;
      }
-     else if (el.classList.contains('form-control')) {
+      else if (el.classList.contains('form-control')) {
        inputValue = el.value;
-     }
-     else if (el.classList.contains('button-group__btn')) {
+      }
+      else if (el.classList.contains('button-group__btn')) {
        inputValue = el.textContent;
-     }
+      }
       return {
         customValue: inputValue
       };
     },
 
     addListItem: function() {
-      //el = element
       var html, newHtml, el;
       var demo = localStorage.getItem('Intended Audience');
       newHtml = '<li>' + demo + '</li>';
       // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
-    // displayWishlist: function() {
-    //   //get data form local, then display to UI
-    //   // document.querySelector(DOMstrings.wishlistItems).textContent = 'teddsdfsdafy';
-    //   var target;
-    //   target = document.querySelector(DOMstrings.wishlistItems);
-    //   //hacky way is to clear all target element's content first before running for loop,
-    //   //or else the UI gets duplicate list items.
-    //   target.innerHTML = "";
-    //   for (var i = 0; i < localStorage.length; i++) {
-    //     target.insertAdjacentHTML('beforeend', '<li>' + localStorage.getItem(localStorage.key(i)) + '</li>');
-    //   }
-    // },
     updateWishlist: function() {
       var target, id;
       target = document.querySelector(DOMstrings.wishlistItems);
@@ -111,7 +98,6 @@ var UIController = (function() {
         // + localStorage.getItem(localStorage.key(i)) + '</li>');
         target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
         + localStorage.getItem(localStorage.key(i)) + '</li>');
-
       }
     },
 
@@ -134,7 +120,7 @@ var UIController = (function() {
     getDOMstrings: function() {
       return DOMstrings;
     },
-    
+
     getHeaderTxt: function(event) {
       var containerParent, headerTxt;
       // //traverse to clicked el's parent, and get text of section's header
@@ -153,10 +139,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     //The callback function of addEventListener will have access to the event object
-    //
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-    // document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
     document.addEventListener('keypress', function(event){
       event = event || window.event;
       console.log('final event', event);
@@ -181,7 +165,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
       console.log('if statement running');
-      //Add data to local storage, and set key/val
       localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, input);
       msgEl = document.getElementById('success-msg');
       console.log('msgEl', msgEl);
@@ -203,7 +186,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     el = UICtrl.getEl(event).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
       console.log('del btn! newdd! pressed');
-      // localStorage.removeItem();
       console.log(el);
       //get id from element html id attribute
       id = el.getAttribute('id');
@@ -211,7 +193,6 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       localStorage.removeItem(id);
       UICtrl.updateWishlist();
     }
-
   }
 
   return {
