@@ -2,10 +2,7 @@
 //   "use strict";
 //   //code
 // };
-
 // $(document).ready(main);
-// localStorage.setItem('mykey', 'my val');
-// console.log('localStorage', localStorage.getItem(key(0)));
 
 console.log('hiii j;ksladfsjlfdk;a');
 // function start() {
@@ -16,27 +13,13 @@ console.log('hiii j;ksladfsjlfdk;a');
 //   console.log('stop');
 // }
 // setTimeout(stop, 3000);
-// alert('hi!');
 
 var dataController = (function() {
 //calculation and data structure goes here.
-  // localStorage.setItem('brunch', 'eggs');
-  // localStorage.first = "1";
-  // localStorage.second = "2";
-  // localStorage.third = "3";
-  // localStorage.first = "eggs";
-  // localStorage.second = "Ken";
-  // localStorage.third = "Or";
-
-  // //   var localStorage = {
-  // //'brunch': 'eggs'
-  // //   };
-  // localStorage.getItem('brunch');
 })();
 
 // code for displaying or updating UI here:
 var UIController = (function() {
-
   var DOMstrings = {
     tempText: '.tempText',
     assortedBtn: '.assorted__btn',
@@ -61,20 +44,19 @@ var UIController = (function() {
       div.innerText = 'Added!';
       return div;
     },
+
     getEl: function(event) {
-      //el = element. Also in Chrome, internet explorer, you use 'event'. In FireFox,
-      //use 'window.event'
-      console.log('getEl running');
+      //el = element. Side note: In Chrome, and IE, use 'event'. In FireFox, use window.event
       var el;
       //must have or Firefox says event not defined
       event = event || window.event;
       console.log('EVENT', event, 'the target:', event.target);
       el = event.target;
-      // console.log('The TARGET', el);
       return {
         el: el
       }
     },
+
     getInput: function(event) {
       console.log('event', event);
       var el, inputValue;
@@ -95,6 +77,7 @@ var UIController = (function() {
         customValue: inputValue
       };
     },
+
     addListItem: function() {
       //el = element
       var html, newHtml, el;
@@ -131,12 +114,14 @@ var UIController = (function() {
 
       }
     },
+
     //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
     clearFields: function(event) {
       var el;
       el = this.getEl(event).el;
       el.previousElementSibling.value = '';
     },
+
     clearMsg: function() {
       var msg;
       msg = document.getElementById(DOMstrings.msg);
@@ -145,9 +130,11 @@ var UIController = (function() {
         msg.parentNode.removeChild(msg);
       }
     },
+
     getDOMstrings: function() {
       return DOMstrings;
     },
+    
     getHeaderTxt: function(event) {
       var containerParent, headerTxt;
       // //traverse to clicked el's parent, and get text of section's header
