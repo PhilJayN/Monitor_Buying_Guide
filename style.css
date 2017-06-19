@@ -1,3 +1,12 @@
+/* PALLETE */
+/*
+HEADING rgb(16, 109, 119) Blue Sapphire
+Anchor
+Button #a2bce0 Pale Cerulean
+
+*/
+
+
 body {
   background-color: #A8A8A8;
 }
@@ -39,6 +48,7 @@ h2, h4 {
 .side-warning {
   color: gray;
   background-color: #FFECB3;
+  background-color: #beb8eb;
   padding: 1em;
 }
 
@@ -98,11 +108,14 @@ ul {
 
 .btn-default {
   /*color is lighter gray to prevent distraction*/
-  color: rgb(94, 94, 94);
+  /* color: rgb(94, 94, 94); */
+  color: #5e5c6c;
+  background-color: #a2bce0;
 }
 
-.btn-warning {
+.btn-warning, .btn-danger, .btn-success {
   color: #fff;
+  background-color: #a2bce0;
 }
 
 .btn-default:hover {
@@ -146,6 +159,7 @@ button {
 
 .fa-exclamation-triangle {
   color: #FF8F00;
+  /* color: #beb8eb; */
 }
 
 .fa-sticky-note-o {
@@ -158,7 +172,8 @@ button {
 }
 
 .fa-trash {
-  color: #FF5049;
+  /* color: #FF5049; */
+  color: #a4243b;
   cursor: pointer;
   margin-right: .3em;
 }
