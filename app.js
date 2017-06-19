@@ -210,10 +210,10 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     }
   }
 
-  var ctrlDelItem = function() {
+  var ctrlDelItem = function(event) {
     var el, id;
     console.log('ctrlDelItem run');
-    el = UICtrl.getEl().el;
+    el = UICtrl.getEl(event).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
       console.log('del btn! newdd! pressed');
       // localStorage.removeItem();
