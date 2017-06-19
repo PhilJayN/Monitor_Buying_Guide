@@ -64,20 +64,21 @@ var UIController = (function() {
     getEl: function(event) {
       //el = element. Also in Chrome, internet explorer, you use 'event'. In FireFox,
       //use 'window.event'
+      console.log('getEl running');
       var el;
       //must have or Firefox says event not defined
       event = event || window.event;
-      console.log('eventdsfa', event, 'the target:', event.target);
+      console.log('EVENT', event, 'the target:', event.target);
       el = event.target;
-      console.log('The TARGET', el);
-      // console.log('getEl run, eltarget', el);
+      // console.log('The TARGET', el);
       return {
         el: el
       }
     },
-    getInput: function() {
+    getInput: function(event) {
+      console.log('event', event);
       var el, inputValue;
-      el = this.getEl().el;
+      el = this.getEl(event).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       if (el.classList.contains('add__btn')) {
         // 1. Get input field value. Traverse the DOM in a way that clicking an add__btn
@@ -131,9 +132,9 @@ var UIController = (function() {
       }
     },
     //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
-    clearFields: function() {
+    clearFields: function(event) {
       var el;
-      el = this.getEl().el;
+      el = this.getEl(event).el;
       el.previousElementSibling.value = '';
     },
     clearMsg: function() {
@@ -147,10 +148,10 @@ var UIController = (function() {
     getDOMstrings: function() {
       return DOMstrings;
     },
-    getHeaderTxt: function() {
+    getHeaderTxt: function(event) {
       var containerParent, headerTxt;
       // //traverse to clicked el's parent, and get text of section's header
-      containerParent = this.getEl().el.parentNode;
+      containerParent = this.getEl(event).el.parentNode;
       headerTxt = containerParent.parentNode.firstElementChild.textContent;
       return {
         headerTxt: headerTxt
@@ -168,6 +169,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
+    // document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
     document.addEventListener('keypress', function(event){
       event = event || window.event;
       console.log('final event', event);
@@ -187,13 +189,13 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //the el(element) is the one that just got clicked by user
     el = UICtrl.getEl(event).el;
     parent = el.parentNode.parentNode;
-    input = UICtrl.getInput().customValue;
+    input = UICtrl.getInput(event).customValue;
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
       console.log('if statement running');
       //Add data to local storage, and set key/val
-      localStorage.setItem(UICtrl.getHeaderTxt().headerTxt, input);
+      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, input);
       msgEl = document.getElementById('success-msg');
       console.log('msgEl', msgEl);
       //only create and append element if it doesn't exist yet
@@ -201,7 +203,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         parent.appendChild(UICtrl.createDiv());
       }
       if (el.classList.contains('add__btn')) {
-        UICtrl.clearFields();
+        UICtrl.clearFields(event);
       }
       UICtrl.updateWishlist();
       setTimeout(UICtrl.clearMsg, 1000);
