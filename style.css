@@ -1,8 +1,9 @@
 /* PALLETE */
 /*
 HEADING rgb(16, 109, 119) Blue Sapphire
-Anchor
+Anchor #5299d3 Carolina Blue
 Button #a2bce0 Pale Cerulean
+Side Text Background #f3fafd
 
 */
 
@@ -15,7 +16,7 @@ h1 {
   color: rgb(16, 109, 119);
 }
 
-h2, h4 {
+h2, h3, h4 {
   color: rgb(38, 121, 131);
 }
 
@@ -48,12 +49,13 @@ h2, h4 {
 .side-warning {
   color: gray;
   background-color: #FFECB3;
-  background-color: #beb8eb;
+  background-color: #f3fafd;
   padding: 1em;
 }
 
 .definitions {
-  background-color: rgb(208, 208, 208);
+  /* background-color: rgb(208, 208, 208); */
+  background-color: #f3fafd;
   padding: 1em;
 }
 
@@ -159,7 +161,6 @@ button {
 
 .fa-exclamation-triangle {
   color: #FF8F00;
-  /* color: #beb8eb; */
 }
 
 .fa-sticky-note-o {
@@ -181,11 +182,6 @@ button {
 .fa-bomb {
   color: black;
 }
-
-.container {
-  /* border: 1px solid red; */
-}
-
 
 /*tr:nth-child(even) {
   background-color: rgb(224, 224, 224);
