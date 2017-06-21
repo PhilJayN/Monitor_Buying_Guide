@@ -86,6 +86,8 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
+      console.log('updateWishlist run');
+      console.log('key', localStorage.key(0));
       var target, id;
       target = document.querySelector(DOMstrings.wishlistItems);
       //hacky way is to clear all target element's content first before running for loop,
@@ -160,7 +162,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   var ctrlAddItem = function(event) {
     console.log('ctrlAddItem running', 'eventobj', event);
     // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
-    var input, el, parent, msgEl;
+    var input, el, parent, msgEl, json, obj;
     // calling the getEl method here also gives the getEl method access to the event object
     //the el(element) is the one that just got clicked by user
     el = UICtrl.getEl(event).el;
@@ -170,7 +172,13 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //due to click handler being assigned container parent
     if (input && input.length > 0) {
       console.log('if statement running');
-      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, input);
+      //store as an obj first:
+      obj = {value: input, text: 'sha la'};
+      // localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, input);
+      //put obj into localStorage as a string
+      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
+      var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
+      console.log('retrievedObj:', JSON.parse(retrievedObj).text);
       msgEl = document.getElementById('success-msg');
       console.log('msgEl', msgEl);
       //only create and append element if it doesn't exist yet
