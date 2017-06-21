@@ -108,7 +108,7 @@ var UIController = (function() {
       if(event.key === 'Enter') {
         el.value = '';
       }
-      else {
+      else if (el.classList.contains('add__btn')) {
         el.previousElementSibling.value = '';
       }
     },
