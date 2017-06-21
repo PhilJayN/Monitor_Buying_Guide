@@ -105,7 +105,12 @@ var UIController = (function() {
     clearFields: function(event) {
       var el;
       el = this.getEl(event).el;
-      el.previousElementSibling.value = '';
+      if(event.key === 'Enter') {
+        el.value = '';
+      }
+      else {
+        el.previousElementSibling.value = '';
+      }
     },
 
     clearMsg: function() {
@@ -146,7 +151,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log('final event', event);
       if (event.keyCode === 13 || event.which === 13) {
         console.log (event);
-        ctrlAddItem();
+        ctrlAddItem(event);
       }
     });
   };
@@ -172,9 +177,9 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       if (msgEl === null) {
         parent.appendChild(UICtrl.createDiv());
       }
-      if (el.classList.contains('add__btn')) {
-        UICtrl.clearFields(event);
-      }
+      UICtrl.clearFields(event);
+      // if (el.classList.contains('add__btn')) {
+      // }
       UICtrl.updateWishlist();
       setTimeout(UICtrl.clearMsg, 1000);
     }
