@@ -177,6 +177,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     console.log('ctrlAddItem RUNNING', 'eventobj', event);
     var input, el, parent, json, obj;
     el = UICtrl.getEl(event).el;
+    console.log('el', el);
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
     //store as an obj first:
@@ -184,8 +185,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     //happens when user types in values to input field
-    if (el.classList.contains('add__btn')) {
-      console.log('add__btn!!');
+    if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
+      console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
         //put obj into localStorage as a string
         localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
