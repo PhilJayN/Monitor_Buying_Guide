@@ -87,18 +87,33 @@ var UIController = (function() {
     updateWishlist: function() {
       // console.log('updateWishlist run');
       // console.log('key', localStorage.key(0));
-      var target, id;
+      var target, id, json, obj;
+
+      // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
+      // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
+
       target = document.querySelector(DOMstrings.wishlistItems);
       //hacky way is to clear all target element's content first before running for loop,
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
+      console.log('wishlist', localStorage);
+      console.log('wishlist', localStorage.key(0));
       for (var i = 0; i < localStorage.length; i++) {
         id = localStorage.key(i);
+        json = localStorage.getItem(localStorage.key(i));
+        console.log('obj', JSON.parse(json) );
+        obj = JSON.parse(json);
+
         // + id allows us to use that id later as key to use localStorage.removeItem(id)
-        // target.insertAdjacentHTML('beforeend', '<li><span class="del__btn" id="' + id + '">x</span>' + localStorage.key(i) + ': '
+        // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
         // + localStorage.getItem(localStorage.key(i)) + '</li>');
-        target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-        + localStorage.getItem(localStorage.key(i)) + '</li>');
+        //for in to loop through every property of obj
+        for (var key in obj) {
+          console.log('key', key);
+          console.log('obj of key', obj[key]);
+          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
+          + obj[key] + '</li>');
+        }
       }
     },
 
