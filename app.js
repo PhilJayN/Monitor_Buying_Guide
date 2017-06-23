@@ -4,7 +4,6 @@
 // };
 // $(document).ready(main);
 
-console.log('hiii j;ksladfsjlfdk;a');
 // function start() {
 // }
 // start();
@@ -50,7 +49,7 @@ var UIController = (function() {
       var el;
       //must have or Firefox says event not defined
       event = event || window.event;
-      console.log('EVENT', event, 'the target:', event.target);
+      // console.log('EVENT', event, 'the target:', event.target);
       el = event.target;
       return {
         el: el
@@ -58,7 +57,7 @@ var UIController = (function() {
     },
 
     getInput: function(event) {
-      console.log('event', event);
+      // console.log('event', event);
       var el, inputValue;
       el = this.getEl(event).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
@@ -86,8 +85,8 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
-      console.log('updateWishlist run');
-      console.log('key', localStorage.key(0));
+      // console.log('updateWishlist run');
+      // console.log('key', localStorage.key(0));
       var target, id;
       target = document.querySelector(DOMstrings.wishlistItems);
       //hacky way is to clear all target element's content first before running for loop,
@@ -150,7 +149,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.addEventListener('keypress', function(event){
       event = event || window.event;
-      console.log('final event', event);
+      // console.log('final event', event);
       if (event.keyCode === 13 || event.which === 13) {
         console.log (event);
         ctrlAddItem(event);
@@ -162,7 +161,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(event) {
-    console.log('ctrlAddItem RUNNING', 'eventobj', event);
+    // console.log('ctrlAddItem RUNNING', 'eventobj', event);
     var input, el, parent, msgEl, json, obj;
     el = UICtrl.getEl(event).el;
     parent = el.parentNode.parentNode;
@@ -173,6 +172,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     //due to click handler being assigned container parent
     //happens when user types in values to input field
     if (el.classList.contains('add__btn')) {
+      console.log('add__btn!!');
       if (input && input.length > 0) {
         //put obj into localStorage as a string
         localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
