@@ -165,13 +165,13 @@ var UIController = (function() {
       return DOMstrings;
     },
 
-    getHeaderTxt: function(event) {
-      var containerParent, headerTxt;
+    getHeader: function(event) {
+      var containerParent, text;
       // //traverse to clicked el's parent, and get text of section's header
       containerParent = this.getEl(event).el.parentNode;
-      headerTxt = containerParent.parentNode.firstElementChild.textContent;
+      text = containerParent.parentNode.firstElementChild.textContent;
       return {
-        headerTxt: headerTxt
+        text: text
       }
     }
   }
@@ -214,14 +214,14 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
         //put obj into localStorage as a string
-        localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
+        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
       }
       UICtrl.successMsg(parent);
     }
     else if (el.classList.contains('button-group__btn')) {
-      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
+      localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
     }
     UICtrl.clearFields(event);
     UICtrl.updateWishlist();
