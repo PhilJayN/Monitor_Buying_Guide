@@ -206,7 +206,12 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
     //store as an obj first:
-    obj = {input: input, custom: input};
+    // obj = {input: input, custom: 'bearTed'};
+    json = localStorage.getItem(UICtrl.getHeader(event).text);
+    console.log('json!!!', json);
+      obj = JSON.parse(json);
+      console.log('parsed', obj);
+
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     //happens when user types in values to input field
@@ -214,6 +219,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
         //put obj into localStorage as a string
+        obj.input = input;
         localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
@@ -221,6 +227,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
       UICtrl.successMsg(parent);
     }
     else if (el.classList.contains('button-group__btn')) {
+      obj.custom = input;
       localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
     }
     UICtrl.clearFields(event);
