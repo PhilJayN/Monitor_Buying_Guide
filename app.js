@@ -159,37 +159,38 @@ var controller = (function(shoppingListCtrl, UICtrl) {
   };
 
 //note that the event object is given to us by the browser. we can call it whatever name we want
+// calling the getEl method here also gives the getEl method access to the event object
+//the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(event) {
-    console.log('ctrlAddItem running', 'eventobj', event);
-    // console.log('len', UICtrl.getInput().customValue.length,     typeof UICtrl.getInput().customValue);
+    console.log('ctrlAddItem RUNNING', 'eventobj', event);
     var input, el, parent, msgEl, json, obj;
-    // calling the getEl method here also gives the getEl method access to the event object
-    //the el(element) is the one that just got clicked by user
     el = UICtrl.getEl(event).el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
+    //store as an obj first:
+    obj = {input: input, custom: ''};
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
-    if (input && input.length > 0) {
-      console.log('if statement running');
-      //store as an obj first:
-      obj = {value: input, text: 'sha la'};
-      // localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, input);
-      //put obj into localStorage as a string
-      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
-      var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
-      console.log('retrievedObj:', JSON.parse(retrievedObj).text);
-      msgEl = document.getElementById('success-msg');
-      console.log('msgEl', msgEl);
-      //only create and append element if it doesn't exist yet
-      if (msgEl === null) {
-        parent.appendChild(UICtrl.createDiv());
+    //happens when user types in values to input field
+    if (el.classList.contains('add__btn')) {
+      if (input && input.length > 0) {
+        //put obj into localStorage as a string
+        localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
+        // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
+        // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
+        msgEl = document.getElementById('success-msg');
+        console.log('msgEl', msgEl);
+        //only create and append element if it doesn't exist yet
+        if (msgEl === null) {
+          parent.appendChild(UICtrl.createDiv());
+        }
+        UICtrl.clearFields(event);
+        UICtrl.updateWishlist();
+        setTimeout(UICtrl.clearMsg, 1000);
       }
-      UICtrl.clearFields(event);
-      // if (el.classList.contains('add__btn')) {
-      // }
-      UICtrl.updateWishlist();
-      setTimeout(UICtrl.clearMsg, 1000);
+    }
+    else if (el.classList.contains('button-group__btn')) {
+      localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
     }
   }
 
