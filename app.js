@@ -85,13 +85,14 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
+      //updateWishlist works by extracting localStorage key (which is a string object),
+      //then use JSON.parse to change that string obj. into a JavaScript obj. Then
+      //use for loop to iterate over the JavaScript object 
       // console.log('updateWishlist run');
       // console.log('key', localStorage.key(0));
       var target, id, json, obj;
-
       // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
       // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
-
       target = document.querySelector(DOMstrings.wishlistItems);
       //hacky way is to clear all target element's content first before running for loop,
       //or else the UI gets duplicate list items.
@@ -102,12 +103,13 @@ var UIController = (function() {
         id = localStorage.key(i);
         json = localStorage.getItem(localStorage.key(i));
         console.log('obj', JSON.parse(json) );
+        //localStorage only supports string. So we need to convert btw object and
+        //string to manipulate localStorage data
         obj = JSON.parse(json);
-
         // + id allows us to use that id later as key to use localStorage.removeItem(id)
         // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
         // + localStorage.getItem(localStorage.key(i)) + '</li>');
-        //for in to loop through every property of obj
+        //for in to loop through every key of obj
         for (var key in obj) {
           console.log('key', key);
           console.log('obj of key', obj[key]);
