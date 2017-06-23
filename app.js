@@ -114,6 +114,19 @@ var UIController = (function() {
       }
     },
 
+    successMsg: function(parent) {
+      var msg;
+      console.log('parentdsfa', parent);
+      msgEl = document.getElementById('success-msg');
+      console.log('msgEl', msgEl);
+      //only create and append element if it doesn't exist yet
+      if (msgEl === null) {
+        console.log('msg el is null!');
+        console.log(this.createDiv());
+        parent.appendChild(this.createDiv());
+      }
+    },
+
     clearMsg: function() {
       var msg;
       msg = document.getElementById(DOMstrings.msg);
@@ -161,8 +174,8 @@ var controller = (function(shoppingListCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(event) {
-    // console.log('ctrlAddItem RUNNING', 'eventobj', event);
-    var input, el, parent, msgEl, json, obj;
+    console.log('ctrlAddItem RUNNING', 'eventobj', event);
+    var input, el, parent, json, obj;
     el = UICtrl.getEl(event).el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
@@ -178,20 +191,15 @@ var controller = (function(shoppingListCtrl, UICtrl) {
         localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
-        msgEl = document.getElementById('success-msg');
-        console.log('msgEl', msgEl);
-        //only create and append element if it doesn't exist yet
-        if (msgEl === null) {
-          parent.appendChild(UICtrl.createDiv());
-        }
-        UICtrl.clearFields(event);
-        UICtrl.updateWishlist();
-        setTimeout(UICtrl.clearMsg, 1000);
       }
+      UICtrl.successMsg(parent);
     }
     else if (el.classList.contains('button-group__btn')) {
       localStorage.setItem(UICtrl.getHeaderTxt(event).headerTxt, JSON.stringify(obj));
     }
+    UICtrl.clearFields(event);
+    UICtrl.updateWishlist();
+    setTimeout(UICtrl.clearMsg, 1000);
   }
 
   var ctrlDelItem = function(event) {
