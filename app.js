@@ -87,7 +87,7 @@ var UIController = (function() {
     updateWishlist: function() {
       //updateWishlist works by extracting localStorage key (which is a string object),
       //then use JSON.parse to change that string obj. into a JavaScript obj. Then
-      //use for loop to iterate over the JavaScript object 
+      //use for loop to iterate over the JavaScript object
       // console.log('updateWishlist run');
       // console.log('key', localStorage.key(0));
       var target, id, json, obj;
@@ -98,7 +98,7 @@ var UIController = (function() {
       //or else the UI gets duplicate list items.
       target.innerHTML = "";
       console.log('wishlist', localStorage);
-      console.log('wishlist', localStorage.key(0));
+      console.log('wishlist .key(0)', localStorage.key(0));
       for (var i = 0; i < localStorage.length; i++) {
         id = localStorage.key(i);
         json = localStorage.getItem(localStorage.key(i));
@@ -110,12 +110,20 @@ var UIController = (function() {
         // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
         // + localStorage.getItem(localStorage.key(i)) + '</li>');
         //for in to loop through every key of obj
+        var count = 0;
+        var text = '';
         for (var key in obj) {
+          count +=1;
           console.log('key', key);
           console.log('obj of key', obj[key]);
-          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-          + obj[key] + '</li>');
+          // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
+          // + obj[key] + '</li>');
+          text += obj[key];
         }
+        console.log('finalText', text);
+        target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': TED '
+        + text + '</li>');
+        console.log('count', count);
       }
     },
 
@@ -198,7 +206,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
     //store as an obj first:
-    obj = {input: input, custom: ''};
+    obj = {input: input, custom: 'cherry bob'};
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     //happens when user types in values to input field
