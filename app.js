@@ -58,22 +58,22 @@ var UIController = (function() {
 
     getInput: function(event) {
       // console.log('event', event);
-      var el, inputValue;
+      var el, input;
       el = this.getEl(event).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       if (el.classList.contains('add__btn')) {
       //Get input field value. Traverse the DOM in a way that clicking an add__btn
       //gets the value of the input field closest to the add__btn clicked.
-       inputValue = el.previousElementSibling.value;
+       input = el.previousElementSibling.value;
      }
       else if (el.classList.contains('form-control')) {
-       inputValue = el.value;
+       input = el.value;
       }
       else if (el.classList.contains('button-group__btn')) {
-       inputValue = el.textContent;
+       input = el.textContent;
       }
       return {
-        customValue: inputValue
+        customValue: input
       };
     },
 
@@ -109,7 +109,7 @@ var UIController = (function() {
         // + id allows us to use that id later as key to use localStorage.removeItem(id)
         // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
         // + localStorage.getItem(localStorage.key(i)) + '</li>');
-        //for in to loop through every key of obj
+        //for in to loop through every key of obj, store result in a variable to be used later
         var count = 0;
         var text = '';
         for (var key in obj) {
@@ -206,7 +206,7 @@ var controller = (function(shoppingListCtrl, UICtrl) {
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
     //store as an obj first:
-    obj = {input: input, custom: 'cherry bob'};
+    obj = {input: input, custom: input};
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
     //happens when user types in values to input field
