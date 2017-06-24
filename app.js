@@ -39,6 +39,20 @@ var UIController = (function() {
   };
 
   return {
+    checkStorage: function() {
+      var exist;
+      if (localStorage.length > 0) {
+        exist = true;
+      } else {
+        exist = false;
+      }
+      return exist;
+      // return {
+      //   //only want exist to return true or false
+      //   exist: exist
+      // }
+    },
+
     createDiv: function() {
       var div;
       div = document.createElement('div');
