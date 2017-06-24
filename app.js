@@ -109,10 +109,10 @@ var UIController = (function() {
       //   console.log('localStorage is not empty!');
       // }
       //updateWishlist works by extracting localStorage key (which is a string object),
-      //then use JSON.parse to change that string obj. into a JavaScript obj. Then
+      //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
+      //is a JavaScript obj and can be maniuplated. Then
       //use for loop to iterate over the JavaScript object
       // console.log('updateWishlist run');
-      // console.log('key', localStorage.key(0));
       var target, id, json, obj;
       // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
       // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
@@ -226,27 +226,16 @@ var controller = (function(dataCtrl, UICtrl) {
     console.log('ctrlAddItem RUNNING', 'eventobj', event);
     var input, el, parent, json, obj;
     el = UICtrl.getEl(event).el;
-    // console.log('el', el);
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(event).customValue;
-    //store as an obj first:
-    // obj = {input: input, custom: 'bearTed'};
-    //make sure localStorage isn't empty
-    // if (localStorage.length > 0) {
-    //   json = localStorage.getItem(UICtrl.getHeader(event).text);
-    //   console.log('json!!!', json);
-    //   obj = JSON.parse(json);
-    //   console.log('parsed', obj);
-    // }
-
-    //make sure that input actually exists, otherwise undefined error when clicking on input field,
-    //due to click handler being assigned container parent
-    //happens when user types in values to input field
+    //check that input exists, or you get undefined error when clicking on input field,
+    //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
       console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
-        //run when localStorage is empty
         if (localStorage.length === 0) {
+          //important because in the beginning localStorage has length of 0,
+          //otherwise writing obj.input in else statement shows key doesn't exist
           localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify({input: input, custom:''}));
         }
         else {
@@ -257,16 +246,7 @@ var controller = (function(dataCtrl, UICtrl) {
           obj.input = input;
           localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
         }
-        //put obj into localStorage as a string
-          // if (obj.hasOwnProperty('input')) {
-          //   console.log('obj.input', obj.input);
-          //   obj.input = input;
-          //   localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
-          // }
-        // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
-        // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
       }
-      // UICtrl.successMsg(parent);
     }
     else if (el.classList.contains('button-group__btn')) {
       if (localStorage.length === 0) {
@@ -274,16 +254,15 @@ var controller = (function(dataCtrl, UICtrl) {
       }
       else {
         json = localStorage.getItem(UICtrl.getHeader(event).text);
-        // console.log('json!!!', json);
         obj = JSON.parse(json);
-        // console.log('parsed', obj);
         obj.custom = input;
         localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
       }
     }
-    // UICtrl.clearFields(event);
-    // UICtrl.updateWishlist();
-    // setTimeout(UICtrl.clearMsg, 1000);
+    UICtrl.successMsg(parent);
+    UICtrl.clearFields(event);
+    UICtrl.updateWishlist();
+    setTimeout(UICtrl.clearMsg, 1000);
   }
 
   var ctrlDelItem = function(event) {
