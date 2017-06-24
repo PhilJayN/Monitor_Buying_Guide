@@ -15,6 +15,12 @@
 
 var dataController = (function() {
 //calculation and data structure goes here.
+// console.log('inside dataController');
+  return {
+    testMethod: function() {
+      console.log('hiiiii! from testMethod');
+    }
+  }
 })();
 
 // code for displaying or updating UI here:
@@ -179,7 +185,8 @@ var UIController = (function() {
 
 // GLOBAL APP CONTROLLER: main job is to call other methods. Those methods
 //then call other methods.
-var controller = (function(shoppingListCtrl, UICtrl) {
+var controller = (function(dataCtrl, UICtrl) {
+  console.log('dataCtrl!!', dataCtrl.testMethod());
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     //The callback function of addEventListener will have access to the event object
