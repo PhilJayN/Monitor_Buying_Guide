@@ -268,10 +268,19 @@ var controller = (function(dataCtrl, UICtrl) {
       }
       // UICtrl.successMsg(parent);
     }
-    // else if (el.classList.contains('button-group__btn')) {
-    //   obj.custom = input;
-    //   localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
-    // }
+    else if (el.classList.contains('button-group__btn')) {
+      if (localStorage.length === 0) {
+        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify({input: input, custom:''}));
+      }
+      else {
+        json = localStorage.getItem(UICtrl.getHeader(event).text);
+        // console.log('json!!!', json);
+        obj = JSON.parse(json);
+        // console.log('parsed', obj);
+        obj.custom = input;
+        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
+      }
+    }
     // UICtrl.clearFields(event);
     // UICtrl.updateWishlist();
     // setTimeout(UICtrl.clearMsg, 1000);
