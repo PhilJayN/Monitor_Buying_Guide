@@ -66,18 +66,17 @@ var UIController = (function() {
 
     getEl: function(e) {
       //el = element. Side note: In Chrome, and IE, use 'event'. In FireFox, use window.event
-      var el;
+      var e, el;
       //must have or Firefox says event not defined
-      event = event || window.event;
+      e = e || window.event;
       // console.log('EVENT', event, 'the target:', event.target);
-      el = event.target;
+      el = e.target;
       return {
         el: el
       }
     },
 
     getInput: function(e) {
-      // console.log('event', event);
       var el, input;
       el = this.getEl(e).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
@@ -154,7 +153,7 @@ var UIController = (function() {
     clearFields: function(e) {
       var el;
       el = this.getEl(e).el;
-      if(event.key === 'Enter') {
+      if(e.key === 'Enter') {
         el.value = '';
       }
       else if (el.classList.contains('add__btn')) {
@@ -210,9 +209,9 @@ var controller = (function(dataCtrl, UICtrl) {
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.addEventListener('keypress', function(e){
-      event = event || window.event;
-      // console.log('final event', event);
-      if (event.keyCode === 13 || event.which === 13) {
+      var e;
+      e = e || window.event;
+      if (e.keyCode === 13 || e.which === 13) {
         console.log (e);
         ctrlAddItem(e);
       }
@@ -223,7 +222,7 @@ var controller = (function(dataCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
-    console.log('ctrlAddItem RUNNING', 'eventobj', event);
+    console.log('ctrlAddItem RUNNING', 'eventobj', e);
     var input, el, parent, json, obj;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
