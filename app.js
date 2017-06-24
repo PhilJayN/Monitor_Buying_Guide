@@ -64,7 +64,7 @@ var UIController = (function() {
       return div;
     },
 
-    getEl: function(event) {
+    getEl: function(e) {
       //el = element. Side note: In Chrome, and IE, use 'event'. In FireFox, use window.event
       var el;
       //must have or Firefox says event not defined
@@ -76,10 +76,10 @@ var UIController = (function() {
       }
     },
 
-    getInput: function(event) {
+    getInput: function(e) {
       // console.log('event', event);
       var el, input;
-      el = this.getEl(event).el;
+      el = this.getEl(e).el;
       //only get input if the btn clicked is add__btn. getInput needs access to the target element, otherwise its useless
       if (el.classList.contains('add__btn')) {
       //Get input field value. Traverse the DOM in a way that clicking an add__btn
@@ -151,9 +151,9 @@ var UIController = (function() {
     },
 
     //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
-    clearFields: function(event) {
+    clearFields: function(e) {
       var el;
-      el = this.getEl(event).el;
+      el = this.getEl(e).el;
       if(event.key === 'Enter') {
         el.value = '';
       }
@@ -188,10 +188,10 @@ var UIController = (function() {
       return DOMstrings;
     },
 
-    getHeader: function(event) {
+    getHeader: function(e) {
       var containerParent, text;
       // //traverse to clicked el's parent, and get text of section's header
-      containerParent = this.getEl(event).el.parentNode;
+      containerParent = this.getEl(e).el.parentNode;
       text = containerParent.parentNode.firstElementChild.textContent;
       return {
         text: text
@@ -209,12 +209,12 @@ var controller = (function(dataCtrl, UICtrl) {
     //The callback function of addEventListener will have access to the event object
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-    document.addEventListener('keypress', function(event){
+    document.addEventListener('keypress', function(e){
       event = event || window.event;
       // console.log('final event', event);
       if (event.keyCode === 13 || event.which === 13) {
-        console.log (event);
-        ctrlAddItem(event);
+        console.log (e);
+        ctrlAddItem(e);
       }
     });
   };
@@ -222,12 +222,12 @@ var controller = (function(dataCtrl, UICtrl) {
 //note that the event object is given to us by the browser. we can call it whatever name we want
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
-  var ctrlAddItem = function(event) {
+  var ctrlAddItem = function(e) {
     console.log('ctrlAddItem RUNNING', 'eventobj', event);
     var input, el, parent, json, obj;
-    el = UICtrl.getEl(event).el;
+    el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
-    input = UICtrl.getInput(event).customValue;
+    input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
@@ -236,39 +236,39 @@ var controller = (function(dataCtrl, UICtrl) {
         if (localStorage.length === 0) {
           //important because in the beginning localStorage has length of 0,
           //otherwise writing obj.input in else statement shows key doesn't exist
-          localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify({input: input, custom:''}));
+          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
         }
         else {
-          json = localStorage.getItem(UICtrl.getHeader(event).text);
+          json = localStorage.getItem(UICtrl.getHeader(e).text);
           console.log('json!!!', json);
           obj = JSON.parse(json);
           console.log('parsed', obj);
           obj.input = input;
-          localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
+          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
         }
       }
     }
     else if (el.classList.contains('button-group__btn')) {
       if (localStorage.length === 0) {
-        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify({input: input, custom:''}));
+        localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
       }
       else {
-        json = localStorage.getItem(UICtrl.getHeader(event).text);
+        json = localStorage.getItem(UICtrl.getHeader(e).text);
         obj = JSON.parse(json);
         obj.custom = input;
-        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
+        localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
       }
     }
     UICtrl.successMsg(parent);
-    UICtrl.clearFields(event);
+    UICtrl.clearFields(e);
     UICtrl.updateWishlist();
     setTimeout(UICtrl.clearMsg, 1000);
   }
 
-  var ctrlDelItem = function(event) {
+  var ctrlDelItem = function(e) {
     var el, id;
     console.log('ctrlDelItem run');
-    el = UICtrl.getEl(event).el;
+    el = UICtrl.getEl(e).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
       console.log('del btn! newdd! pressed');
       console.log(el);
