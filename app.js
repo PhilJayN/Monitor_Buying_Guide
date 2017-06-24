@@ -18,7 +18,7 @@ var dataController = (function() {
 // console.log('inside dataController');
   return {
     testMethod: function() {
-      console.log('hiiiii! from testMethod');
+      // console.log('hiiiii! from testMethod');
     },
 
     checkStorage: function() {
@@ -201,9 +201,9 @@ var UIController = (function() {
     getObj: function(e) {
       var json, obj;
       json = localStorage.getItem(this.getHeader(e).text);
-      console.log('json!!!', json);
+      // console.log('json!!!', json);
       obj = JSON.parse(json);
-      console.log('parsed', obj);
+      // console.log('parsed', obj);
       // obj.input = input;
       console.log('about to return obj:', obj);
       return obj;
@@ -214,7 +214,7 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER: main job is to call other methods. Those methods
 //then call other methods.
 var controller = (function(dataCtrl, UICtrl) {
-  console.log('dataCtrl!!', dataCtrl.testMethod());
+  // console.log('dataCtrl!!', dataCtrl.testMethod());
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     //The callback function of addEventListener will have access to the event object
@@ -250,7 +250,9 @@ var controller = (function(dataCtrl, UICtrl) {
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
         }
         else {
-          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(UICtrl.getObj()));
+          obj = UICtrl.getObj();
+          obj.input = input;
+          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
         }
       }
     }
@@ -259,8 +261,7 @@ var controller = (function(dataCtrl, UICtrl) {
         localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
       }
       else {
-        json = localStorage.getItem(UICtrl.getHeader(e).text);
-        obj = JSON.parse(json);
+        obj = UICtrl.getObj();
         obj.custom = input;
         localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
       }
