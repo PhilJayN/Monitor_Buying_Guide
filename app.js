@@ -214,10 +214,13 @@ var controller = (function(dataCtrl, UICtrl) {
     input = UICtrl.getInput(event).customValue;
     //store as an obj first:
     // obj = {input: input, custom: 'bearTed'};
-    json = localStorage.getItem(UICtrl.getHeader(event).text);
-    console.log('json!!!', json);
+    //make sure localStorage isn't empty
+    if (localStorage.length > 0) {
+      json = localStorage.getItem(UICtrl.getHeader(event).text);
+      console.log('json!!!', json);
       obj = JSON.parse(json);
       console.log('parsed', obj);
+    }
 
     //make sure that input actually exists, otherwise undefined error when clicking on input field,
     //due to click handler being assigned container parent
@@ -226,8 +229,15 @@ var controller = (function(dataCtrl, UICtrl) {
       console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
         //put obj into localStorage as a string
-        obj.input = input;
-        localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
+        // if(obj.input !== undefined) {
+        // }
+        if (obj !== undefined) {
+          if (obj.hasOwnProperty('input')) {
+            console.log('obj.input', obj.input);
+            obj.input = input;
+            localStorage.setItem(UICtrl.getHeader(event).text, JSON.stringify(obj));
+          }
+        }
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
       }
