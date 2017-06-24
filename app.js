@@ -19,7 +19,18 @@ var dataController = (function() {
   return {
     testMethod: function() {
       console.log('hiiiii! from testMethod');
-    }
+    },
+
+    checkStorage: function() {
+      var exist;
+      if (localStorage.length > 0) {
+        exist = true;
+      } else {
+        exist = false;
+      }
+      return exist;
+    },
+
   }
 })();
 
@@ -39,20 +50,6 @@ var UIController = (function() {
   };
 
   return {
-    checkStorage: function() {
-      var exist;
-      if (localStorage.length > 0) {
-        exist = true;
-      } else {
-        exist = false;
-      }
-      return exist;
-      // return {
-      //   //only want exist to return true or false
-      //   exist: exist
-      // }
-    },
-
     createDiv: function() {
       var div;
       div = document.createElement('div');
@@ -104,48 +101,53 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
-      // if(this.checkStorage()) {
-      //   console.log('localStorage is not empty!');
-      // }
-      //updateWishlist works by extracting localStorage key (which is a string object),
-      //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
-      //is a JavaScript obj and can be maniuplated. Then
-      //use for loop to iterate over the JavaScript object
-      // console.log('updateWishlist run');
-      var target, id, json, obj;
-      // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
-      // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
-      target = document.querySelector(DOMstrings.wishlistItems);
-      //hacky way is to clear all target element's content first before running for loop,
-      //or else the UI gets duplicate list items.
-      target.innerHTML = "";
-      console.log('wishlist', localStorage);
-      console.log('wishlist .key(0)', localStorage.key(0));
-      for (var i = 0; i < localStorage.length; i++) {
-        id = localStorage.key(i);
-        json = localStorage.getItem(localStorage.key(i));
-        console.log('obj', JSON.parse(json) );
-        //localStorage only supports string. So we need to convert btw object and
-        //string to manipulate localStorage data
-        obj = JSON.parse(json);
-        // + id allows us to use that id later as key to use localStorage.removeItem(id)
-        // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-        // + localStorage.getItem(localStorage.key(i)) + '</li>');
-        //for in to loop through every key of obj, store result in a variable to be used later
-        var count = 0;
-        var text = '';
-        for (var key in obj) {
-          count +=1;
-          console.log('key', key);
-          console.log('obj of key', obj[key]);
+      if (localStorage.length > 0) {
+        console.log('localStorage len > 0, so running');
+
+        //updateWishlist works by extracting localStorage key (which is a string object),
+        //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
+        //is a JavaScript obj and can be maniuplated. Then
+        //use for loop to iterate over the JavaScript object
+        // console.log('updateWishlist run');
+        var target, id, json, obj;
+        // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
+        // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
+        target = document.querySelector(DOMstrings.wishlistItems);
+        //hacky way is to clear all target element's content first before running for loop,
+        //or else the UI gets duplicate list items.
+        target.innerHTML = "";
+        // console.log('wishlist', localStorage);
+        // console.log('wishlist .key(0)', localStorage.key(0));
+        for (var i = 0; i < localStorage.length; i++) {
+          id = localStorage.key(i);
+
+          json = localStorage.getItem(localStorage.key(i));
+          console.log('loop json', json);
+          console.log('obj', JSON.parse(json) );
+          //localStorage only supports string. So we need to convert btw object and
+          //string to manipulate localStorage data
+          obj = JSON.parse(json);
+
+          // + id allows us to use that id later as key to use localStorage.removeItem(id)
           // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-          // + obj[key] + '</li>');
-          text += obj[key];
+          // + localStorage.getItem(localStorage.key(i)) + '</li>');
+          //for in to loop through every key of obj, store result in a variable to be used later
+          var count = 0;
+          var text = '';
+          for (var key in obj) {
+            count +=1;
+            // console.log('key', key);
+            // console.log('obj of key', obj[key]);
+            // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
+            // + obj[key] + '</li>');
+            text += obj[key];
+          }
+          // console.log('finalText', text);
+          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': TED '
+          + text + '</li>');
+          console.log('count', count);
         }
-        console.log('finalText', text);
-        target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': TED '
-        + text + '</li>');
-        console.log('count', count);
+
       }
     },
 
@@ -195,6 +197,16 @@ var UIController = (function() {
       return {
         text: text
       }
+    },
+    getObj: function(e) {
+      var json, obj;
+      json = localStorage.getItem(this.getHeader(e).text);
+      console.log('json!!!', json);
+      obj = JSON.parse(json);
+      console.log('parsed', obj);
+      // obj.input = input;
+      console.log('about to return obj:', obj);
+      return obj;
     }
   }
 })();
@@ -238,12 +250,7 @@ var controller = (function(dataCtrl, UICtrl) {
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
         }
         else {
-          json = localStorage.getItem(UICtrl.getHeader(e).text);
-          console.log('json!!!', json);
-          obj = JSON.parse(json);
-          console.log('parsed', obj);
-          obj.input = input;
-          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
+          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(UICtrl.getObj()));
         }
       }
     }
