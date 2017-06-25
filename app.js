@@ -30,7 +30,9 @@ var dataController = (function() {
       }
       return exist;
     },
-
+    showStorage: function() {
+      console.log('LOCAL STORAGE', localStorage);
+    }
   }
 })();
 
@@ -233,7 +235,7 @@ var controller = (function(dataCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
-    console.log('ctrlAddItem RUNNING', 'eventobj', e);
+    // console.log('ctrlAddItem RUNNING', 'eventobj', e);
     var input, el, parent, obj;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
@@ -249,7 +251,7 @@ var controller = (function(dataCtrl, UICtrl) {
         }
         else {
           obj = UICtrl.getObj();
-          obj.input = input;
+          obj.custom = input;
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
         }
       UICtrl.successMsg(parent);
@@ -262,12 +264,13 @@ var controller = (function(dataCtrl, UICtrl) {
       }
       else {
         obj = UICtrl.getObj();
-        obj.custom = input;
+        obj.input = input;
         localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
       }
       UICtrl.successMsg(parent);
     }
     UICtrl.updateWishlist();
+    dataCtrl.showStorage();
     setTimeout(UICtrl.clearMsg, 1000);
   }
 
