@@ -214,7 +214,6 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER: main job is to call other methods. Those methods
 //then call other methods.
 var controller = (function(dataCtrl, UICtrl) {
-  // console.log('dataCtrl!!', dataCtrl.testMethod());
   var setupEventListeners = function() {
     var DOM = UICtrl.getDOMstrings();
     //The callback function of addEventListener will have access to the event object
@@ -230,23 +229,22 @@ var controller = (function(dataCtrl, UICtrl) {
     });
   };
 
-//note that the event object is given to us by the browser. we can call it whatever name we want
+//note that the event object is given to us by the browser. (use whatever name you want)
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
     console.log('ctrlAddItem RUNNING', 'eventobj', e);
-    var input, el, parent, json, obj;
+    var input, el, parent, obj;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
-      console.log('add__btn!! fa plus');
       if (input && input.length > 0) {
+        //important because in the beginning localStorage has length of 0,
+        //otherwise writing obj.input in else statement shows key doesn't exist
         if (localStorage.length === 0) {
-          //important because in the beginning localStorage has length of 0,
-          //otherwise writing obj.input in else statement shows key doesn't exist
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
         }
         else {
@@ -254,6 +252,8 @@ var controller = (function(dataCtrl, UICtrl) {
           obj.input = input;
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
         }
+      UICtrl.successMsg(parent);
+      UICtrl.clearFields(e);
       }
     }
     else if (el.classList.contains('button-group__btn')) {
@@ -265,9 +265,8 @@ var controller = (function(dataCtrl, UICtrl) {
         obj.custom = input;
         localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
       }
+      UICtrl.successMsg(parent);
     }
-    UICtrl.successMsg(parent);
-    UICtrl.clearFields(e);
     UICtrl.updateWishlist();
     setTimeout(UICtrl.clearMsg, 1000);
   }
