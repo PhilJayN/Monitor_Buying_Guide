@@ -13,6 +13,8 @@
 // }
 // setTimeout(stop, 3000);
 
+// console.log('getItem w/', localStorage.getItem('Pick Price Range'));
+
 var dataController = (function() {
 //calculation and data structure goes here.
   //
@@ -46,12 +48,19 @@ var dataController = (function() {
       // newitem = new Item(input, custom);
       // localStorage.setItem(header, newItem);
       if(localStorage.length === 0) {
+        console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
         localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
       } else {
+        console.log('header', header, typeof header);
+        console.log('localStorage len > 0, run', localStorage);
+        console.log('getItem w/', header, localStorage.getItem(header));
+        console.log('getItem w/', header, localStorage.getItem('Pick Aspect Ratio'));
         json = localStorage.getItem(header);
+        console.log('json:', json);
         //change to obj to manipulate
         obj = JSON.parse(json);
+        console.log('OBJECT:', obj);
         //depending on value of input, add input to corresponding key in obj
         if (field === 'add__btn') {
           obj.custom = input;
@@ -60,6 +69,8 @@ var dataController = (function() {
           obj.input = input;
         }
         localStorage.setItem(header, JSON.stringify(obj));
+        json = '';
+        obj = '';
       }
     },
 
@@ -137,7 +148,7 @@ var UIController = (function() {
     },
     updateWishlist: function() {
       if (localStorage.length > 0) {
-        console.log('localStorage len > 0, so running');
+        // console.log('localStorage len > 0, so running');
         //updateWishlist works by extracting localStorage key (which is a string object),
         //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
         //is a JavaScript obj and can be maniuplated. Then
@@ -179,7 +190,7 @@ var UIController = (function() {
           // console.log('finalText', text);
           target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': TED '
           + text + '</li>');
-          console.log('count', count);
+          // console.log('count', count);
         }
 
       }
