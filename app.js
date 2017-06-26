@@ -54,10 +54,11 @@ var dataController = (function() {
         //depending on value of input, add input to corresponding key in obj
         if (field === 'add__btn') {
           obj.input = input;
+          localStorage.setItem(header, JSON.stringify(obj));
+          console.log('done setting storage!');
         } else {
           obj.custom = input;
         }
-        localStorage.setItem(header, JSON.stringify());
       }
     },
 
@@ -285,15 +286,15 @@ var controller = (function(dataCtrl, UICtrl) {
       if (input && input.length > 0) {
         //important because in the beginning localStorage has length of 0,
         //otherwise writing obj.input in else statement shows key doesn't exist
-        if (localStorage.length === 0) {
-          // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+        // if (localStorage.length === 0) {
+        //   // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
           dataCtrl.addItem(header, input, field);
-        }
-        else {
-          obj = UICtrl.getObj();
-          // obj.custom = input;
-          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
-        }
+        // }
+        // else {
+        //   // obj = UICtrl.getObj();
+        //   // obj.custom = input;
+        //   // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
+        // }
       UICtrl.successMsg(parent);
       UICtrl.clearFields(e);
       }
