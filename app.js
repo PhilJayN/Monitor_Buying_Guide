@@ -48,16 +48,22 @@ var dataController = (function() {
       // newitem = new Item(input, custom);
       // localStorage.setItem(header, newItem);
       if(localStorage.length === 0) {
-        console.log('localStorage len 0 run');
+        // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
-        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
-        console.log('NOWWWWWWW', localStorage);
+        localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+        // console.log('NOWWWWWWW', localStorage);
       } else {
-        console.log('header', header, typeof header);
-        console.log('localStorage:', localStorage);
+        // console.log('header', header, typeof header);
+        // console.log('localStorage:', localStorage);
         // console.log('DEMO GET ITEM', localStorage.getItem('Pick Price Range'));
         // localStorage.setItem(header, JSON.stringify(obj));
-        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
+        // console.log('JALKSDFFF',        localStorage.getItem(header) );
+        //IMPORTANT! create a localStorage property using the header as a key,
+        //...only if it doesn't exist in localStorage
+        if (localStorage.getItem(header) === null) {
+          localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+        }
+        // console.log('localStorage auto set', localStorage);
         //make sure to initialize localStorage using setItem with your new header,
         //otherwise you'll get 'null' when attempting to .getItem(header)
         json = localStorage.getItem(header);
@@ -68,11 +74,15 @@ var dataController = (function() {
         //depending on value of input, add input to corresponding key in obj
         if (field === 'add__btn') {
           obj.custom = input;
-          console.log('done setting storage!');
-        } else {
-          obj.input = input;
+          console.log('obj.custom just ran');
+          localStorage.setItem(header, JSON.stringify(obj));
         }
-        console.log('getItem w/', header, localStorage.getItem(header));
+        else if (field === 'button-group__btn') {
+          obj.input = input;
+          console.log('obj.input just ran');
+          localStorage.setItem(header, JSON.stringify(obj));
+        }
+        // console.log('getItem w/', header, localStorage.getItem(header));
         // json = '';
         // obj = '';
       }
@@ -137,7 +147,7 @@ var UIController = (function() {
       else if (el.classList.contains('button-group__btn')) {
        input = el.textContent;
       }
-      console.log('getInput el', el, input);
+      // console.log('getInput el', el, input);
       return {
         customValue: input
       };
@@ -270,7 +280,7 @@ var controller = (function(dataCtrl, UICtrl) {
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
 
-    document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
+    // document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
 
 
     document.addEventListener('keypress', function(e){
@@ -338,3 +348,4 @@ var controller = (function(dataCtrl, UICtrl) {
 })(dataController, UIController);
 
 controller.init();
+console.log('------------------------------');
