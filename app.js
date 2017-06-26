@@ -15,7 +15,12 @@
 
 var dataController = (function() {
 //calculation and data structure goes here.
-// console.log('inside dataController');
+  //
+  var Item = function(input, custom) {
+    this.input = input;
+    this.custom = custom;
+  };
+
   return {
     testMethod: function() {
       // console.log('hiiiii! from testMethod');
@@ -30,9 +35,21 @@ var dataController = (function() {
       }
       return exist;
     },
+
     showStorage: function() {
       console.log('LOCAL STORAGE', localStorage);
-    }
+    },
+
+    addItem: function(header, input) {
+      //Create new obj
+      // newitem = new Item(input, custom);
+      // localStorage.setItem(header, newItem);
+      localStorage.setItem(header, {input: input});
+      console.log(localStorage);
+
+      // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+    },
+
   }
 })();
 
@@ -63,6 +80,7 @@ var UIController = (function() {
       return div;
     },
 
+    //this getEl's purpose is so that you don't have to type in e = e || window.event all the time
     getEl: function(e) {
       //el = element. Side note: In Chrome, and IE, use 'event'. In FireFox, use window.event
       var e, el;
@@ -70,6 +88,7 @@ var UIController = (function() {
       e = e || window.event;
       // console.log('EVENT', event, 'the target:', event.target);
       el = e.target;
+      // console.log('getEl', el);
       return {
         el: el
       }
@@ -90,6 +109,7 @@ var UIController = (function() {
       else if (el.classList.contains('button-group__btn')) {
        input = el.textContent;
       }
+      console.log('getInput el', el, input);
       return {
         customValue: input
       };
@@ -169,10 +189,10 @@ var UIController = (function() {
       var msg;
       console.log('parentdsfa', parent);
       msgEl = document.getElementById('success-msg');
-      console.log('msgEl', msgEl);
+      // console.log('msgEl', msgEl);
       //only create and append element if it doesn't exist yet
       if (msgEl === null) {
-        console.log('msg el is null!');
+        // console.log('msg el is null!');
         console.log(this.createDiv());
         parent.appendChild(this.createDiv());
       }
@@ -201,9 +221,10 @@ var UIController = (function() {
       }
     },
     getObj: function(e) {
+      // el = this.getEl(e).el;
       var json, obj;
       json = localStorage.getItem(this.getHeader(e).text);
-      // console.log('json!!!', json);
+      console.log('json!!!', json);
       obj = JSON.parse(json);
       // console.log('parsed', obj);
       // obj.input = input;
@@ -221,6 +242,10 @@ var controller = (function(dataCtrl, UICtrl) {
     //The callback function of addEventListener will have access to the event object
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
+
+    document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
+
+
     document.addEventListener('keypress', function(e){
       var e;
       e = e || window.event;
@@ -236,10 +261,12 @@ var controller = (function(dataCtrl, UICtrl) {
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
     // console.log('ctrlAddItem RUNNING', 'eventobj', e);
-    var input, el, parent, obj;
+    var input, el, parent, obj, header;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
+    header = UICtrl.getHeader(e).text;
     input = UICtrl.getInput(e).customValue;
+
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
@@ -247,11 +274,12 @@ var controller = (function(dataCtrl, UICtrl) {
         //important because in the beginning localStorage has length of 0,
         //otherwise writing obj.input in else statement shows key doesn't exist
         if (localStorage.length === 0) {
-          localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+          // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+          dataCtrl.addItem(header, input);
         }
         else {
           obj = UICtrl.getObj();
-          obj.custom = input;
+          // obj.custom = input;
           localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
         }
       UICtrl.successMsg(parent);
@@ -264,6 +292,7 @@ var controller = (function(dataCtrl, UICtrl) {
       }
       else {
         obj = UICtrl.getObj();
+        console.log('your obj', obj);
         obj.input = input;
         localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
       }
