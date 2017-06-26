@@ -46,6 +46,7 @@ var dataController = (function() {
       // newitem = new Item(input, custom);
       // localStorage.setItem(header, newItem);
       if(localStorage.length === 0) {
+        //allows for seeding of localStorage if empty, or else using obj.custom results in error
         localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
       } else {
         json = localStorage.getItem(header);
@@ -137,7 +138,6 @@ var UIController = (function() {
     updateWishlist: function() {
       if (localStorage.length > 0) {
         console.log('localStorage len > 0, so running');
-
         //updateWishlist works by extracting localStorage key (which is a string object),
         //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
         //is a JavaScript obj and can be maniuplated. Then
@@ -273,45 +273,24 @@ var controller = (function(dataCtrl, UICtrl) {
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
     // console.log('ctrlAddItem RUNNING', 'eventobj', e);
-    var input, el, parent, obj, header, field;
+    var input, el, parent, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     header = UICtrl.getHeader(e).text;
     input = UICtrl.getInput(e).customValue;
-
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
       field = 'add__btn';
       if (input && input.length > 0) {
-        //important because in the beginning localStorage has length of 0,
-        //otherwise writing obj.input in else statement shows key doesn't exist
-        // if (localStorage.length === 0) {
-        //   // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
-          dataCtrl.addItem(header, input, field);
-        // }
-        // else {
-        //   // obj = UICtrl.getObj();
-        //   // obj.custom = input;
-        //   // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
-        // }
-      UICtrl.successMsg(parent);
-      UICtrl.clearFields(e);
+        dataCtrl.addItem(header, input, field);
+        UICtrl.successMsg(parent);
+        UICtrl.clearFields(e);
       }
     }
     else if (el.classList.contains('button-group__btn')) {
       field = 'button-group__btn';
       dataCtrl.addItem(header, input, field);
-
-      // if (localStorage.length === 0) {
-      //   localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
-      // }
-      // else {
-      //   obj = UICtrl.getObj();
-      //   console.log('your obj', obj);
-      //   obj.input = input;
-      //   localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
-      // }
       UICtrl.successMsg(parent);
     }
     UICtrl.updateWishlist();
