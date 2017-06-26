@@ -40,14 +40,25 @@ var dataController = (function() {
       console.log('LOCAL STORAGE', localStorage);
     },
 
-    addItem: function(header, input) {
+    addItem: function(header, input, field) {
+      var obj, json;
       //Create new obj
       // newitem = new Item(input, custom);
       // localStorage.setItem(header, newItem);
-      localStorage.setItem(header, {input: input});
-      console.log(localStorage);
-
-      // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+      if(localStorage.length === 0) {
+        localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+      } else {
+        json = localStorage.getItem(header);
+        //change to obj to manipulate
+        obj = JSON.parse(json);
+        //depending on value of input, add input to corresponding key in obj
+        if (field === 'add__btn') {
+          obj.input = input;
+        } else {
+          obj.custom = input;
+        }
+        localStorage.setItem(header, JSON.stringify());
+      }
     },
 
   }
@@ -261,7 +272,7 @@ var controller = (function(dataCtrl, UICtrl) {
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
     // console.log('ctrlAddItem RUNNING', 'eventobj', e);
-    var input, el, parent, obj, header;
+    var input, el, parent, obj, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     header = UICtrl.getHeader(e).text;
@@ -270,12 +281,13 @@ var controller = (function(dataCtrl, UICtrl) {
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
+      field = 'add__btn';
       if (input && input.length > 0) {
         //important because in the beginning localStorage has length of 0,
         //otherwise writing obj.input in else statement shows key doesn't exist
         if (localStorage.length === 0) {
           // localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
-          dataCtrl.addItem(header, input);
+          dataCtrl.addItem(header, input, field);
         }
         else {
           obj = UICtrl.getObj();
