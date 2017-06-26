@@ -13,7 +13,7 @@
 // }
 // setTimeout(stop, 3000);
 
-// console.log('getItem w/', localStorage.getItem('Pick Price Range'));
+console.log('TEST GET ITEM', localStorage.getItem('Pick Price Range'));
 
 var dataController = (function() {
 //calculation and data structure goes here.
@@ -50,12 +50,16 @@ var dataController = (function() {
       if(localStorage.length === 0) {
         console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
-        localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
+        console.log('NOWWWWWWW', localStorage);
       } else {
         console.log('header', header, typeof header);
-        console.log('localStorage len > 0, run', localStorage);
-        console.log('getItem w/', header, localStorage.getItem(header));
-        console.log('getItem w/', header, localStorage.getItem('Pick Aspect Ratio'));
+        console.log('localStorage:', localStorage);
+        // console.log('DEMO GET ITEM', localStorage.getItem('Pick Price Range'));
+        // localStorage.setItem(header, JSON.stringify(obj));
+        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
+        //make sure to initialize localStorage using setItem with your new header,
+        //otherwise you'll get 'null' when attempting to .getItem(header)
         json = localStorage.getItem(header);
         console.log('json:', json);
         //change to obj to manipulate
@@ -68,9 +72,9 @@ var dataController = (function() {
         } else {
           obj.input = input;
         }
-        localStorage.setItem(header, JSON.stringify(obj));
-        json = '';
-        obj = '';
+        console.log('getItem w/', header, localStorage.getItem(header));
+        // json = '';
+        // obj = '';
       }
     },
 
@@ -168,7 +172,7 @@ var UIController = (function() {
 
           json = localStorage.getItem(localStorage.key(i));
           console.log('loop json', json);
-          console.log('obj', JSON.parse(json) );
+          // console.log('obj', JSON.parse(json) );
           //localStorage only supports string. So we need to convert btw object and
           //string to manipulate localStorage data
           obj = JSON.parse(json);
@@ -288,6 +292,7 @@ var controller = (function(dataCtrl, UICtrl) {
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     header = UICtrl.getHeader(e).text;
+    console.log('header from ctrlAddItem', header, 'type:', typeof header);
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
@@ -304,7 +309,7 @@ var controller = (function(dataCtrl, UICtrl) {
       dataCtrl.addItem(header, input, field);
       UICtrl.successMsg(parent);
     }
-    UICtrl.updateWishlist();
+    // UICtrl.updateWishlist();
     dataCtrl.showStorage();
     setTimeout(UICtrl.clearMsg, 1000);
   }
@@ -326,7 +331,7 @@ var controller = (function(dataCtrl, UICtrl) {
 
   return {
     init: function() {
-      UICtrl.updateWishlist();
+      // UICtrl.updateWishlist();
       setupEventListeners();
     }
   }
