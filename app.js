@@ -53,12 +53,12 @@ var dataController = (function() {
         obj = JSON.parse(json);
         //depending on value of input, add input to corresponding key in obj
         if (field === 'add__btn') {
-          obj.input = input;
-          localStorage.setItem(header, JSON.stringify(obj));
+          obj.custom = input;
           console.log('done setting storage!');
         } else {
-          obj.custom = input;
+          obj.input = input;
         }
+        localStorage.setItem(header, JSON.stringify(obj));
       }
     },
 
@@ -300,15 +300,18 @@ var controller = (function(dataCtrl, UICtrl) {
       }
     }
     else if (el.classList.contains('button-group__btn')) {
-      if (localStorage.length === 0) {
-        localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
-      }
-      else {
-        obj = UICtrl.getObj();
-        console.log('your obj', obj);
-        obj.input = input;
-        localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
-      }
+      field = 'button-group__btn';
+      dataCtrl.addItem(header, input, field);
+
+      // if (localStorage.length === 0) {
+      //   localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify({input: input, custom:''}));
+      // }
+      // else {
+      //   obj = UICtrl.getObj();
+      //   console.log('your obj', obj);
+      //   obj.input = input;
+      //   localStorage.setItem(UICtrl.getHeader(e).text, JSON.stringify(obj));
+      // }
       UICtrl.successMsg(parent);
     }
     UICtrl.updateWishlist();
