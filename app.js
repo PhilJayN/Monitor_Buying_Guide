@@ -148,7 +148,6 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
-      if (localStorage.length > 0) {
         // console.log('localStorage len > 0, so running');
         //updateWishlist works by extracting localStorage key (which is a string object),
         //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
@@ -164,36 +163,36 @@ var UIController = (function() {
         target.innerHTML = "";
         // console.log('wishlist', localStorage);
         // console.log('wishlist .key(0)', localStorage.key(0));
-        for (var i = 0; i < localStorage.length; i++) {
-          id = localStorage.key(i);
+        if (localStorage.length > 0) {
+          for (var i = 0; i < localStorage.length; i++) {
+            id = localStorage.key(i);
 
-          json = localStorage.getItem(localStorage.key(i));
-          console.log('loop json', json);
-          // console.log('obj', JSON.parse(json) );
-          //localStorage only supports string. So we need to convert btw object and
-          //string to manipulate localStorage data
-          obj = JSON.parse(json);
+            json = localStorage.getItem(localStorage.key(i));
+            console.log('loop json', json);
+            // console.log('obj', JSON.parse(json) );
+            //localStorage only supports string. So we need to convert btw object and
+            //string to manipulate localStorage data
+            obj = JSON.parse(json);
 
-          // + id allows us to use that id later as key to use localStorage.removeItem(id)
-          // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-          // + localStorage.getItem(localStorage.key(i)) + '</li>');
-          //for in to loop through every key of obj, store result in a variable to be used later
-          var count = 0;
-          var text = '';
-          for (var key in obj) {
-            count +=1;
-            // console.log('key', key);
-            // console.log('obj of key', obj[key]);
+            // + id allows us to use that id later as key to use localStorage.removeItem(id)
             // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-            // + obj[key] + '</li>');
-            text += obj[key] + ' ';
+            // + localStorage.getItem(localStorage.key(i)) + '</li>');
+            //for in to loop through every key of obj, store result in a variable to be used later
+            var count = 0;
+            var text = '';
+            for (var key in obj) {
+              count +=1;
+              // console.log('key', key);
+              // console.log('obj of key', obj[key]);
+              // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
+              // + obj[key] + '</li>');
+              text += obj[key] + ' ';
+            }
+            // console.log('finalText', text);
+            target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
+            + text + '</li>');
+            // console.log('count', count);
           }
-          // console.log('finalText', text);
-          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-          + text + '</li>');
-          // console.log('count', count);
-        }
-
       }
     },
 
@@ -239,22 +238,12 @@ var UIController = (function() {
       var containerParent, text;
       // //traverse to clicked el's parent, and get text of section's header
       containerParent = this.getEl(e).el.parentNode;
+      console.log('containerParent', containerParent, 'node', containerParent.parentNode);
       text = containerParent.parentNode.firstElementChild.textContent;
       return {
         text: text
       }
     },
-    getObj: function(e) {
-      // el = this.getEl(e).el;
-      var json, obj;
-      json = localStorage.getItem(this.getHeader(e).text);
-      console.log('json!!!', json);
-      obj = JSON.parse(json);
-      // console.log('parsed', obj);
-      // obj.input = input;
-      console.log('about to return obj:', obj);
-      return obj;
-    }
   }
 })();
 
@@ -268,7 +257,6 @@ var controller = (function(dataCtrl, UICtrl) {
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
 
     // document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
-
 
     document.addEventListener('keypress', function(e){
       var e;
@@ -284,7 +272,7 @@ var controller = (function(dataCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
-    // console.log('ctrlAddItem RUNNING', 'eventobj', e);
+    console.log('ctrlAddItem RUNNING', 'eventobj', e);
     var input, el, parent, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
@@ -313,14 +301,12 @@ var controller = (function(dataCtrl, UICtrl) {
 
   var ctrlDelItem = function(e) {
     var el, id;
-    console.log('ctrlDelItem run');
     el = UICtrl.getEl(e).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
-      console.log('del btn! newdd! pressed');
-      console.log(el);
+      console.log('ctrlDelItem. delbtn pressed.', 'el:', el);
       //get id from element html id attribute
       id = el.getAttribute('id');
-      console.log('asjdfkl id', id);
+      console.log('id', id);
       localStorage.removeItem(id);
       UICtrl.updateWishlist();
     }

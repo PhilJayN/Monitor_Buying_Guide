@@ -13,6 +13,28 @@
 </head>
 
 <body>
+<!--Wishlistbox here to prevent addEventListener firing ctrlAddItem on clicking of wishlistbox area-->
+  <section class="collapse show contents-section wishlist-box" id="wishlist-hide">
+    <div class="row marketing wishlist-criteria">
+      <div class="col-lg-6">
+        <h4>Disclaimer</h4>
+        <p class="side-warning"> <i class="fa fa-exclamation-triangle" aria-hidden="true"><span></span></i>
+          The wishlist you create is stored on your browser's local storage, not on a server.
+          You will not be able to access your wishlist on another computer.
+        </p>
+      </div>
+      <div class="col-lg-6 wishlist-criteria">
+        <h4>Wishlist and Criteria Tool</h4>
+        <ul class="wishlist-items">
+        </ul>
+      </div>
+    </div>
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#wishlist-hide" aria-expanded="false" aria-controls="wishlist-hide">Hide</button>
+    </p>
+    <p><a href="#wishlist-wrapper">What is the Wishlist and Criteria Tool?</a></p>
+  </section>
+
   <div class="container">
     <header class="header clearfix">
       <nav>
@@ -124,26 +146,10 @@
      </p>
 </section>
 
-<section class="collapse show contents-section wishlist-box" id="wishlist-hide">
-  <div class="row marketing wishlist-criteria">
-    <div class="col-lg-6">
-      <h4>Disclaimer</h4>
-      <p class="side-warning"> <i class="fa fa-exclamation-triangle" aria-hidden="true"><span></span></i>
-        The wishlist you create is stored on your browser's local storage, not on a server.
-        You will not be able to access your wishlist on another computer.
-      </p>
-    </div>
-    <div class="col-lg-6 wishlist-criteria">
-      <h4>Wishlist and Criteria Tool</h4>
-      <ul class="wishlist-items">
-      </ul>
-    </div>
-  </div>
-  <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#wishlist-hide" aria-expanded="false" aria-controls="wishlist-hide">Hide</button>
-  </p>
-  <p><a href="#wishlist-wrapper">What is the Wishlist and Criteria Tool?</a></p>
-</section>
+
+
+<!-- Original wishListbox location -->
+
 
 <section class="contents-section legend introduction">
   <h2>Introduction</h4>
