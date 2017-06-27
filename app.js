@@ -44,26 +44,17 @@ var dataController = (function() {
 
     addItem: function(header, input, field) {
       var obj, json;
-      //Create new obj
-      // newitem = new Item(input, custom);
-      // localStorage.setItem(header, newItem);
       if(localStorage.length === 0) {
         // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
         localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
-        // console.log('NOWWWWWWW', localStorage);
       } else {
         // console.log('header', header, typeof header);
-        // console.log('localStorage:', localStorage);
-        // console.log('DEMO GET ITEM', localStorage.getItem('Pick Price Range'));
-        // localStorage.setItem(header, JSON.stringify(obj));
-        // console.log('JALKSDFFF',        localStorage.getItem(header) );
         //IMPORTANT! create a localStorage property using the header as a key,
         //...only if it doesn't exist in localStorage
         if (localStorage.getItem(header) === null) {
           localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
         }
-        // console.log('localStorage auto set', localStorage);
         //make sure to initialize localStorage using setItem with your new header,
         //otherwise you'll get 'null' when attempting to .getItem(header)
         json = localStorage.getItem(header);
@@ -82,12 +73,8 @@ var dataController = (function() {
           console.log('obj.input just ran');
           localStorage.setItem(header, JSON.stringify(obj));
         }
-        // console.log('getItem w/', header, localStorage.getItem(header));
-        // json = '';
-        // obj = '';
       }
     },
-
   }
 })();
 
