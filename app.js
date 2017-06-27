@@ -186,10 +186,10 @@ var UIController = (function() {
             // console.log('obj of key', obj[key]);
             // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
             // + obj[key] + '</li>');
-            text += obj[key];
+            text += obj[key] + ' ';
           }
           // console.log('finalText', text);
-          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': TED '
+          target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
           + text + '</li>');
           // console.log('count', count);
         }
@@ -306,7 +306,7 @@ var controller = (function(dataCtrl, UICtrl) {
       dataCtrl.addItem(header, input, field);
       UICtrl.successMsg(parent);
     }
-    // UICtrl.updateWishlist();
+    UICtrl.updateWishlist();
     dataCtrl.showStorage();
     setTimeout(UICtrl.clearMsg, 1000);
   }
@@ -328,7 +328,7 @@ var controller = (function(dataCtrl, UICtrl) {
 
   return {
     init: function() {
-      // UICtrl.updateWishlist();
+      UICtrl.updateWishlist();
       setupEventListeners();
     }
   }
