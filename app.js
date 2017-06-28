@@ -262,7 +262,7 @@ var controller = (function(dataCtrl, UICtrl) {
       var e;
       e = e || window.event;
       if (e.keyCode === 13 || e.which === 13) {
-        console.log (e);
+        console.log ('ENTER KEY PRESSED!' );
         ctrlAddItem(e);
       }
     });

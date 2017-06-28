@@ -183,13 +183,9 @@ button {
   color: black;
 }
 
-.hidden {
-  display: none;
-}
-
-.container {
-  border: 1px solid red; 
-}
+/* .container {
+  border: 1px solid red;
+} */
 
 /*tr:nth-child(even) {
   background-color: rgb(224, 224, 224);

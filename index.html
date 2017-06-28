@@ -50,7 +50,7 @@
           </li>
         </ul>
       </nav>
-      <h3 class="text-muted">Monitors!</h3>
+      <h3 class="text-muted">Monitor Guide</h3>
     </header>
     <div class="jumbotron">
       <h1 class="display-3">Guide</h1>
@@ -425,11 +425,16 @@ need or don't like. </p>
        in the middle, and a folder explorer to the right. No more alt tabbing and switching windows!
        For reference, a 27" monitor at 2560 x 1440 will provide more screen real estate than a 27" monitor at 1920 x 1080. </p>
 
-    <button type="button" class="btn btn-default">23"</button>
-    <button type="button" class="btn btn-default">27"</button>
-    <button type="button" class="btn btn-default">32"</button>
-    <button type="button" class="btn btn-default">34"</button>
-    <button type="button" class="btn btn-default">Custom</button>
+    <div class="button-group">
+      <button type="button" class="btn btn-default button-group__btn">23"</button>
+      <button type="button" class="btn btn-default button-group__btn">27"</button>
+      <button type="button" class="btn btn-default button-group__btn">32"</button>
+      <button type="button" class="btn btn-default button-group__btn">34"</button>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+      <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
+    </div>
 
   </section>
 
@@ -490,11 +495,17 @@ You'll usually get the best result if you keep the scaling at the default value 
     For the most part, no. You are still working with the same number of pixels, just on a larger screen.
   Text won't be as crisp because the pixels are much larger.</p>
 
-  <button type="button" class="btn btn-default">1920 x 1080</button>
-  <button type="button" class="btn btn-default">2560 x 1440</button>
-  <button type="button" class="btn btn-default">3400 x 1440</button>
-  <button type="button" class="btn btn-default">3840 x 2160</button>
-  <button type="button" class="btn btn-default">Custom</button>
+  <div class="button-group">
+    <button type="button" class="btn btn-default button-group__btn">1920 x 1080</button>
+    <button type="button" class="btn btn-default button-group__btn">2560 x 1440</button>
+    <button type="button" class="btn btn-default button-group__btn">3400 x 1440</button>
+    <button type="button" class="btn btn-default button-group__btn">3840 x 2160</button>
+  </div>
+  <div class="input-group">
+    <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+    <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
+  </div>
+
 </section>
 
 <section class="contents-section">
@@ -598,9 +609,17 @@ You'll usually get the best result if you keep the scaling at the default value 
         Programmers will like IPS for its ability to look good even in portrait mode.
         </p>
 
-    <button type="button" class="btn btn-default">TN (Twisted Nematic)</button>
-    <button type="button" class="btn btn-default">VA (Vertical Alignment)</button>
-    <button type="button" class="btn btn-default">IPS (In-plane switching)</button>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-default button-group__btn">TN (Twisted Nematic)</button>
+        <button type="button" class="btn btn-default button-group__btn">VA (Vertical Alignment)</button>
+        <button type="button" class="btn btn-default button-group__btn">IPS (In-plane switching)</button>
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+        <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
+      </div>
+
 </section>
 
 <section class="contents-section">
@@ -652,17 +671,25 @@ make some sort of attempt to research first.</p>
   manufacturer decides to put on the monitor.
 </p>
 
-  <div>
   <p>Screen Finish</p>
-  <button type="button" class="btn btn-default">Anti-glare(matte) screen</button>
-  <button type="button" class="btn btn-default">Glossy screen</button>
+  <div class="button-group">
+  <button type="button" class="btn btn-default button-group__btn">Anti-glare(matte) screen</button>
+  <button type="button" class="btn btn-default button-group__btn">Glossy screen</button>
+  </div>
+  <div class="input-group">
+    <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+    <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
   </div>
 
-  <div>
+  <div class="button-group">
     <p>Bezel Finish</p>
-    <button type="button" class="btn btn-default">Matte bezel</button>
-    <button type="button" class="btn btn-default">Shiny Bezel</button>
-    <button type="button" class="btn btn-default">Bezel finish doesn't matter</button>
+    <button type="button" class="btn btn-default button-group__btn">Matte bezel</button>
+    <button type="button" class="btn btn-default button-group__btn">Shiny Bezel</button>
+    <button type="button" class="btn btn-default button-group__btn">Bezel finish doesn't matter</button>
+  </div>
+  <div class="input-group">
+    <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+    <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
   </div>
 
 </section>
@@ -681,8 +708,14 @@ make some sort of attempt to research first.</p>
     <li><span>LG - Flicker safe</span></li>
   </ul>
 
-  <button type="button" class="btn btn-default">Prefer flicker free</button>
-  <button type="button" class="btn btn-default">Custom</button>
+    <div class="button-group">
+      <button type="button" class="btn btn-default button-group__btn">Prefer flicker free</button>
+      <button type="button" class="btn btn-default button-group__btn">No Preference</button>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+      <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
+    </div>
 </section>
 
 <section class="contents-section">
@@ -716,6 +749,14 @@ make some sort of attempt to research first.</p>
       <button type="button" class="btn btn-default">VESA mount</button>
       <button type="button" class="btn btn-default">Custom</button>
     </div>
+
+    <div class="button-group">
+    <button type="button" class="btn btn-default button-group__btn">VESA Mount</button>
+  </div>
+  <div class="input-group">
+    <input type="text" placeholder="Add a short, custom message..." class="custom__value form-control">
+    <button class="input-group-addon add__btn" type="button"><i class="fas fa-plus"></i></button>
+  </div>
 
 </section>
 
