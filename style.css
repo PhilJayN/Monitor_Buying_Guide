@@ -3,6 +3,7 @@
 HEADING rgb(16, 109, 119) Blue Sapphire
 Anchor #5299d3 Carolina Blue
 Primary Button #a2bce0 Pale Cerulean
+Accent (important) Buttons #5bc0be Sea Serpent
 Side Text Background #f3fafd
 */
 
@@ -101,7 +102,15 @@ ul {
     color: black;
   }
 
-/*BUTTON STYLES-----------------------------------------*/
+/*BUTTON and NAV -----------------------------------------*/
+
+a {
+  color: #5299d3;
+}
+.nav-link {
+  color: #5299d3;
+}
+
 .button-group {
   margin-bottom: .5em;
 }
@@ -120,6 +129,7 @@ ul {
 
 .btn-accent {
   background-color: #beb8eb;
+  background-color: #5bc0be;
   border: none;
 }
 
