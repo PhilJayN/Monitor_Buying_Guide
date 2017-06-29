@@ -58,6 +58,11 @@ h2, h3, h4 {
   padding: 1em;
 }
 
+/* this prevents primary use icons from changing colors */
+.definition-icon {
+  color: #5299d3;
+}
+
 table {
   border-collapse: collapse;
   margin-bottom: 2em;
@@ -180,6 +185,10 @@ button {
 .fa-sticky-note-o {
   /*color: #ffd740;*/
   color: #FBC02D;
+}
+
+.fa-sticky-note {
+  color: #f0c837;
 }
 
 .fa-eye {
