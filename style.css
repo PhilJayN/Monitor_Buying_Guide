@@ -1,6 +1,8 @@
 /* PALLETE */
 /*
-HEADING rgb(16, 109, 119) Blue Sapphire
+HEADING
+  h1: rgb(16, 109, 119) Blue Sapphire
+  h2, h3, h4: rgb(38, 121, 131);
 Anchor #5299d3 Carolina Blue
 Primary Button #a2bce0 Pale Cerulean
 Accent (important) Buttons #5bc0be Sea Serpent
@@ -15,7 +17,7 @@ h1 {
   color: rgb(16, 109, 119);
 }
 
-h2, h3, h4 {
+h2, h3, h4, h5, h6 {
   color: rgb(38, 121, 131);
 }
 
@@ -138,9 +140,11 @@ a {
   border: none;
 }
 
+.btn-accent:hover {
+  background-color: #4c9e9c;
+}
 
 .btn-default:hover {
-  /*txt color only change to draw attention to btn*/
   color: rgb(33, 33, 33);
   background-color: #F2FCF3;
   border-color: rgb(38, 121, 131);
