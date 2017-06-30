@@ -22,11 +22,10 @@ h2, h3, h4, h5, h6 {
   color: rgb(38, 121, 131);
 }
 
-/* .page-wrapper {
+.page-wrapper {
   margin: auto;
-  width: 50%;
-  border: 2px solid blue;
-} */
+  width: 35%;
+}
 
 .wishlist-box {
   width: 250px;
@@ -38,9 +37,8 @@ h2, h3, h4, h5, h6 {
 }
 
 .container {
-  margin-left: 250px;
+  /* margin-left: 250px; */
   /* margin-left: 50px; */
-
 }
 
 /* #wishlist-wrapper {
