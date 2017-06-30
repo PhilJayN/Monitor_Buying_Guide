@@ -47,13 +47,13 @@ var dataController = (function() {
       if(localStorage.length === 0) {
         // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
-        localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
       } else {
         // console.log('header', header, typeof header);
         //IMPORTANT! create a localStorage property using the header as a key,
         //...only if it doesn't exist in localStorage
         if (localStorage.getItem(header) === null) {
-          localStorage.setItem(header, JSON.stringify({input: input, custom: ''}));
+          localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
         }
         //make sure to initialize localStorage using setItem with your new header,
         //otherwise you'll get 'null' when attempting to .getItem(header)
@@ -166,13 +166,13 @@ var UIController = (function() {
         if (localStorage.length > 0) {
           for (var i = 0; i < localStorage.length; i++) {
             id = localStorage.key(i);
-
             json = localStorage.getItem(localStorage.key(i));
-            console.log('loop json', json);
+            console.log('inside loop json', json, 'typeof', typeof json);
             // console.log('obj', JSON.parse(json) );
             //localStorage only supports string. So we need to convert btw object and
             //string to manipulate localStorage data
             obj = JSON.parse(json);
+            console.log('obj:', obj);
 
             // + id allows us to use that id later as key to use localStorage.removeItem(id)
             // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
