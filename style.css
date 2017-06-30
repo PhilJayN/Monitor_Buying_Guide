@@ -13,6 +13,7 @@ body {
   background-color: #A8A8A8;
 }
 
+
 h1 {
   color: rgb(16, 109, 119);
 }
@@ -21,12 +22,31 @@ h2, h3, h4, h5, h6 {
   color: rgb(38, 121, 131);
 }
 
+/* .page-wrapper {
+  margin: auto;
+  width: 50%;
+  border: 2px solid blue;
+} */
+
 .wishlist-box {
+  width: 250px;
   position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 23%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
 }
+
+.container {
+  margin-left: 250px;
+  /* margin-left: 50px; */
+
+}
+
+/* #wishlist-wrapper {
+  border: 1px solid red;
+  position: fixed;
+} */
 
 .wishlist-items {
   padding: 0;
