@@ -22,10 +22,10 @@ h2, h3, h4, h5, h6 {
   color: rgb(38, 121, 131);
 }
 
-.page-wrapper {
+/* .page-wrapper {
   margin: auto;
   width: 35%;
-}
+} */
 
 .wishlist-box {
   width: 250px;
@@ -241,3 +241,33 @@ button {
   background-color: rgb(224, 224, 224);
   background-color: #F2FCF4;
 }*/
+
+
+/* TABLET, 768px and up*/
+@media (min-width: 768px) {
+
+  .page-wrapper {
+    margin: auto;
+    width: 85%;
+  }
+
+}
+
+/* DESKTOP large devices, 992px and up*/
+@media (min-width: 992px ) {
+  .page-wrapper {
+    margin: auto;
+    width: 65%;
+  }
+
+}
+
+
+/* DESKTOP extra large devices,  1200px and up*/
+@media (min-width: 1200px) {
+  .page-wrapper {
+    margin: auto;
+    width: 40%;
+  }
+
+}
