@@ -142,6 +142,7 @@ a {
 
 .btn-accent:hover {
   background-color: #4c9e9c;
+  cursor: pointer;
 }
 
 .btn-default:hover {
@@ -191,6 +192,10 @@ button {
   color: #FBC02D;
 }
 
+.fa-plus {
+  color: #5e5c6c;
+}
+
 .fa-sticky-note {
   color: #f0c837;
 }
@@ -209,6 +214,16 @@ button {
 .fa-bomb {
   color: black;
 }
+
+.button-group__btn {
+  cursor: pointer;  
+}
+
+.add__btn {
+  cursor: pointer;
+}
+
+
 
 /* .container {
   border: 1px solid red;
