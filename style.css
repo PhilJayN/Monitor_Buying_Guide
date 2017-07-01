@@ -25,7 +25,7 @@ h2, h3, h4, h5, h6 {
   position: fixed;
   left: 0px;
   top: 0px;
-  width: 30%;
+  width: 23%;
 }
 
 .wishlist-items {
@@ -205,14 +205,10 @@ button {
 }
 
 .fa-trash {
-  /* color: #FF5049; */
-  color: #a4243b;
+  color: #FF5049;
+  /* color: #a4243b; */
   cursor: pointer;
   margin-right: .3em;
-}
-
-.fa-bomb {
-  color: black;
 }
 
 .button-group__btn {
@@ -222,12 +218,6 @@ button {
 .add__btn {
   cursor: pointer;
 }
-
-
-
-/* .container {
-  border: 1px solid red;
-} */
 
 /*tr:nth-child(even) {
   background-color: rgb(224, 224, 224);
