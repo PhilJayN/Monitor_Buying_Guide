@@ -272,7 +272,10 @@ var controller = (function(dataCtrl, UICtrl) {
 // calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
-    console.log('ctrlAddItem RUNNING', 'eventobj', e);
+    console.log('ctrlAddItem RUNNING', 'e:', e);
+
+    // console.log('e.target', e.target, 'tagname', e.target.tagName, typeof e.target.tagName);
+
     var input, el, parent, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
@@ -281,7 +284,9 @@ var controller = (function(dataCtrl, UICtrl) {
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
-    if (el.classList.contains('add__btn') || el.classList.contains('fa-plus')) {
+
+
+    if (el.classList.contains('add__btn') || el.classList.contains('fa-plus') || e.target.tagName === 'INPUT' ){
       field = 'add__btn';
       if (input && input.length > 0) {
         dataCtrl.addItem(header, input, field);
