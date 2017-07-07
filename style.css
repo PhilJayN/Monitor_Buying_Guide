@@ -262,12 +262,11 @@ button {
 
 }
 
-
 /* DESKTOP extra large devices,  1200px and up*/
 @media (min-width: 1200px) {
   .page-wrapper {
     margin: auto;
-    width: 40%;
+    width: 45%;
   }
 
 }
