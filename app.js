@@ -47,7 +47,11 @@ var dataController = (function() {
       if(localStorage.length === 0) {
         // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
-        localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
+        if (field === 'add__btn') {
+          localStorage.setItem(header, JSON.stringify({input: "", custom: input}));
+        } else {
+          localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
+        }
       } else {
         // console.log('header', header, typeof header);
         //IMPORTANT! create a localStorage property using the header as a key,
