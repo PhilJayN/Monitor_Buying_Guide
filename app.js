@@ -47,6 +47,7 @@ var dataController = (function() {
       if(localStorage.length === 0) {
         // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
+        //the if/else allows for proper key in localStorage to be selected
         if (field === 'add__btn') {
           localStorage.setItem(header, JSON.stringify({input: "", custom: input}));
         } else {
@@ -168,6 +169,7 @@ var UIController = (function() {
         // console.log('wishlist', localStorage);
         // console.log('wishlist .key(0)', localStorage.key(0));
         if (localStorage.length > 0) {
+          //loop through localStorage key (header)
           for (var i = 0; i < localStorage.length; i++) {
             id = localStorage.key(i);
             json = localStorage.getItem(localStorage.key(i));
@@ -184,17 +186,24 @@ var UIController = (function() {
             //for in to loop through every key of obj, store result in a variable to be used later
             var count = 0;
             var text = '';
-            for (var key in obj) {
-              count +=1;
-              // console.log('key', key);
+            var separator = '|';
+            //for every localStorage key(header), loop through every property
+            for (var prop in obj) {
+              // console.log('obj:', obj, 'key', key);
               // console.log('obj of key', obj[key]);
               // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
               // + obj[key] + '</li>');
-              text += obj[key] + ' ';
+              if (count === 0) {
+                text = text + obj[prop] + ' | ';
+                count += 1;
+              } else {
+                text = text + obj[prop];
+              }
+              // console.log('prop', prop);
             }
-            // console.log('finalText', text);
-            target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-            + text + '</li>');
+            console.log('finalText', text);
+            target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
+            + localStorage.key(i) + ': ' + text + '</li>');
             // console.log('count', count);
           }
       }
