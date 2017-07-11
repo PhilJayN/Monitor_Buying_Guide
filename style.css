@@ -58,13 +58,16 @@ h2, h3, h4, h5, h6 {
   padding: .4em;
   position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
   overflow-x: hidden;
-
-  height: 370px;
+  /* height: 370px; */
   /* margin-left: 15px;
   margin-right: 15px; */
+
+  height: 25vh;
+  bottom: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+
 }
 
 .wishlist-box__header {
