@@ -1,20 +1,3 @@
-// var main = function () {
-//   "use strict";
-//   //code
-// };
-// $(document).ready(main);
-
-// function start() {
-// }
-// start();
-// console.log('start');
-// function stop() {
-//   console.log('stop');
-// }
-// setTimeout(stop, 3000);
-
-console.log('TEST GET ITEM', localStorage.getItem('Pick Price Range'));
-
 var dataController = (function() {
 //calculation and data structure goes here.
   //
@@ -149,7 +132,6 @@ var UIController = (function() {
       var html, newHtml, el;
       var demo = localStorage.getItem('Intended Audience');
       newHtml = '<li>' + demo + '</li>';
-      // Insert newly created HTML to DOM
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
@@ -179,7 +161,6 @@ var UIController = (function() {
             //string to manipulate localStorage data
             obj = JSON.parse(json);
             console.log('obj:', obj);
-
             // + id allows us to use that id later as key to use localStorage.removeItem(id)
             // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
             // + localStorage.getItem(localStorage.key(i)) + '</li>');
@@ -209,7 +190,6 @@ var UIController = (function() {
       }
     },
 
-    //maybe erase clearfields and just use  el.previousElementSibling.value = ''; in ctrlAddItem
     clearFields: function(e) {
       var el;
       el = this.getEl(e).el;
@@ -228,7 +208,6 @@ var UIController = (function() {
       // console.log('msgEl', msgEl);
       //only create and append element if it doesn't exist yet
       if (msgEl === null) {
-        // console.log('msg el is null!');
         console.log(this.createDiv());
         parent.appendChild(this.createDiv());
       }
@@ -268,9 +247,6 @@ var controller = (function(dataCtrl, UICtrl) {
     //The callback function of addEventListener will have access to the event object
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
-
-    // document.querySelector(DOM.container).addEventListener('click', UICtrl.getEl);
-
     document.addEventListener('keypress', function(e){
       var e;
       e = e || window.event;
@@ -286,9 +262,7 @@ var controller = (function(dataCtrl, UICtrl) {
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
     console.log('ctrlAddItem RUNNING', 'e:', e);
-
     // console.log('e.target', e.target, 'tagname', e.target.tagName, typeof e.target.tagName);
-
     var input, el, parent, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
@@ -297,8 +271,6 @@ var controller = (function(dataCtrl, UICtrl) {
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
-
-
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus') || e.target.tagName === 'INPUT' ){
       field = 'add__btn';
       if (input && input.length > 0) {
@@ -322,7 +294,6 @@ var controller = (function(dataCtrl, UICtrl) {
     el = UICtrl.getEl(e).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
       console.log('ctrlDelItem. delbtn pressed.', 'el:', el);
-      //get id from element html id attribute
       id = el.getAttribute('id');
       console.log('id', id);
       localStorage.removeItem(id);
@@ -339,4 +310,3 @@ var controller = (function(dataCtrl, UICtrl) {
 })(dataController, UIController);
 
 controller.init();
-console.log('------------------------------');
