@@ -144,10 +144,12 @@ var UIController = (function() {
         var target, id, json, obj;
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
-        target = document.querySelector(DOMstrings.wishlistItems);
+        target = document.querySelectorAll(DOMstrings.wishlistItems);
+        // target2 = document.querySelector(DOMstrings.wishlistItems);
         //hacky way is to clear all target element's content first before running for loop,
         //or else the UI gets duplicate list items.
-        target.innerHTML = "";
+        target[0].innerHTML = "";
+        target[1].innerHTML = "";
         // console.log('wishlist', localStorage);
         // console.log('wishlist .key(0)', localStorage.key(0));
         if (localStorage.length > 0) {
@@ -183,8 +185,11 @@ var UIController = (function() {
               // console.log('prop', prop);
             }
             console.log('finalText', text);
-            target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
+            target[0].insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
             + localStorage.key(i) + ': ' + text + '</li>');
+            target[1].insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
+            + localStorage.key(i) + ': ' + text + '</li>');
+
             // console.log('count', count);
           }
       }
