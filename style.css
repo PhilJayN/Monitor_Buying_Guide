@@ -24,13 +24,11 @@ h2, h3, h4, h5, h6 {
 
 /* .page-wrapper {
   margin: auto;
-  width: 35%;
 } */
 
-.container {
-  /* margin-left: 250px; */
-  /* margin-left: 50px; */
-}
+
+
+
 
 /* #wishlist-wrapper {
   border: 1px solid red;
@@ -54,6 +52,7 @@ h2, h3, h4, h5, h6 {
 
 
 
+
 .wishlist-box {
   /* width: 300px; */
   padding: .4em;
@@ -62,6 +61,10 @@ h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   overflow-x: hidden;
+
+  height: 370px;
+  /* margin-left: 15px;
+  margin-right: 15px; */
 }
 
 .wishlist-box__header {
@@ -82,6 +85,15 @@ h2, h3, h4, h5, h6 {
   left: 0;
   overflow-x: hidden;
 } */
+
+
+/* .container {
+  border: 1px solid red;
+  padding-left: 90px;;
+} */
+
+
+
 
 
 
@@ -290,6 +302,11 @@ button {
     margin: auto;
     width: 65%;
   }
+
+  .wishlist-box {
+    width: 400px;
+  }
+
 
 }
 
