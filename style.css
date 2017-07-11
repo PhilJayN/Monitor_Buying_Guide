@@ -65,7 +65,7 @@ h2, h3, h4, h5, h6 {
 
   height: 25vh;
   bottom: 0;
-  border-radius: 0;
+  /* border-radius: 0; */
   margin-bottom: 0;
 
 }
@@ -297,6 +297,9 @@ button {
     width: 85%;
   }
 
+  .wishlist-box {
+  }
+
 }
 
 /* DESKTOP large devices, 992px and up*/
@@ -308,6 +311,11 @@ button {
 
   .wishlist-box {
     width: 400px;
+
+    height: 45vh;
+    top: 0;
+    left: 0;
+    border-radius: 0 3px 3px 0;
   }
 
 
