@@ -31,7 +31,7 @@ var dataController = (function() {
         // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
         //the if/else allows for proper key in localStorage to be selected
-        if (field === 'add__btn') {
+        if (field === 'custom') {
           localStorage.setItem(header, JSON.stringify({input: "", custom: input}));
         } else {
           localStorage.setItem(header, JSON.stringify({input: input, custom: ""}));
@@ -51,7 +51,7 @@ var dataController = (function() {
         obj = JSON.parse(json);
         console.log('OBJECT:', obj);
         //depending on value of input, add input to corresponding key in obj
-        if (field === 'add__btn') {
+        if (field === 'custom') {
           obj.custom = input;
           console.log('obj.custom just ran');
           localStorage.setItem(header, JSON.stringify(obj));
@@ -272,7 +272,7 @@ var controller = (function(dataCtrl, UICtrl) {
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus') || e.target.tagName === 'INPUT' ){
-      field = 'add__btn';
+      field = 'custom';
       if (input && input.length > 0) {
         dataCtrl.addItem(header, input, field);
         UICtrl.successMsg(parent);
