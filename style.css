@@ -231,6 +231,7 @@ button {
 
 .button-group__btn {
   cursor: pointer;
+  margin-bottom: .3em;
 }
 
 .add__btn {
