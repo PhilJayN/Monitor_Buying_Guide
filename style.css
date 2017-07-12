@@ -72,11 +72,15 @@ h2, h3, h4, h5, h6 {
 
 .wishlist-box__header {
   margin-bottom: .15em;
-  /* border: 1px solid red; */
+  display: inline-block;
+  /* border: 1px solid blue; */
 }
 
 .wishlist-box__btn {
   margin-bottom: .15em;
+  /* border: 1px solid red; */
+  display: inline-block;
+
 }
 
 /*  original wishlist on all devices*/
@@ -300,6 +304,7 @@ button {
   .wishlist-box {
   }
 
+
 }
 
 /* DESKTOP large devices, 992px and up*/
@@ -318,6 +323,14 @@ button {
     border-radius: 0 3px 3px 0;
   }
 
+  .wishlist-box__header {
+    display: block;
+  }
+
+  .wishlist-box__btn {
+    display: block;
+  }
+
 
 }
 
@@ -327,5 +340,14 @@ button {
     margin: auto;
     width: 45%;
   }
+
+  .wishlist-box__header {
+    display: block;
+  }
+
+  .wishlist-box__btn {
+    display: block;
+  }
+
 
 }
