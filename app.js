@@ -77,6 +77,7 @@ var UIController = (function() {
     customValue: '.custom__value',
     wishListbox: '.wishlist-box',
     wishlistItems: '.wishlist-items',
+    wishlistSum: '.wishlist-summary',
     //msg will use getElementById, so don't use a period before name
     msg: 'success-msg',
   };
@@ -145,6 +146,7 @@ var UIController = (function() {
         // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
         // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
         target = document.querySelectorAll(DOMstrings.wishlistItems);
+        console.log('TARGET', target);
         // target2 = document.querySelector(DOMstrings.wishlistItems);
         //hacky way is to clear all target element's content first before running for loop,
         //or else the UI gets duplicate list items.
@@ -251,6 +253,7 @@ var controller = (function(dataCtrl, UICtrl) {
     var DOM = UICtrl.getDOMstrings();
     //The callback function of addEventListener will have access to the event object
     document.querySelector(DOM.wishListbox).addEventListener('click', ctrlDelItem);
+    document.querySelector(DOM.wishlistSum).addEventListener('click', ctrlDelItem);
     document.querySelector(DOM.container).addEventListener('click', ctrlAddItem);
     document.addEventListener('keypress', function(e){
       var e;
@@ -272,7 +275,7 @@ var controller = (function(dataCtrl, UICtrl) {
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     header = UICtrl.getHeader(e).text;
-    console.log('header from ctrlAddItem', header, 'type:', typeof header);
+    // console.log('header from ctrlAddItem', header, 'type:', typeof header);
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
