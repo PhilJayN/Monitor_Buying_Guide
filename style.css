@@ -64,7 +64,6 @@ h2, h3, h4, h5, h6 {
   bottom: 0;
   /* border-radius: 0; */
   margin-bottom: 0;
-border: 1px solid red;
 }
 
 .wishlist-box__header {
@@ -299,6 +298,10 @@ button {
   }
 
   .wishlist-box {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 
 
@@ -313,7 +316,6 @@ button {
 
   .wishlist-box {
     width: 400px;
-
     height: 45vh;
     top: 0;
     left: 0;
