@@ -22,13 +22,10 @@ h2, h3, h4, h5, h6 {
   color: rgb(38, 121, 131);
 }
 
-/* .page-wrapper {
-  margin: auto;
-} */
-
-
-
-
+/* Jumbotron heading */
+.display-3 {
+  font-size: 3rem;
+}
 
 /* #wishlist-wrapper {
   border: 1px solid red;
@@ -45,7 +42,7 @@ h2, h3, h4, h5, h6 {
   /*background-color: #F2FCF3; LIGHT GREENISH */
   border-radius: 3px;
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 
@@ -331,6 +328,9 @@ button {
     display: block;
   }
 
+  .contents-section {
+    margin-bottom: 2em;
+  }
 
 }
 
@@ -348,6 +348,7 @@ button {
   .wishlist-box__btn {
     display: block;
   }
+
 
 
 }
