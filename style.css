@@ -54,7 +54,7 @@ h2, h3, h4, h5, h6 {
   /* width: 300px; */
   padding: .4em;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   overflow-x: hidden;
   /* height: 370px; */
   /* margin-left: 15px;
@@ -64,7 +64,7 @@ h2, h3, h4, h5, h6 {
   bottom: 0;
   /* border-radius: 0; */
   margin-bottom: 0;
-
+border: 1px solid red;
 }
 
 .wishlist-box__header {
