@@ -272,6 +272,8 @@ button {
   /* color: #a4243b; */
   cursor: pointer;
   margin-right: .3em;
+  font-size: 1.3em;
+  margin-bottom: .40em;
 }
 
 .button-group__btn {
