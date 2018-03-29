@@ -82,7 +82,6 @@ var UIController = (function() {
       e = e || window.event;
       // console.log('EVENT', event, 'the target:', event.target);
       el = e.target;
-      // console.log('getEl', el);
       return {
         el: el
       }
@@ -103,7 +102,6 @@ var UIController = (function() {
       else if (el.classList.contains('button-group__btn')) {
        input = el.textContent;
       }
-      // console.log('getInput el', el, input);
       return {
         customValue: input
       };
@@ -116,18 +114,12 @@ var UIController = (function() {
       document.querySelector(DOMstrings.wishlistItems).insertAdjacentHTML('beforeend', newHtml);
     },
     updateWishlist: function() {
-        // console.log('localStorage len > 0, so running');
         //updateWishlist works by extracting localStorage key (which is a string object),
         //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
         //is a JavaScript obj and can be maniuplated. Then
         //use for loop to iterate over the JavaScript object
-        // console.log('updateWishlist run');
         var target, id, json, obj;
-        // var retrievedObj = localStorage.getItem('Pick Aspect Ratio');
-        // console.log('retrievedObj:', JSON.parse(retrievedObj).text);
         target = document.querySelectorAll(DOMstrings.wishlistItems);
-        console.log('TARGET', target);
-        // target2 = document.querySelector(DOMstrings.wishlistItems);
         //hacky way is to clear all target element's content first before running for loop,
         //or else the UI gets duplicate list items.
         target[0].innerHTML = "";
@@ -139,12 +131,9 @@ var UIController = (function() {
           for (var i = 0; i < localStorage.length; i++) {
             id = localStorage.key(i);
             json = localStorage.getItem(localStorage.key(i));
-            console.log('inside loop json', json, 'typeof', typeof json);
-            // console.log('obj', JSON.parse(json) );
             //localStorage only supports string. So we need to convert btw object and
             //string to manipulate localStorage data
             obj = JSON.parse(json);
-            console.log('obj:', obj);
             // + id allows us to use that id later as key to use localStorage.removeItem(id)
             // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
             // + localStorage.getItem(localStorage.key(i)) + '</li>');
@@ -166,13 +155,10 @@ var UIController = (function() {
               }
               // console.log('prop', prop);
             }
-            console.log('finalText', text);
             target[0].insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
             + localStorage.key(i) + ': ' + text + '</li>');
             target[1].insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
             + localStorage.key(i) + ': ' + text + '</li>');
-
-            // console.log('count', count);
           }
       }
     },
