@@ -176,9 +176,7 @@ var UIController = (function() {
 
     successMsg: function(parent) {
       var msg;
-      console.log('parentdsfa', parent);
       msgEl = document.getElementById('success-msg');
-      // console.log('msgEl', msgEl);
       //only create and append element if it doesn't exist yet
       if (msgEl === null) {
         console.log(this.createDiv());
@@ -203,7 +201,7 @@ var UIController = (function() {
       var containerParent, text;
       // //traverse to clicked el's parent, and get text of section's header
       containerParent = this.getEl(e).el.parentNode;
-      console.log('containerParent', containerParent, 'node', containerParent.parentNode);
+      // console.log('containerParent', containerParent, 'node', containerParent.parentNode);
       text = containerParent.parentNode.firstElementChild.textContent;
       return {
         text: text
@@ -232,21 +230,18 @@ var controller = (function(dataCtrl, UICtrl) {
   };
 
 //note that the event object is given to us by the browser. (use whatever name you want)
-// calling the getEl method here also gives the getEl method access to the event object
+//calling the getEl method here also gives the getEl method access to the event object
 //the el(element) is the one that just got clicked by user
   var ctrlAddItem = function(e) {
-    console.log('ctrlAddItem RUNNING', 'e:', e);
-    // console.log('e.target', e.target, 'tagname', e.target.tagName, typeof e.target.tagName);
+    // console.log('ctrlAddItem RUNNING', 'e:', e);
     var input, el, parent, header, field;
     el = UICtrl.getEl(e).el;
     parent = el.parentNode.parentNode;
     header = UICtrl.getHeader(e).text;
-    // console.log('header from ctrlAddItem', header, 'type:', typeof header);
     input = UICtrl.getInput(e).customValue;
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus') || e.target.tagName === 'INPUT' ){
-      console.log('el TAGNAME IS INPUT!!');
       field = 'custom';
       if (input && input.length > 0) {
         dataCtrl.addItem(header, input, field);
@@ -268,9 +263,7 @@ var controller = (function(dataCtrl, UICtrl) {
     var el, id;
     el = UICtrl.getEl(e).el;
     if (el.classList.contains('del__btn') || el.classList.contains('fa-trash') ) {
-      console.log('ctrlDelItem. delbtn pressed.', 'el:', el);
       id = el.getAttribute('id');
-      console.log('id', id);
       localStorage.removeItem(id);
       UICtrl.updateWishlist();
     }
