@@ -1,26 +1,11 @@
 var dataController = (function() {
 //calculation and data structure goes here.
-  //
   var Item = function(input, custom) {
     this.input = input;
     this.custom = custom;
   };
 
   return {
-    testMethod: function() {
-      // console.log('hiiiii! from testMethod');
-    },
-
-    checkStorage: function() {
-      var exist;
-      if (localStorage.length > 0) {
-        exist = true;
-      } else {
-        exist = false;
-      }
-      return exist;
-    },
-
     showStorage: function() {
       console.log('LOCAL STORAGE', localStorage);
     },
@@ -28,7 +13,6 @@ var dataController = (function() {
     addItem: function(header, input, field) {
       var obj, json;
       if(localStorage.length === 0) {
-        // console.log('localStorage len 0 run');
         //allows for seeding of localStorage if empty, or else using obj.custom results in error
         //the if/else allows for proper key in localStorage to be selected
         if (field === 'custom') {
@@ -46,19 +30,15 @@ var dataController = (function() {
         //make sure to initialize localStorage using setItem with your new header,
         //otherwise you'll get 'null' when attempting to .getItem(header)
         json = localStorage.getItem(header);
-        console.log('json:', json);
         //change to obj to manipulate
         obj = JSON.parse(json);
-        console.log('OBJECT:', obj);
         //depending on value of input, add input to corresponding key in obj
         if (field === 'custom') {
           obj.custom = input;
-          console.log('obj.custom just ran');
           localStorage.setItem(header, JSON.stringify(obj));
         }
         else if (field === 'button-group__btn') {
           obj.input = input;
-          console.log('obj.input just ran');
           localStorage.setItem(header, JSON.stringify(obj));
         }
       }
@@ -280,6 +260,7 @@ var controller = (function(dataCtrl, UICtrl) {
     //check that input exists, or you get undefined error when clicking on input field,
     //due to click handler being assigned container parent. Occurs when user types in values to input field
     if (el.classList.contains('add__btn') || el.classList.contains('fa-plus') || e.target.tagName === 'INPUT' ){
+      console.log('el TAGNAME IS INPUT!!');
       field = 'custom';
       if (input && input.length > 0) {
         dataCtrl.addItem(header, input, field);
