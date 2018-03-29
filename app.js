@@ -30,7 +30,7 @@ var dataController = (function() {
         //make sure to initialize localStorage using setItem with your new header,
         //otherwise you'll get 'null' when attempting to .getItem(header)
         json = localStorage.getItem(header);
-        //change to obj to manipulate
+        //change to object to manipulate
         obj = JSON.parse(json);
         //depending on value of input, add input to corresponding key in obj
         if (field === 'custom') {
@@ -74,7 +74,7 @@ var UIController = (function() {
       return div;
     },
 
-    //this getEl's purpose is so that you don't have to type in e = e || window.event all the time
+    //this getEl's purpose is so that you don't have to type in e = e || window.event in every method
     getEl: function(e) {
       //el = element. Side note: In Chrome, and IE, use 'event'. In FireFox, use window.event
       var e, el;
@@ -116,7 +116,7 @@ var UIController = (function() {
     updateWishlist: function() {
         //updateWishlist works by extracting localStorage key (which is a string object),
         //then use JSON.parse to change that string obj. into a JavaScript obj. Now that object
-        //is a JavaScript obj and can be maniuplated. Then
+        //is a JavaScript object and can thus be maniuplated. Then
         //use for loop to iterate over the JavaScript object
         var target, id, json, obj;
         target = document.querySelectorAll(DOMstrings.wishlistItems);
@@ -124,19 +124,15 @@ var UIController = (function() {
         //or else the UI gets duplicate list items.
         target[0].innerHTML = "";
         target[1].innerHTML = "";
-        // console.log('wishlist', localStorage);
-        // console.log('wishlist .key(0)', localStorage.key(0));
         if (localStorage.length > 0) {
           //loop through localStorage key (header)
           for (var i = 0; i < localStorage.length; i++) {
+            //id allows us to use that id later as key to use localStorage.removeItem(id)
             id = localStorage.key(i);
             json = localStorage.getItem(localStorage.key(i));
             //localStorage only supports string. So we need to convert btw object and
             //string to manipulate localStorage data
             obj = JSON.parse(json);
-            // + id allows us to use that id later as key to use localStorage.removeItem(id)
-            // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-            // + localStorage.getItem(localStorage.key(i)) + '</li>');
             //for in to loop through every key of obj, store result in a variable to be used later
             var count = 0;
             var text = '';
@@ -145,15 +141,12 @@ var UIController = (function() {
             for (var prop in obj) {
               // console.log('obj:', obj, 'key', key);
               // console.log('obj of key', obj[key]);
-              // target.insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>' + localStorage.key(i) + ': '
-              // + obj[key] + '</li>');
               if (count === 0) {
                 text = text + obj[prop] + ' | ';
                 count += 1;
               } else {
                 text = text + obj[prop];
               }
-              // console.log('prop', prop);
             }
             target[0].insertAdjacentHTML('beforeend', '<li><i class="fas fa-trash del__btn" id="' + id + '"></i>'
             + localStorage.key(i) + ': ' + text + '</li>');
