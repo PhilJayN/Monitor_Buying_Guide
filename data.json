@@ -1,0 +1,21 @@
+[{
+		"brand": "Alienware",
+		"model": "AW3420DW",
+		"size": "34",
+		"resolution": "3440 X 1440",
+		"panel": "IPS",
+		"refresh": "120Hz",
+    "aspectRatio": ""
+
+	},
+	{
+		"brand": "GIGABYTE ",
+		"model": "G27QC",
+		"size": "27",
+		"resolution": "2560 x 1440",
+		"panel": "VA",
+		"refresh": "165Hz",
+    "aspectRatio": "",
+    "link": "https://amzn.to/3e2HV03"
+	}
+]
